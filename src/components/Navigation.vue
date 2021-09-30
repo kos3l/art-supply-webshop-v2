@@ -11,7 +11,6 @@
           class="nav-box d-flex justify-center"
           style="border-right:0;"
           id="home"
-          v-if="currentPage == isPainting"
         >
           PAINTING - this is on Painting page
         </div>
@@ -20,7 +19,6 @@
           class="nav-box d-flex justify-center"
           style="border-right:0;"
           id="home"
-          v-else
         >
           PAINTING
         </div>

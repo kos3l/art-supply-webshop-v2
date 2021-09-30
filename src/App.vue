@@ -2,6 +2,7 @@
   <v-app id="app">
     <v-main>
       <Navigation />
+
       <router-view />
     </v-main>
   </v-app>
@@ -22,6 +23,7 @@ export default {
 </script>
 <style lang="scss">
 #app {
+  background-color: map-get($colorz, primary);
   font-family: "Raleway", sans-serif;
   letter-spacing: 0.1rem;
 }
