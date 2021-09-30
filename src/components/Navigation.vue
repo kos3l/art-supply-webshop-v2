@@ -7,35 +7,36 @@
     </v-row>
     <v-row>
       <v-col class="pa-0">
-        <div
-          class="nav-box d-flex justify-center"
-          style="border-right:0;"
-          id="home"
-        >
-          PAINTING - this is on Painting page
-        </div>
-
-        <div
-          class="nav-box d-flex justify-center"
-          style="border-right:0;"
-          id="home"
-        >
-          PAINTING
-        </div>
+        <router-link :to="{ name: 'Painting' }">
+          <button
+            class="current nav-box d-flex justify-center "
+            style="border-right:0;"
+            v-if="currentPage === '/painting'"
+          >
+            PAINTING - this is on Painting page
+          </button>
+          <button
+            v-else
+            class="nav-box d-flex justify-center"
+            style="border-right:0;"
+          >
+            PAINTING
+          </button>
+        </router-link>
       </v-col>
       <v-col class="pa-0">
-        <div class="nav-box d-flex justify-center" id="drawing">
+        <button class="nav-box d-flex justify-center" id="drawing">
           DRAWING
-        </div>
+        </button>
       </v-col>
       <v-col class="pa-0">
-        <div
+        <button
           class="nav-box d-flex justify-center"
           style="border-left:0;"
           id="bundles"
         >
           BUNDLES
-        </div>
+        </button>
       </v-col>
     </v-row>
   </v-container>
@@ -48,21 +49,7 @@ export default {
   data() {
     return {
       currentPage: this.$router.currentRoute.path,
-
-      //home: document.getElementById("home"),
     };
-  },
-  computed: {
-    isPainting() {
-      return this.$route.name === "Painting";
-    },
-  },
-  mounted: {
-    currentPageStyle: function() {
-      if (this.currentPage == "/painting") {
-        return this.home.classList.add("current");
-      }
-    },
   },
 };
 </script>
@@ -72,12 +59,39 @@ export default {
   height: 2.5rem;
   font-weight: bold;
 }
-
+.nav p {
+  color: map-get($colorz, primary);
+  font-style: italic;
+  font-size: 0.9rem;
+}
 .height-fix {
   height: 100%;
 }
-
+.nav-box {
+  @include container_mixin(
+    3px,
+    map-get($colorz, secondary),
+    0.875rem,
+    0,
+    map-get($colorz, secondary),
+    map-get($colorz, primary)
+  );
+  font-size: 1.1rem;
+}
+.nav-box:hover {
+  @include container_mixin(
+    3px,
+    map-get($colorz, secondary),
+    0.875rem,
+    0,
+    map-get($colorz, primary),
+    map-get($colorz, secondary)
+  );
+}
 .current {
   background-color: red;
+}
+button {
+  width: 100%;
 }
 </style>

@@ -5,8 +5,12 @@ Vue.use(Vuetify);
 
 export default new Vuetify({
   theme: {
-    primary: "#eaeaf2",
-    secondary: "#04041a",
-    highlight: "#eb188a",
+    themes: {
+      light: {
+        primary: "#EAEAF2",
+        secondary: "#04041A",
+        highlight: "#EB188A",
+      },
+    },
   },
 });
