@@ -2,13 +2,21 @@
   <div id="home">
     <v-container class="wrap">
       <v-row class="top-row">
-        <v-col class="pa-0"></v-col>
+        <v-col class="pa-0 d-flex justify-center align-end">
+          <div class="arrow left">
+            <img :src="arrow" alt="" />
+          </div>
+        </v-col>
         <v-col class="d-flex justify-center align-end pa-0">
           <div class="category-box">
             <img :src="brush" alt="" />
           </div>
         </v-col>
-        <v-col class="pa-0"></v-col>
+        <v-col class="pa-0 d-flex justify-center align-end">
+          <div class="arrow right">
+            <img :src="arrow" alt="" />
+          </div>
+        </v-col>
       </v-row>
       <v-row class="low-row">
         <v-col class="d-flex justify-center align-center">
@@ -28,6 +36,7 @@ export default {
     return {
       callToAction: "CHOOSE YOUR PRODUCTS OF INTEREST",
       brush: require("../assets/ferdek.jpg"),
+      arrow: require("../assets/arrow.png"),
     };
   },
 };
@@ -36,7 +45,7 @@ export default {
 #home {
   background-image: url("../assets/bg.jpg");
   background-size: cover;
-  background-position: 50% 10%;
+  background-position: 50% 40%;
   margin-top: 3.6rem;
   height: 100vh;
 }
@@ -48,7 +57,7 @@ export default {
 }
 .category-box {
   @include container_mixin(
-    3px,
+    2px,
     map-get($colorz, secondary),
     2rem,
     3em,
@@ -78,5 +87,14 @@ export default {
 .call-to-action h1 {
   font-size: 2rem;
   font-weight: 900;
+}
+.arrow {
+  margin-bottom: 8rem;
+}
+.arrow img {
+  width: 50px;
+}
+.left {
+  transform: rotate(180deg);
 }
 </style>

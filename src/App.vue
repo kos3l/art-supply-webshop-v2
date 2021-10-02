@@ -93,7 +93,7 @@ export default {
 }
 .nav-box {
   @include container_mixin(
-    3px,
+    2px,
     map-get($colorz, secondary),
     0.875rem,
     0,
@@ -105,7 +105,7 @@ export default {
 
 .nav-box:hover {
   @include container_mixin(
-    3px,
+    2px,
     map-get($colorz, secondary),
     0.875rem,
     0,
@@ -117,7 +117,7 @@ export default {
 
 .current {
   @include container_mixin(
-    3px,
+    2px,
     map-get($colorz, secondary),
     0.875rem,
     0,
