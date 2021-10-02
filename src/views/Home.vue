@@ -2,15 +2,15 @@
   <div id="home">
     <v-container class="wrap">
       <v-row class="top-row">
-        <v-col></v-col>
-        <v-col class="d-flex justify-center align-end">
+        <v-col class="pa-0"></v-col>
+        <v-col class="d-flex justify-center align-end pa-0">
           <div class="category-box">
             <img :src="brush" alt="" />
           </div>
         </v-col>
-        <v-col></v-col>
+        <v-col class="pa-0"></v-col>
       </v-row>
-      <v-row>
+      <v-row class="low-row">
         <v-col class="d-flex justify-center align-center">
           <div class="call-to-action">
             <h1>{{ callToAction }}</h1>
@@ -42,26 +42,41 @@ export default {
 }
 .wrap {
   height: 100%;
+
+  margin-left: 0;
+  margin-right: 0;
 }
 .category-box {
   @include container_mixin(
     3px,
     map-get($colorz, secondary),
-    0.875rem,
-    0,
+    2rem,
+    3em,
     map-get($colorz, secondary),
     map-get($colorz, primary)
   );
-  height: 17rem;
+  height: 20rem;
+  width: 100%;
 }
 .category-box img {
   width: 100%;
   height: 100%;
 }
-.category-box img {
-  background-color: red;
-}
+
 .top-row {
-  height: 65%;
+  height: 70%;
+  width: 100vw;
+}
+.low-row {
+  width: 100vw;
+}
+.call-to-action {
+  background-color: map-get($colorz, secondary);
+  color: map-get($colorz, primary);
+  padding: 0 1rem 0 1rem;
+}
+.call-to-action h1 {
+  font-size: 2rem;
+  font-weight: 900;
 }
 </style>

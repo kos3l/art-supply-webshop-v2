@@ -103,17 +103,18 @@ export default {
   font-size: 1.1rem;
 }
 
-.curtain {
-  display: block;
-  left: 100.5%;
-  top: 0px;
-  transition: all 330ms cubic-bezier(0.25, 0.1, 0.17, 1);
-  position: absolute;
-  width: 33.8vw;
-  height: 5rem;
-  transform: translate3d(0, 0, 0);
-  background-color: map-get($colorz, secondary);
+.nav-box:hover {
+  @include container_mixin(
+    3px,
+    map-get($colorz, secondary),
+    0.875rem,
+    0,
+    map-get($colorz, primary),
+    map-get($colorz, secondary)
+  );
+  transition: 0.3s ease-in-out;
 }
+
 .current {
   @include container_mixin(
     3px,
@@ -131,6 +132,7 @@ button {
   width: 100%;
   text-decoration: none;
 }
+
 a:-webkit-any-link {
   text-decoration: none;
 }
