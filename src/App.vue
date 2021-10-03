@@ -2,7 +2,7 @@
   <v-app id="app">
     <v-main>
       <v-container fluid class="secondary d-none d-md-block nav pa-0">
-        <v-row class="height-fix">
+        <v-row class="height-fix" style="width:100%">
           <v-col
             class="height-fix pa-0 pt-3 d-flex justify-center align-center"
           >
@@ -53,6 +53,20 @@
       </v-container>
 
       <router-view />
+
+      <v-container fluid class="dark footer">
+        <v-row class="ma-0 pa-0 row-size">
+          <v-col class="line-container">
+            <div class="line"></div>
+          </v-col>
+        </v-row>
+        <v-row class="ma-0 pa-0">
+          <v-col></v-col>
+          <v-col></v-col>
+          <v-col></v-col>
+          <v-col></v-col>
+        </v-row>
+      </v-container>
     </v-main>
   </v-app>
 </template>
@@ -135,5 +149,11 @@ button {
 
 a:-webkit-any-link {
   text-decoration: none;
+}
+
+.footer {
+  height: 30vh;
+}
+.line {
 }
 </style>

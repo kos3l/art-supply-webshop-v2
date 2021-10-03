@@ -52,8 +52,40 @@
           <ProductCard />
         </v-col>
       </v-row>
-      <v-row class="row-size">
-        <v-col></v-col>
+      <v-row class="row-size ">
+        <v-col class=" d-flex justify-end align-center mr-16 mt-6 mb-16">
+          <ButtonRefresh />
+        </v-col>
+      </v-row>
+    </v-container>
+    <v-container fluid class="light wrap-plain pa-0 ma-0 ">
+      <v-row class="row-last">
+        <v-col class="poster pa-16"> </v-col>
+        <v-col class="dark pa-16">
+          <v-col>
+            <div class="header d-flex justify-center align-center">
+              <h1>INFORMATION SECTION</h1>
+            </div>
+          </v-col>
+          <v-col>
+            <div class="info-text">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad
+              </p>
+
+              <p>
+                minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                aliquip ex ea commodo consequat. Duis aute irure dolor in
+                reprehenderit
+              </p>
+            </div>
+          </v-col>
+          <v-col class="btn-info d-flex justify-center align-center">
+            <ButtonRefresh />
+          </v-col>
+        </v-col>
       </v-row>
     </v-container>
   </div>
@@ -61,10 +93,12 @@
 
 <script>
 import ProductCard from "../components/ProductCard.vue";
+import ButtonRefresh from "../components/ButtonRefresh.vue";
 export default {
   name: "Home",
   components: {
     ProductCard,
+    ButtonRefresh,
   },
   data() {
     return {
@@ -88,6 +122,9 @@ export default {
   height: auto;
   margin-left: 0;
   margin-right: 0;
+}
+.wrap-plain {
+  height: auto;
 }
 
 .light {
@@ -117,6 +154,11 @@ export default {
 .row-size {
   width: 100vw;
 }
+.row-last {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+}
 .top-row {
   height: 70vh;
   width: 100vw;
@@ -144,5 +186,16 @@ export default {
 
 .middle-title {
   height: 20vh;
+}
+.poster {
+  background-image: url("../assets/bg.jpg");
+  background-size: cover;
+}
+.header {
+  border: 2px solid map-get($colorz, primary);
+  width: 100%;
+}
+.btn-info {
+  height: 40vh;
 }
 </style>
