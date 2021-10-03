@@ -54,17 +54,19 @@
 
       <router-view />
 
-      <v-container fluid class="dark footer">
+      <v-container fluid class="dark footer pa-0">
         <v-row class="ma-0 pa-0 row-size">
-          <v-col class="line-container">
+          <v-col class="line-container pa-10">
             <div class="line"></div>
           </v-col>
         </v-row>
-        <v-row class="ma-0 pa-0">
-          <v-col></v-col>
-          <v-col></v-col>
-          <v-col></v-col>
-          <v-col></v-col>
+        <v-row class="ma-0 pr-7 pl-7">
+          <v-col>
+            <p>CONTACT:</p>
+          </v-col>
+          <v-col><p>GENERAL INFORMATION</p></v-col>
+          <v-col><p>ADMIN SECTION</p></v-col>
+          <v-col><p>SOCIAL MEDIA</p></v-col>
         </v-row>
       </v-container>
     </v-main>
@@ -155,5 +157,8 @@ a:-webkit-any-link {
   height: 30vh;
 }
 .line {
+  height: 1px;
+  border-top: 2px solid map-get($colorz, primary);
+  width: auto;
 }
 </style>
