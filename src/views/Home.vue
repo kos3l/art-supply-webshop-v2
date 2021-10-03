@@ -36,17 +36,21 @@
     <v-container fluid class="light wrap-plain pa-0 ma-0 ">
       <v-row class="row-size">
         <v-col>
-          <div class=" d-flex justify-start align-center">
-            <h1>{{ middleTitle }}</h1>
+          <div class=" d-flex justify-start align-center pa-6 pt-16">
+            <h1 class="ml-16">{{ middleTitle }}</h1>
           </div>
         </v-col>
       </v-row>
-      <v-row class="row-size">
-        <v-col>
+      <v-row class="row-size ma-0">
+        <v-col class=" d-flex justify-center align-center">
           <ProductCard />
         </v-col>
-        <v-col></v-col>
-        <v-col></v-col>
+        <v-col class=" d-flex justify-center align-center">
+          <ProductCard />
+        </v-col>
+        <v-col class=" d-flex justify-center align-center">
+          <ProductCard />
+        </v-col>
       </v-row>
       <v-row class="row-size">
         <v-col></v-col>

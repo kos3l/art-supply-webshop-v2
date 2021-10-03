@@ -6,10 +6,15 @@
         alt=""
       />
     </div>
-    <div class="bottom-bar dark">
-      <p>Oil paint - 200ml</p>
-      <p>Van Gogh</p>
-      <p>100kr</p>
+    <div class="bottom-bar dark d-flex justify-space-between align-center pa-3">
+      <div class="details">
+        <p>Oil paint - 200ml</p>
+        <br />
+        <p>VAN GOGH</p>
+      </div>
+      <div class="price">
+        <p>100kr</p>
+      </div>
     </div>
   </div>
 </template>
@@ -44,6 +49,20 @@ export default {
 .bottom-bar {
   width: 100%;
   height: 20%;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+}
+.details {
+  line-height: 0.8rem;
+}
+.details p {
+  margin: 0;
+}
+.price {
+  text-align: end;
+  font-size: 1.17rem;
+  font-weight: bold;
+}
+.price p {
+  margin: 0;
 }
 </style>
