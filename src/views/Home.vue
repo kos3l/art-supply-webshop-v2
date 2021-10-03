@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <v-container class="wrap">
+    <v-container fluid class="wrap">
       <v-row class="top-row">
         <v-col class="pa-0 d-flex justify-center align-end">
           <div class="arrow left">
@@ -19,22 +19,53 @@
         </v-col>
       </v-row>
       <v-row class="low-row">
-        <v-col class="d-flex justify-center align-center">
-          <div class="call-to-action">
+        <v-col class="d-flex justify-center align-start">
+          <div class="call-to-action dark">
             <h1>{{ callToAction }}</h1>
           </div>
         </v-col>
+      </v-row>
+      <v-row class="row-size">
+        <v-col class="dark">
+          <div class="middle-title d-flex justify-center align-center">
+            <h1>{{ middleTitle }}</h1>
+          </div></v-col
+        >
+      </v-row>
+    </v-container>
+    <v-container fluid class="light wrap-plain pa-0 ma-0 ">
+      <v-row class="row-size">
+        <v-col>
+          <div class=" d-flex justify-start align-center">
+            <h1>{{ middleTitle }}</h1>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row class="row-size">
+        <v-col>
+          <ProductCard />
+        </v-col>
+        <v-col></v-col>
+        <v-col></v-col>
+      </v-row>
+      <v-row class="row-size">
+        <v-col></v-col>
       </v-row>
     </v-container>
   </div>
 </template>
 
 <script>
+import ProductCard from "../components/ProductCard.vue";
 export default {
   name: "Home",
+  components: {
+    ProductCard,
+  },
   data() {
     return {
       callToAction: "CHOOSE YOUR PRODUCTS OF INTEREST",
+      middleTitle: "BEST QUALITY PRODUCTS SHIPPED WORLDWIDE",
       brush: require("../assets/ferdek.jpg"),
       arrow: require("../assets/arrow.png"),
     };
@@ -47,13 +78,21 @@ export default {
   background-size: cover;
   background-position: 50% 40%;
   margin-top: 3.6rem;
-  height: 100vh;
+  height: auto;
 }
 .wrap {
-  height: 100%;
-
+  height: auto;
   margin-left: 0;
   margin-right: 0;
+}
+
+.light {
+  background-color: map-get($colorz, primary);
+  color: map-get($colorz, secondary);
+}
+.dark {
+  background-color: map-get($colorz, secondary);
+  color: map-get($colorz, primary);
 }
 .category-box {
   @include container_mixin(
@@ -71,17 +110,18 @@ export default {
   width: 100%;
   height: 100%;
 }
-
+.row-size {
+  width: 100vw;
+}
 .top-row {
-  height: 70%;
+  height: 70vh;
   width: 100vw;
 }
 .low-row {
   width: 100vw;
+  height: 20vh;
 }
 .call-to-action {
-  background-color: map-get($colorz, secondary);
-  color: map-get($colorz, primary);
   padding: 0 1rem 0 1rem;
 }
 .call-to-action h1 {
@@ -96,5 +136,9 @@ export default {
 }
 .left {
   transform: rotate(180deg);
+}
+
+.middle-title {
+  height: 20vh;
 }
 </style>
