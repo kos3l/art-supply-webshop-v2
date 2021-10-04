@@ -21,6 +21,7 @@
                 class="nav-box d-flex justify-center  "
                 style="border-right:0;"
                 :class="currentPage === '/painting' ? 'current' : 'inactive'"
+                id="painting"
               >
                 PAINTING
               </button>
@@ -50,6 +51,16 @@
             </router-link>
           </v-col>
         </v-row>
+        <v-row class="hover-row pa-0 ">
+          <v-col class="dark hover-col pa-0 ma-0 ">
+            <div class="dropdown ">
+              <p class="ma-0 ">brush</p>
+              <p class="ma-0 ">brush</p>
+              <p class="ma-0 ">brush</p>
+              <p class="ma-0 ">brush</p>
+            </div>
+          </v-col>
+        </v-row>
       </v-container>
 
       <router-view />
@@ -60,7 +71,7 @@
             <div class="line"></div>
           </v-col>
         </v-row>
-        <v-row class="ma-0 pr-7 pl-7">
+        <v-row class="ma-0 pr-7 pl-8">
           <v-col>
             <p>CONTACT:</p>
           </v-col>
@@ -95,6 +106,7 @@ export default {
   font-family: "Raleway", sans-serif;
   letter-spacing: 0.1rem;
 }
+
 .nav {
   height: 2.5rem;
   font-weight: bold;
@@ -160,5 +172,35 @@ a:-webkit-any-link {
   height: 1px;
   border-top: 2px solid map-get($colorz, primary);
   width: auto;
+}
+
+.hover-row {
+  display: none;
+  height: 10vh;
+  z-index: 100;
+}
+.hover-col {
+  display: none;
+}
+.dropdown {
+  display: none;
+  height: 100%;
+  width: 100%;
+  border: 2px solid map-get($colorz, primary);
+  border-top: 0;
+  padding: 0 4rem 0 4em;
+}
+.dropdown p {
+  color: map-get($colorz, primary);
+}
+
+#painting:hover .hover-row {
+  display: block;
+}
+#painting:hover .hover-col {
+  display: block;
+}
+#painting:hover .dropdown {
+  display: block;
 }
 </style>
