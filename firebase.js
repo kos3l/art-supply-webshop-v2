@@ -16,7 +16,7 @@ const firebaseConfig = {
   storageBucket: "art-webshop.appspot.com",
   messagingSenderId: "851706972677",
   appId: "1:851706972677:web:049f097274bd898624aa6c",
-  measurementId: "G-GLN0R8D33F",
+  measurementId: "G-GLN0R8D33F"
 };
 
 // Initialize Firebase
@@ -24,6 +24,6 @@ export const fb = firebase.initializeApp(firebaseConfig);
 
 export const db = firebase.firestore();
 export const dbMenuAdd = db.collection("menuItems");
-export const dbPaintingAdd = db.collection("Painting");
-export const dbDrawingAdd = db.collection("Drawing");
-export const dbBundlesAdd = db.collection("Bundles");
+export const dbPaintingAdd = db.collection("painting");
+export const dbDrawingAdd = db.collection("drawing");
+export const dbBundlesAdd = db.collection("bundles");

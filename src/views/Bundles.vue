@@ -7,7 +7,7 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-containe fluid></v-containe>
+    <v-container fluid></v-container>
   </div>
 </template>
 

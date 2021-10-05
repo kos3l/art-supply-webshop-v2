@@ -7,16 +7,16 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-containe fluid></v-containe>
+    <v-container fluid></v-container>
   </div>
 </template>
 <script>
-import { dbPaintingAdd } from "/firebase";
+import { dbPaintingAdd } from "../../firebase";
 export default {
   name: "Painting",
   data() {
     return {
-      painting: [
+      paintings: [
         {
           name: "Oil Paint - 200ml",
           brand: "Van Gogh",
@@ -71,17 +71,17 @@ export default {
   },
   created() {
     dbPaintingAdd.get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
+      querySnapshot.forEach((doc => {
         console.log(doc.id, " => ", doc.data());
-        var paintingData = doc.data();
-        this.painting.push({
+        var paintingtData = doc.data();
+        this.paintings.push({
           id: doc.id,
-          name: paintingData.name,
-          brand: paintingData.brand,
-          price: paintingData.price,
-          type: paintingData.type,
+          name: paintingtData.name,
+          brand: paintingtData.brand,
+          price: paintingtData.price,
+          type: paintingtData.type,
         });
-      });
+      }));
     });
   },
 };
