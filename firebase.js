@@ -23,3 +23,4 @@ const analytics = getAnalytics(app);
 
 export const db = firebase.firestore();
 export const dbMenuAdd = db.collection("menuItems");
+export const dbPaintingAdd = db.collection("Painting");

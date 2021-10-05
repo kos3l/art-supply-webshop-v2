@@ -26,6 +26,15 @@
                 PAINTING
               </button>
             </router-link>
+
+            <v-col class="dark hover-col pa-0 ma-0 ">
+              <div class="dropdown ">
+                <p class="ma-0 ">brush</p>
+                <p class="ma-0 ">brush</p>
+                <p class="ma-0 ">brush</p>
+                <p class="ma-0 ">brush</p>
+              </div>
+            </v-col>
           </v-col>
           <v-col class="pa-0">
             <router-link :to="{ name: 'Drawing' }">
@@ -52,14 +61,14 @@
           </v-col>
         </v-row>
         <v-row class="hover-row pa-0 ">
-          <v-col class="dark hover-col pa-0 ma-0 ">
+          <!--   <v-col class="dark hover-col pa-0 ma-0 ">
             <div class="dropdown ">
               <p class="ma-0 ">brush</p>
               <p class="ma-0 ">brush</p>
               <p class="ma-0 ">brush</p>
               <p class="ma-0 ">brush</p>
             </div>
-          </v-col>
+          </v-col> -->
         </v-row>
       </v-container>
 
@@ -140,7 +149,7 @@ export default {
     map-get($colorz, primary),
     map-get($colorz, secondary)
   );
-  transition: 0.3s ease-in-out;
+  transition: ease-in-out;
 }
 
 .current {
@@ -173,17 +182,17 @@ a:-webkit-any-link {
   border-top: 2px solid map-get($colorz, primary);
   width: auto;
 }
-
-.hover-row {
-  display: none;
-  height: 10vh;
-  z-index: 100;
+a:hover + .hover-col {
+  display: flex;
 }
+
 .hover-col {
   display: none;
+  height: 10vh;
+
+  z-index: 100;
 }
 .dropdown {
-  display: none;
   height: 100%;
   width: 100%;
   border: 2px solid map-get($colorz, primary);
@@ -192,15 +201,5 @@ a:-webkit-any-link {
 }
 .dropdown p {
   color: map-get($colorz, primary);
-}
-
-#painting:hover .hover-row {
-  display: block;
-}
-#painting:hover .hover-col {
-  display: block;
-}
-#painting:hover .dropdown {
-  display: block;
 }
 </style>
