@@ -28,7 +28,7 @@
             </router-link>
 
             <v-col class="dark hover-col pa-0 ma-0 ">
-              <div class="dropdown ">
+              <div class="dropdown d-flex justify-space-around align-center">
                 <p class="ma-0 ">brush</p>
                 <p class="ma-0 ">brush</p>
                 <p class="ma-0 ">brush</p>
@@ -46,6 +46,14 @@
                 DRAWING
               </button>
             </router-link>
+            <v-col class="dark hover-col pa-0 ma-0 ">
+              <div class="dropdown d-flex justify-space-around align-center">
+                <p class="ma-0 ">brush</p>
+                <p class="ma-0 ">brush</p>
+                <p class="ma-0 ">brush</p>
+                <p class="ma-0 ">brush</p>
+              </div>
+            </v-col>
           </v-col>
           <v-col class="pa-0">
             <router-link :to="{ name: 'Bundles' }">
@@ -58,17 +66,15 @@
                 BUNDLES
               </button>
             </router-link>
+            <v-col class="dark hover-col pa-0 ma-0 ">
+              <div class="dropdown d-flex justify-space-around align-center">
+                <p class="ma-0 ">brush</p>
+                <p class="ma-0 ">brush</p>
+                <p class="ma-0 ">brush</p>
+                <p class="ma-0 ">brush</p>
+              </div>
+            </v-col>
           </v-col>
-        </v-row>
-        <v-row class="hover-row pa-0 ">
-          <!--   <v-col class="dark hover-col pa-0 ma-0 ">
-            <div class="dropdown ">
-              <p class="ma-0 ">brush</p>
-              <p class="ma-0 ">brush</p>
-              <p class="ma-0 ">brush</p>
-              <p class="ma-0 ">brush</p>
-            </div>
-          </v-col> -->
         </v-row>
       </v-container>
 
@@ -189,17 +195,21 @@ a:hover + .hover-col {
 .hover-col {
   display: none;
   height: 10vh;
-
   z-index: 100;
 }
 .dropdown {
   height: 100%;
   width: 100%;
-  border: 2px solid map-get($colorz, primary);
-  border-top: 0;
-  padding: 0 4rem 0 4em;
+  @include container_mixin(
+    2px,
+    map-get($colorz, secondary),
+    0.875rem,
+    0,
+    map-get($colorz, secondary),
+    map-get($colorz, primary)
+  );
 }
 .dropdown p {
-  color: map-get($colorz, primary);
+  color: map-get($colorz, secondary);
 }
 </style>

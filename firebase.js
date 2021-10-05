@@ -1,8 +1,8 @@
 // Import the functions you need from the SDKs you need
-/*import { initializeApp } from "firebase/app";
-import "firebase/compat/firestore";
-import "firebase/compat/auth";
-import firebase from "firebase/compat/app";
+// import { initializeApp } from "firebase/app";
+import firebase from "firebase/app";
+import "firebase/firestore";
+//import "firebase/firestorage";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -27,4 +27,3 @@ export const dbMenuAdd = db.collection("menuItems");
 export const dbPaintingAdd = db.collection("Painting");
 export const dbDrawingAdd = db.collection("Drawing");
 export const dbBundlesAdd = db.collection("Bundles");
-*/
