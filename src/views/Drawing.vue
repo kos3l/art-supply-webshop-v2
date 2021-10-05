@@ -1,5 +1,14 @@
 <template>
-  <div>draw</div>
+  <div>
+    <v-container fluid light class="pa-0" style="margin-top: 3.6rem;">
+      <v-row>
+        <v-col class="pa-10">
+          <div class="window-img"></div>
+        </v-col>
+      </v-row>
+    </v-container>
+    <v-containe fluid></v-containe>
+  </div>
 </template>
 
 <script>

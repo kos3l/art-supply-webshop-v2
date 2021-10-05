@@ -1,9 +1,17 @@
 <template>
   <div class="painting">
-    <h1>This is an about page</h1>
+    <v-container fluid light class="pa-0" style="margin-top: 3.6rem;">
+      <v-row>
+        <v-col class="pa-10">
+          <div class="window-img"></div>
+        </v-col>
+      </v-row>
+    </v-container>
+    <v-containe fluid></v-containe>
   </div>
 </template>
 <script>
+import { dbPaintingAdd } from "/firebase";
 export default {
   name: "Painting",
   data() {
@@ -58,8 +66,32 @@ export default {
           type: "Round",
         },
       ],
+      windowImg: require("../assets/bowbow.jpg"),
     };
+  },
+  created() {
+    dbPaintingAdd.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        console.log(doc.id, " => ", doc.data());
+        var paintingData = doc.data();
+        this.painting.push({
+          id: doc.id,
+          name: paintingData.name,
+          brand: paintingData.brand,
+          price: paintingData.price,
+          type: paintingData.type,
+        });
+      });
+    });
   },
 };
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+.window-img {
+  height: 10rem;
+  width: 100%;
+  background-image: url("../assets/bowbow.jpg");
+  background-size: cover;
+  border: 2px solid map-get($colorz, secondary);
+}
+</style>
