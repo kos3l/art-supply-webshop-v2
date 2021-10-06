@@ -192,11 +192,14 @@ a:-webkit-any-link {
   border-top: 2px solid map-get($colorz, primary);
   width: auto;
 }
-a:hover + .hover-col {
+
+a:hover + .hover-col, .hover-col:hover {
   display: flex;
 }
+
 .hover-col {
   display: none;
+  width: 100%;
   height: 10vh;
   z-index: 100;
   position:absolute;
@@ -206,6 +209,7 @@ a:hover + .hover-col {
 
 
 .dropdown {
+
     height: 100%;
     width: 100%;
   @include container_mixin(
@@ -222,6 +226,7 @@ a:hover + .hover-col {
 
 }
 .dropdown p {
+
   color: map-get($colorz, secondary);
 }
 </style>
