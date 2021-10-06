@@ -12,14 +12,14 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col class="pa-0">
+          <v-col class="pa-0 ">
             <router-link
               :to="{ name: 'Painting' }"
               style="transition: opacity 0.3s ease-out; cursor:auto"
             >
               <button
                 class="nav-box d-flex justify-center  "
-                style="border-right:0;"
+
                 :class="currentPage === '/painting' ? 'current' : 'inactive'"
                 id="painting"
               >
@@ -28,7 +28,7 @@
             </router-link>
 
             <v-col class="dark hover-col pa-0 ma-0 ">
-              <div class="dropdown d-flex justify-space-around align-center">
+              <div class="dropdown d-flex justify-space-around align-center ">
                 <p class="ma-0 ">brush</p>
                 <p class="ma-0 ">brush</p>
                 <p class="ma-0 ">brush</p>
@@ -41,6 +41,7 @@
               <button
                 class="nav-box d-flex justify-center"
                 id="drawing"
+
                 :class="currentPage === '/drawing' ? 'current' : 'inactive'"
               >
                 DRAWING
@@ -59,7 +60,7 @@
             <router-link :to="{ name: 'Bundles' }">
               <button
                 class="nav-box d-flex justify-center "
-                style="border-left:0;"
+
                 id="bundles"
                 :class="currentPage === '/bundles' ? 'current' : 'inactive'"
               >
@@ -143,6 +144,8 @@ export default {
     map-get($colorz, secondary),
     map-get($colorz, primary)
   );
+  border-left: 1px solid map-get($colorz, secondary);
+  border-right: 1px solid map-get($colorz, secondary);
   font-size: 1.1rem;
 }
 
@@ -155,6 +158,7 @@ export default {
     map-get($colorz, primary),
     map-get($colorz, secondary)
   );
+
   transition: ease-in-out;
 }
 
@@ -191,15 +195,19 @@ a:-webkit-any-link {
 a:hover + .hover-col {
   display: flex;
 }
-
 .hover-col {
   display: none;
   height: 10vh;
   z-index: 100;
+  position:absolute;
+  left: 0rem;
+  box-shadow: 0px 2px 5px map-get($colorz, secondary );
 }
+
+
 .dropdown {
-  height: 100%;
-  width: 100%;
+    height: 100%;
+    width: 100%;
   @include container_mixin(
     2px,
     map-get($colorz, secondary),
@@ -208,6 +216,10 @@ a:hover + .hover-col {
     map-get($colorz, secondary),
     map-get($colorz, primary)
   );
+  border-top: none;
+  border-left: 2px solid map-get($colorz, secondary);
+  border-right: 2px solid map-get($colorz, secondary);
+
 }
 .dropdown p {
   color: map-get($colorz, secondary);
