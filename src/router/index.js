@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Painting from "../views/Painting.vue";
 import Drawing from "../views/Drawing.vue";
 import Bundles from "../views/Bundles.vue";
+import Product from "../views/Product.vue";
 
 Vue.use(VueRouter);
 
@@ -30,6 +31,12 @@ const routes = [
     path: "/bundles",
     name: "Bundles",
     component: Bundles,
+    props: true,
+  },
+  {
+    path: "/product",
+    name: "Product",
+    component: Product,
     props: true,
   },
 ];

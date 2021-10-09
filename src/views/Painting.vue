@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-import { dbPaintingAdd } from "../../firebase";
+
 export default {
   name: "Painting",
   data() {
@@ -69,21 +69,7 @@ export default {
       windowImg: require("../assets/bowbow.jpg"),
     };
   },
-  created() {
-    dbPaintingAdd.get().then((querySnapshot) => {
-      querySnapshot.forEach((doc => {
-        console.log(doc.id, " => ", doc.data());
-        var paintingtData = doc.data();
-        this.paintings.push({
-          id: doc.id,
-          name: paintingtData.name,
-          brand: paintingtData.brand,
-          price: paintingtData.price,
-          type: paintingtData.type,
-        });
-      }));
-    });
-  },
+
 };
 </script>
 <style lang="scss">

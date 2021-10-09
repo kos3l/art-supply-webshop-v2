@@ -195,6 +195,7 @@ a:-webkit-any-link {
 
 a:hover + .hover-col, .hover-col:hover {
   display: flex;
+  
 }
 
 .hover-col {
@@ -205,6 +206,7 @@ a:hover + .hover-col, .hover-col:hover {
   position:absolute;
   left: 0rem;
   box-shadow: 0px 2px 5px map-get($colorz, secondary );
+
 }
 
 
