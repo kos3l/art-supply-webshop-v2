@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-
+ 
 export default {
   name: "Painting",
   data() {
@@ -68,7 +68,10 @@ export default {
       ],
       windowImg: require("../assets/bowbow.jpg"),
     };
+    
   },
+
+ 
 
 };
 </script>

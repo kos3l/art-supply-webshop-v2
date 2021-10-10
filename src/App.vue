@@ -90,6 +90,9 @@
         <v-row class="ma-0 pr-7 pl-8">
           <v-col>
             <p>CONTACT:</p>
+            <v-btn @click="addMenuItems()">
+pls
+            </v-btn>
           </v-col>
           <v-col><p>GENERAL INFORMATION</p></v-col>
           <v-col><p>ADMIN SECTION</p></v-col>
@@ -101,6 +104,9 @@
 </template>
 
 <script>
+
+import "@firebase/firestore";
+import { addMenuItem } from '../firebase'
 export default {
   name: "App",
   components: {},
@@ -108,12 +114,32 @@ export default {
   data() {
     return {
       currentPage: window.location.pathname,
+
     };
+  },
+  methods: {
+     addMenuItems() {
+        addMenuItem.doc("LA").set({
+              name: "Los Angeles",
+              state: "CA",
+              country: "USA"
+          }).then(() => {
+                console.log("Document successfully written!");
+            })
+            .catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+        
+            }
   },
   updated() {
     this.currentPage = this.$router.currentRoute.path;
     console.info(this.currentPage);
   },
+  
+ 
+  
+  
 };
 </script>
 <style lang="scss">
