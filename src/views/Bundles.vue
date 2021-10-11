@@ -12,11 +12,13 @@
 </template>
 
 <script>
+import '@firebase/firestore';
+import { dbBundlesItemsList } from "/firebase"
 export default {
   name: "Bundles",
   data() {
     return {
-      drawing: [
+      bundleItems: [ /*
         {
           name: "Watercolor Paint kit 14 x 40ml",
           brand: "Talens Van Gogh",
@@ -41,9 +43,25 @@ export default {
           price: 1600,
           type: "For drawers",
         },
-      ],
+      */],
     };
   },
+  created() {
+    dbBundlesItemsList.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc => {
+        console.log(doc.id, " => ", doc.data());
+        var bundleItemData = doc.data();
+        console.log(this.bundleItems);
+        this.bundleItems.push({
+          name:bundleItemData.name,
+          id:doc.id,
+          brand:bundleItemData.brand,
+          price:bundleItemData.price,
+          type:bundleItemData.type
+        })
+      }))
+    })
+  }
 };
 </script>
 <style></style>

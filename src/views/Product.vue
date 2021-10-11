@@ -6,7 +6,7 @@
                 <div class="window-img"></div>
             </v-col>
             <v-col class="pa-16">
-                <div></div>
+                <div> </div>
             </v-col>
         </v-row>
 

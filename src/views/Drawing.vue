@@ -12,11 +12,14 @@
 </template>
 
 <script>
+import '@firebase/firestore';
+import { dbDrawingItemsList } from "/firebase"
+
 export default {
   name: "Drawing",
   data() {
     return {
-      drawing: [
+      drawingItems: [ /*
         {
           name: "Technical Drawing Pencils kit",
           brand: "Koh-i-Noor",
@@ -41,9 +44,25 @@ export default {
           price: 100,
           type: "Crayon",
         },
-      ],
+      */],
     };
   },
+  created() {
+    dbDrawingItemsList.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc => {
+        console.log(doc.id, " => ", doc.data());
+        var drawingItemData = doc.data();
+        console.log(this.drawingItems);
+        this.drawingItems.push({
+          name:drawingItemData.name,
+          id:doc.id,
+          brand:drawingItemData.brand,
+          price:drawingItemData.price,
+          type:drawingItemData.type
+        })
+      }))
+    })
+  }
 };
 </script>
 <style></style>
