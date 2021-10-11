@@ -2,7 +2,7 @@
   <div id="home">
     <v-container fluid class="wrap">
       <v-row class="top-row">
-        <v-col class="pa-0 d-flex justify-center align-end">
+        <v-col class="pa-0 d-flex justify-center align-end" >
           <div class="arrow left">
             <img :src="arrow" alt="" />
           </div>

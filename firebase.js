@@ -21,5 +21,8 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export const db = firebase.firestore();
-export const addMenuItem = db.collection('menuItemz');
+export const dbPaintingItemsList = db.collection('painting');
+export const dbDrawingItemsList = db.collection('drawing');
+export const dbBundlesItemsList = db.collection('bundles');
+
 

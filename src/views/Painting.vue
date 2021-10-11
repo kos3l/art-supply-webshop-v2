@@ -6,17 +6,28 @@
           <div class="window-img"></div>
         </v-col>
       </v-row>
+      <v-row>
+        <v-col>
+          <div v-for="paintingItem in paintingItems" :key="paintingItem.name">
+            <p>{{paintingItem.name}}</p>
+            <p>{{paintingItem.brand}}</p>
+            <p>{{paintingItem.price}}</p>
+          </div>
+        </v-col>
+      </v-row>
     </v-container>
     <v-container fluid></v-container>
   </div>
 </template>
 <script>
- 
+import '@firebase/firestore';
+import { dbPaintingItemsList } from "/firebase"
+
 export default {
   name: "Painting",
   data() {
     return {
-      paintings: [
+     paintingItems: [/*
         {
           name: "Oil Paint - 200ml",
           brand: "Van Gogh",
@@ -65,11 +76,28 @@ export default {
           price: 200,
           type: "Round",
         },
-      ],
+     */ ],
       windowImg: require("../assets/bowbow.jpg"),
     };
     
   },
+  created() {
+    dbPaintingItemsList.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc => {
+        console.log(doc.id, " => ", doc.data());
+        var paintingItemData = doc.data();
+        console.log(this.paintingItems);
+        this.paintingItems.push({
+          name:paintingItemData.name,
+          id:doc.id,
+          brand:paintingItemData.brand,
+          price:paintingItemData.price,
+          type:paintingItemData.type
+        })
+      }))
+    })
+  }
+
 
  
 
