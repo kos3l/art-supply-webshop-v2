@@ -3,6 +3,7 @@
     <v-main>
       <v-container fluid class="secondary d-none d-md-block nav pa-0">
         <v-row class="height-fix" style="width:100%">
+          <v-col></v-col>
           <v-col
             class="height-fix pa-0 pt-3 d-flex justify-center align-center"
           >
@@ -10,16 +11,24 @@
               <p class="ma-0">ART SUPPLY STORE</p>
             </router-link>
           </v-col>
+          <v-col class="height-fix pa-0 pt-4 pr-4 d-flex justify-end align-center">
+              <v-icon dense color="primary" >
+                mdi-basket-outline
+              </v-icon>
+              <v-icon dense color="primary" class="ml-6" >
+                mdi-basket-outline
+              </v-icon>
+          </v-col>
+          
         </v-row>
         <v-row>
-          <v-col class="pa-0 ">
+          <v-col class="pa-0  ">
             <router-link
               :to="{ name: 'Painting' }"
               style="transition: opacity 0.3s ease-out; cursor:auto"
             >
               <button
-                class="nav-box d-flex justify-center  "
-
+                class="nav-box d-flex justify-center"
                 :class="currentPage === '/painting' ? 'current' : 'inactive'"
                 id="painting"
               >
@@ -142,6 +151,7 @@ export default {
   font-style: italic;
   font-size: 0.9rem;
 }
+
 .height-fix {
   height: 100%;
 }
@@ -192,6 +202,7 @@ button {
 
 a:-webkit-any-link {
   text-decoration: none;
+
 }
 
 .footer {
@@ -217,8 +228,8 @@ a:hover + .hover-col, .hover-col:hover {
   left: 0rem;
   box-shadow: 0px 2px 5px map-get($colorz, secondary );
 
-}
 
+}
 
 .dropdown {
 
@@ -234,7 +245,7 @@ a:hover + .hover-col, .hover-col:hover {
   );
   border-top: none;
   border-left: 2px solid map-get($colorz, secondary);
-  border-right: 2px solid map-get($colorz, secondary);
+  border-right: 2px solid map-get($colorz, secondary); 
 
 }
 .dropdown p {

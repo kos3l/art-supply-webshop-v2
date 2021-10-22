@@ -92,7 +92,7 @@
 </template>
 
 <script>
-import ProductCard from "../components/ProductCard.vue";
+import ProductCard from "../components/ProductCardPainting.vue";
 import ButtonRefresh from "../components/ButtonRefresh.vue";
 export default {
   name: "Home",
@@ -144,7 +144,7 @@ export default {
     map-get($colorz, secondary),
     map-get($colorz, primary)
   );
-  height: 20rem;
+  height: 50vh;
   width: 100%;
 }
 .category-box img {
@@ -175,7 +175,8 @@ export default {
   font-weight: 900;
 }
 .arrow {
-  margin-bottom: 8rem;
+  margin-bottom: 25vh
+
 }
 .arrow img {
   width: 50px;

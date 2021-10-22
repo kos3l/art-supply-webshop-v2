@@ -1,6 +1,6 @@
 <template>
-  <div class="painting">
-    <v-container fluid light class="pa-0" style="margin-top: 3.6rem;">
+  <div class="product-page">
+    <v-container fluid light class="pa-0">
       <v-row>
         <v-col class="pa-10">
           <div class="window-img"></div>
@@ -10,8 +10,8 @@
         <v-col sm="12" md="4" lg="3" xl="2"  class="pl-10" style="background-color:red;">
           <p>meow</p>
         </v-col>
-        <v-col sm="12" md="8" lg="9" xl="10" class="pr-10 itemColumn d-flex flex-wrap justify-end align-start">
-            <ProductCard  v-for="paintingItem in paintingItems" :paintingItem="paintingItem" :key="paintingItem.name"/>
+        <v-col sm="12" md="8" lg="9" xl="10" class="pr-10 itemColumn d-flex flex-wrap justify-start align-start">
+            <ProductCardPainting  v-for="paintingItem in paintingItems" :paintingItem="paintingItem" :key="paintingItem.name"/>
         </v-col>
       </v-row>
     </v-container>
@@ -21,11 +21,11 @@
 <script>
 import '@firebase/firestore';
 import { dbPaintingItemsList } from "/firebase"
-import ProductCard from "../components/ProductCard.vue";
+import ProductCardPainting from "../components/ProductCardPainting.vue";
 export default {
   name: "Painting",
   components: {
-    ProductCard
+    ProductCardPainting
   },
   data() {
     return {
@@ -99,6 +99,7 @@ export default {
       }))
     })
   }
+  
 
 
  
@@ -106,6 +107,10 @@ export default {
 };
 </script>
 <style lang="scss">
+.product-page {
+  margin-top: 4.4rem;
+  height: auto;
+}
 .window-img {
   height: 10rem;
   width: 100%;
