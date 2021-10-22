@@ -43,13 +43,13 @@
       </v-row>
       <v-row class="row-size ma-0">
         <v-col class=" d-flex justify-center align-center">
-          <ProductCard />
+
         </v-col>
         <v-col class=" d-flex justify-center align-center">
-          <ProductCard />
+
         </v-col>
         <v-col class=" d-flex justify-center align-center">
-          <ProductCard />
+
         </v-col>
       </v-row>
       <v-row class="row-size ">
@@ -92,12 +92,12 @@
 </template>
 
 <script>
-import ProductCard from "../components/ProductCardPainting.vue";
+
 import ButtonRefresh from "../components/ButtonRefresh.vue";
 export default {
   name: "Home",
   components: {
-    ProductCard,
+
     ButtonRefresh,
   },
   data() {

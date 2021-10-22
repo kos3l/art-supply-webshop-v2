@@ -5,6 +5,7 @@ import Painting from "../views/Painting.vue";
 import Drawing from "../views/Drawing.vue";
 import Bundles from "../views/Bundles.vue";
 import Product from "../views/Product.vue";
+import BasketPage from "../views/BasketPage.vue";
 
 Vue.use(VueRouter);
 
@@ -37,6 +38,12 @@ const routes = [
     path: "/product",
     name: "Product",
     component: Product,
+    props: true,
+  },
+  {
+    path: "/basketpage",
+    name: "BasketPage",
+    component: BasketPage,
     props: true,
   },
 ];
