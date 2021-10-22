@@ -25,7 +25,8 @@ export default {
     },
     computed:{
         basket() {
-            return this.$store.state.basketItems;
+           // return this.$store.state.basketItems;
+           return this.$store.getters.getBasketItems
         }
     }
 }

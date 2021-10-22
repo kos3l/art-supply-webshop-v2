@@ -21,7 +21,6 @@
 
 <script>
 import '@firebase/firestore';
-import { dbDrawingItemsList } from "/firebase"
 import ProductCardDrawing from "../components/ProductCardDrawing.vue";
 export default {
   name: "Drawing",
@@ -30,7 +29,7 @@ export default {
   },
   data() {
     return {
-      drawingItems: [ /*
+      /*drawingItems: [ 
         {
           name: "Technical Drawing Pencils kit",
           brand: "Koh-i-Noor",
@@ -55,24 +54,17 @@ export default {
           price: 100,
           type: "Crayon",
         },
-      */],
+      ],*/
     };
   },
-  created() {
-    dbDrawingItemsList.get().then((querySnapshot) => {
-      querySnapshot.forEach((doc => {
-        console.log(doc.id, " => ", doc.data());
-        var drawingItemData = doc.data();
-        console.log(this.drawingItems);
-        this.drawingItems.push({
-          name:drawingItemData.name,
-          id:doc.id,
-          brand:drawingItemData.brand,
-          price:drawingItemData.price,
-          type:drawingItemData.type
-        })
-      }))
-    })
+  beforeCreate() {
+    this.$store.dispatch('setDrawingItems')
+  },
+  
+  computed: {
+    drawingItems() {
+      return this.$store.getters.getDrawingItems
+    }
   }
 };
 </script>

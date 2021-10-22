@@ -20,7 +20,7 @@
 </template>
 <script>
 import '@firebase/firestore';
-import { dbPaintingItemsList } from "/firebase"
+//import { dbPaintingItemsList } from "/firebase"
 import ProductCardPainting from "../components/ProductCardPainting.vue";
 export default {
   name: "Painting",
@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return {
-     paintingItems: [/*
+     /*paintingItems: [
         {
           name: "Oil Paint - 200ml",
           brand: "Van Gogh",
@@ -78,26 +78,19 @@ export default {
           price: 200,
           type: "Round",
         },
-     */ ],
+      ],*/
       windowImg: require("../assets/bowbow.jpg"),
     };
     
   },
-  created() {
-    dbPaintingItemsList.get().then((querySnapshot) => {
-      querySnapshot.forEach((doc => {
-        console.log(doc.id, " => ", doc.data());
-        var paintingItemData = doc.data();
-        console.log(this.paintingItems);
-        this.paintingItems.push({
-          name:paintingItemData.name,
-          id:doc.id,
-          brand:paintingItemData.brand,
-          price:paintingItemData.price,
-          type:paintingItemData.type
-        })
-      }))
-    })
+  beforeCreate() {
+    this.$store.dispatch('setPaintingItems')
+  },
+  
+  computed: {
+    paintingItems() {
+      return this.$store.getters.getPaintingItems
+    }
   }
   
 

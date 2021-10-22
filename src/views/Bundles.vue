@@ -11,7 +11,7 @@
           <p>meow</p>
         </v-col>
         <v-col sm="12" md="8" lg="9" xl="10" class="pr-10 itemColumn d-flex flex-wrap justify-start align-start">
-            <ProductCardBundles v-for="bundleItem in bundleItems" :bundleItem="bundleItem" :key="bundleItem.name"/>
+            <ProductCardBundles v-for="bundlesItem in bundlesItems" :bundlesItem="bundlesItem" :key="bundlesItem.name"/>
         </v-col>
       </v-row>
     </v-container>
@@ -21,7 +21,6 @@
 
 <script>
 import '@firebase/firestore';
-import { dbBundlesItemsList } from "/firebase"
 import ProductCardBundles from "../components/ProductCardBundles.vue";
 export default {
   name: "Bundles",
@@ -30,7 +29,7 @@ export default {
   },
   data() {
     return {
-      bundleItems: [ /*
+     /* bundleItems: [ 
         {
           name: "Watercolor Paint kit 14 x 40ml",
           brand: "Talens Van Gogh",
@@ -55,24 +54,17 @@ export default {
           price: 1600,
           type: "For drawers",
         },
-      */],
+      ],*/
     };
   },
-  created() {
-    dbBundlesItemsList.get().then((querySnapshot) => {
-      querySnapshot.forEach((doc => {
-        console.log(doc.id, " => ", doc.data());
-        var bundleItemData = doc.data();
-        console.log(this.bundleItems);
-        this.bundleItems.push({
-          name:bundleItemData.name,
-          id:doc.id,
-          brand:bundleItemData.brand,
-          price:bundleItemData.price,
-          type:bundleItemData.type
-        })
-      }))
-    })
+  beforeCreate() {
+    this.$store.dispatch('setBundlesItems')
+  },
+  
+  computed: {
+    bundlesItems() {
+      return this.$store.getters.getBundlesItems
+    }
   }
 };
 </script>

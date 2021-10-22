@@ -8,11 +8,11 @@
     </div>
     <div class="bottom-bar dark d-flex pa-3">
       <div class="details d-flex flex-column justify-center align-start">
-        <p> {{ bundleItem.name }}</p> 
-        <p style="margin-top:0.5rem;"> {{ bundleItem.brand }} </p> 
+        <p> {{ bundlesItem.name }}</p> 
+        <p style="margin-top:0.5rem;"> {{ bundlesItem.brand }} </p> 
       </div>
       <div class="price d-flex flex-column justify-center align-end">
-        <p> {{ bundleItem.price }} DKK </p>
+        <p> {{ bundlesItem.price }} DKK </p>
       </div>
     </div>
   </div>
@@ -21,7 +21,7 @@
 <script>
 export default {
   name: "ProductCardBundles",
-  props: ['bundleItem']
+  props: ['bundlesItem']
 };
 </script>
 <style lang="scss">
