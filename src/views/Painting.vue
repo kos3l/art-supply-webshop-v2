@@ -7,8 +7,33 @@
         </v-col>
       </v-row>
       <v-row >
-        <v-col sm="12" md="4" lg="3" xl="2"  class="pl-10" style="background-color:red;">
-          <p>meow</p>
+        <v-col sm="12" md="4" lg="3" xl="2"  class="pl-10" >
+
+          <div class="filter-wrap">
+            <div class="filter-container">
+              <h3>CATEGORY</h3>
+            </div>
+            <div class="dropdown-filters">
+
+              <div class="filters-checkbox">
+                
+                <label for="paint">
+                  <input type="checkbox" id="paint" value="Paint" >
+                  <span class="p">PAINT</span>
+                </label>
+              </div>
+
+              <div class="filters-checkbox">
+                <label for="brush" >
+                  <input type="checkbox" id="brush" value="Brush" >
+                  <span class="p">BRUSH</span>
+                  
+                </label>
+              </div>
+
+            </div>
+          </div>
+
         </v-col>
         <v-col sm="12" md="8" lg="9" xl="10" class="pr-10 itemColumn d-flex flex-wrap justify-start align-start">
             <ProductCardPainting  v-for="paintingItem in paintingItems" :paintingItem="paintingItem" :key="paintingItem.name"/>
@@ -22,6 +47,7 @@
 import '@firebase/firestore';
 //import { dbPaintingItemsList } from "/firebase"
 import ProductCardPainting from "../components/ProductCardPainting.vue";
+
 export default {
   name: "Painting",
   components: {
@@ -90,13 +116,11 @@ export default {
   computed: {
     paintingItems() {
       return this.$store.getters.getPaintingItems
-    }
-  }
+    },
+    
+
+  },
   
-
-
- 
-
 };
 </script>
 <style lang="scss">
@@ -113,5 +137,62 @@ export default {
 }
 .itemColumn{
   height: auto;
+}
+
+.filter-container{
+  @include container_mixin(
+    2px,
+    map-get($colorz, secondary),
+    1.5rem,
+    0,
+    map-get($colorz, secondary),
+    map-get($colorz, primary)
+  );
+  border-bottom: 0;
+  font-size: 1.3rem;
+  text-shadow: 0px 1px 8px #7f7f88;
+}
+.dropdown-filters{
+  @include container_mixin(
+    2px,
+    map-get($colorz, secondary),
+    0,
+    0,
+    map-get($colorz, secondary),
+    map-get($colorz, primary)
+  );
+  display: flex;
+  flex-direction: column;
+
+}
+.filters-checkbox{
+  height: auto;
+  width:100%;
+}
+.filters-checkbox label  {
+  cursor: pointer;
+}
+.filters-checkbox input[type="checkbox"]{
+  display: none;
+}
+.filters-checkbox label span {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 1.5rem;
+  font-size: 1.2rem;
+  border-bottom: solid 2px black;
+  width: 100%;
+  height: 2.5rem;
+  transition: 0.5s;
+  user-select: none;
+  overflow: hidden;
+
+}
+
+.filters-checkbox input[type="checkbox"]:checked ~ span.p{
+  background-color: map-get($colorz, secondary );
+  color: map-get($colorz, primary );
+
 }
 </style>

@@ -183,8 +183,7 @@ export default {
     map-get($colorz, primary),
     map-get($colorz, secondary)
   );
-
-  transition: ease-in-out;
+transition: 0.5s;
 }
 
 .current {
@@ -196,9 +195,12 @@ export default {
     map-get($colorz, primary),
     map-get($colorz, secondary)
   );
+
 }
+
 .inactive {
   background-color: map-get($colorz, primary);
+  transition: 0.5s; 
 }
 button {
   width: 100%;
