@@ -20,7 +20,8 @@ export default new Vuex.Store({
     ],
     paintingItems: [],
     drawingItems: [],
-    bundlesItems: []
+    bundlesItems: [],
+    checkedCategories: [],
   },
   mutations: {
     setPaintingItems: state => {
@@ -68,6 +69,9 @@ export default new Vuex.Store({
         state.bundlesItems = bundlesItems
       })
     },
+    updateCategory(state, checkedCategories) {
+      state.checkedCategories = checkedCategories
+    }
   },
   actions: {
     setPaintingItems: context => {
@@ -78,13 +82,14 @@ export default new Vuex.Store({
     },
     setBundlesItems: context => {
       context.commit('setBundlesItems')
-    }
+    },
+
   },
   getters:{
     getBasketItems: state => state.basketItems,
     getPaintingItems: state => state.paintingItems,
     getDrawingItems: state => state.drawingItems,
-    getBundlesItems: state => state.bundlesItems
+    getBundlesItems: state => state.bundlesItems,
 
   },
   modules: {},

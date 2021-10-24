@@ -17,7 +17,7 @@
               style="transition: opacity 0.3s ease-out; cursor:auto"
             >
               <v-icon dense color="primary" >
-                mdi-basket-outline
+                mdi-magnify
               </v-icon>
             </router-link>
               <v-icon dense color="primary" class="ml-6" >

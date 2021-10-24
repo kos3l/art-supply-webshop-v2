@@ -7,29 +7,37 @@
         </v-col>
       </v-row>
       <v-row >
-        <v-col sm="12" md="4" lg="3" xl="2"  class="pl-10" >
+        <v-col sm="12" md="4" lg="3" xl="2"  class="pl-10 pt-7" >
 
           <div class="filter-wrap">
             <div class="filter-container">
               <h3>CATEGORY</h3>
-            </div>
-            <div class="dropdown-filters">
+              <v-btn
+                icon
+              >
+                <v-icon v-on:click="isHidden = !isHidden" >
+                  mdi-chevron-down 
+                </v-icon>
+              </v-btn>
 
+            </div>
+            <div class="dropdown-filters" v-if="!isHidden">
               <div class="filters-checkbox">
                 
                 <label for="paint">
-                  <input type="checkbox" id="paint" value="Paint" >
+                  <input type="checkbox" id="paint" value="Paint" v-model="checkedCategories" >
                   <span class="p">PAINT</span>
                 </label>
               </div>
 
               <div class="filters-checkbox">
                 <label for="brush" >
-                  <input type="checkbox" id="brush" value="Brush" >
+                  <input type="checkbox" id="brush" value="Brush" v-model="checkedCategories">
                   <span class="p">BRUSH</span>
                   
                 </label>
               </div>
+              <span>Checked categories: {{ checkedCategories }}</span>
 
             </div>
           </div>
@@ -55,6 +63,8 @@ export default {
   },
   data() {
     return {
+      isHidden: true,
+    
      /*paintingItems: [
         {
           name: "Oil Paint - 200ml",
@@ -114,11 +124,18 @@ export default {
   },
   
   computed: {
+    checkedCategories: {
+    get () {
+      return this.$store.state.checkedCategories
+    },
+    set (value) {
+      this.$store.commit('updateCategory', value)
+    }
+    },
     paintingItems() {
       return this.$store.getters.getPaintingItems
     },
-    
-
+  
   },
   
 };
@@ -150,7 +167,15 @@ export default {
   );
   border-bottom: 0;
   font-size: 1.3rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid map-get($colorz, secondary );
+  transition: 0.5s;
+}
+.filter-container:hover{
   text-shadow: 0px 1px 8px #7f7f88;
+  transition: 0.5s;
+
 }
 .dropdown-filters{
   @include container_mixin(
@@ -163,6 +188,7 @@ export default {
   );
   display: flex;
   flex-direction: column;
+  border-top: 0;
 
 }
 .filters-checkbox{
@@ -188,6 +214,9 @@ export default {
   user-select: none;
   overflow: hidden;
 
+}
+.filters-checkbox:last-child label span {
+  border-bottom: 0;
 }
 
 .filters-checkbox input[type="checkbox"]:checked ~ span.p{
