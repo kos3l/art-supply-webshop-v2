@@ -12,17 +12,18 @@
             </router-link>
           </v-col>
           <v-col class="height-fix pa-0 pt-4 pr-4 d-flex justify-end align-center">
-            <router-link
-              :to="{ name: 'BasketPage' }"
-              style="transition: opacity 0.3s ease-out; cursor:auto"
-            >
               <v-icon dense color="primary" >
                 mdi-magnify
               </v-icon>
-            </router-link>
-              <v-icon dense color="primary" class="ml-6" >
-                mdi-basket-outline
-              </v-icon>
+            
+              <router-link
+              :to="{ name: 'BasketPage' }"
+              style="transition: opacity 0.3s ease-out; cursor:auto"
+              >
+                <v-icon dense color="primary" class="ml-6" >
+                  mdi-basket-outline
+                </v-icon>
+              </router-link>
           </v-col>
           
         </v-row>

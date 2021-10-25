@@ -12,16 +12,19 @@ export default new Vuex.Store({
   state: {
     basketItems: [
       {
+        /*
         name: "Caat",
         brand: "orange",
         price: 200,
         type: "Oil",
+        */
       }
     ],
     paintingItems: [],
     drawingItems: [],
     bundlesItems: [],
     checkedCategories: [],
+    filteredItems:[]
   },
   mutations: {
     setPaintingItems: state => {
@@ -37,6 +40,7 @@ export default new Vuex.Store({
           })
         })
         state.paintingItems = paintingItems
+       
       })
     },
     setDrawingItems: state => {
@@ -71,7 +75,16 @@ export default new Vuex.Store({
     },
     updateCategory(state, checkedCategories) {
       state.checkedCategories = checkedCategories
-    }
+      
+
+    },
+    setFilterProducts(/*state, checkedCategories*/) {
+      
+     // state.filteredItems = state.paintingItems.filter(paintingItems => paintingItems.category === checkedCategories)
+      //console.log("Much test", state.paintingItems)
+      
+    },
+
   },
   actions: {
     setPaintingItems: context => {
@@ -83,6 +96,9 @@ export default new Vuex.Store({
     setBundlesItems: context => {
       context.commit('setBundlesItems')
     },
+    setFilterProducts: context => {
+      context.commit('setFilterProducts')
+    },
 
   },
   getters:{
@@ -90,6 +106,7 @@ export default new Vuex.Store({
     getPaintingItems: state => state.paintingItems,
     getDrawingItems: state => state.drawingItems,
     getBundlesItems: state => state.bundlesItems,
+    getFI: state => state.filteredItems,
 
   },
   modules: {},

@@ -44,7 +44,7 @@
 
         </v-col>
         <v-col sm="12" md="8" lg="9" xl="10" class="pr-10 itemColumn d-flex flex-wrap justify-start align-start">
-            <ProductCardPainting  v-for="paintingItem in paintingItems" :paintingItem="paintingItem" :key="paintingItem.name"/>
+            <ProductCardPainting  v-for="paintingItem in paintingFI" :paintingItem="paintingItem" :key="paintingItem.name"/>
         </v-col>
       </v-row>
     </v-container>
@@ -64,7 +64,7 @@ export default {
   data() {
     return {
       isHidden: true,
-    
+      geFilterfish: [],
      /*paintingItems: [
         {
           name: "Oil Paint - 200ml",
@@ -120,22 +120,32 @@ export default {
     
   },
   beforeCreate() {
-    this.$store.dispatch('setPaintingItems')
+    this.$store.dispatch('setPaintingItems');
+    this.$store.dispatch('setFilterProducts');
   },
+
   
   computed: {
+    //console.log(this.checkedCategories)
     checkedCategories: {
-    get () {
-      return this.$store.state.checkedCategories
-    },
-    set (value) {
-      this.$store.commit('updateCategory', value)
-    }
-    },
+      get () {
+        return this.$store.state.checkedCategories
+      },
+      set (value) {
+        this.$store.commit('updateCategory', value)
+      }
+      },
     paintingItems() {
+      console.log(this.checkedCategories)
       return this.$store.getters.getPaintingItems
     },
-  
+    paintingFI() {
+  //    this.geFilterfish = this.paintingItems.filter(paintingItem => paintingItems.category === "Paint")
+        return this.$store.state.paintingItems.filter(paintfilter => paintfilter.category === "paint" )
+      //  console.log("Much test", this.geFilterfish)
+    
+    },
+
   },
   
 };
