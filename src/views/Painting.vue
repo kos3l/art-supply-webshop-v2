@@ -25,20 +25,18 @@
               <div class="filters-checkbox">
                 
                 <label for="paint">
-                  <input type="checkbox" id="paint" value="Paint" v-model="checkedCategories" >
+                  <input type="checkbox" id="paint" value="paint" v-model="checkedCategories" >
                   <span class="p">PAINT</span>
                 </label>
               </div>
 
               <div class="filters-checkbox">
                 <label for="brush" >
-                  <input type="checkbox" id="brush" value="Brush" v-model="checkedCategories">
+                  <input type="checkbox" id="brush" value="brush" v-model="checkedCategories">
                   <span class="p">BRUSH</span>
                   
                 </label>
               </div>
-              <span>Checked categories: {{ checkedCategories }}</span>
-
             </div>
           </div>
 
@@ -121,7 +119,7 @@ export default {
   },
   beforeCreate() {
     this.$store.dispatch('setPaintingItems');
-    this.$store.dispatch('setFilterProducts');
+
   },
 
   
@@ -136,12 +134,11 @@ export default {
       }
       },
     paintingItems() {
-      console.log(this.checkedCategories)
       return this.$store.getters.getPaintingItems
     },
     paintingFI() {
   //    this.geFilterfish = this.paintingItems.filter(paintingItem => paintingItems.category === "Paint")
-        return this.$store.state.paintingItems.filter(paintfilter => paintfilter.category === "paint" )
+        return this.$store.state.paintingItems.filter(paintfilter => paintfilter.category === this.checkedCategories[0] || this.checkedCategories[1] )
       //  console.log("Much test", this.geFilterfish)
     
     },

@@ -43,11 +43,9 @@
             </router-link>
 
             <v-col class="dark hover-col pa-0 ma-0 ">
-              <div class="dropdown d-flex justify-space-around align-center ">
-                <p class="ma-0 ">brush</p>
-                <p class="ma-0 ">brush</p>
-                <p class="ma-0 ">brush</p>
-                <p class="ma-0 ">brush</p>
+              <div class="dropdown d-flex justify-start align-center ">
+                <p class="ma-0 ">Paints</p>
+                <p class="ma-0 ">Brushes</p>
               </div>
             </v-col>
           </v-col>
@@ -135,11 +133,8 @@ export default {
     this.currentPage = this.$router.currentRoute.path;
     console.info(this.currentPage);
   },
-  
- 
-  
-  
-};
+
+    }
 </script>
 <style lang="scss">
 #app {

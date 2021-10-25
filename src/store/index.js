@@ -24,7 +24,7 @@ export default new Vuex.Store({
     drawingItems: [],
     bundlesItems: [],
     checkedCategories: [],
-    filteredItems:[]
+
   },
   mutations: {
     setPaintingItems: state => {
@@ -96,9 +96,7 @@ export default new Vuex.Store({
     setBundlesItems: context => {
       context.commit('setBundlesItems')
     },
-    setFilterProducts: context => {
-      context.commit('setFilterProducts')
-    },
+
 
   },
   getters:{
@@ -106,7 +104,6 @@ export default new Vuex.Store({
     getPaintingItems: state => state.paintingItems,
     getDrawingItems: state => state.drawingItems,
     getBundlesItems: state => state.bundlesItems,
-    getFI: state => state.filteredItems,
 
   },
   modules: {},
