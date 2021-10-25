@@ -9,6 +9,7 @@
           <h1>YOUR BASKET</h1>
         </v-col>
         <v-col lg="12">
+
           <div class="basketItem d-flex justify-space-between align-center">
             <div class="d-flex align-center">
               <p class="ma-0 pl-5 900">Name brand</p>
@@ -19,7 +20,17 @@
               <p class="ma-0 pr-5">ammount x price</p>
             </div>
           </div>
+
         </v-col>
+      </v-row>
+      <v-row class="pa-10">
+        <v-col> 
+          <div>
+            <h1>CHOOSE SHIPPING</h1>
+            <v-icon> mdi- </v-icon>
+          </div>
+        </v-col>
+        <v-col></v-col>
       </v-row>
     </v-container>
   </div>
