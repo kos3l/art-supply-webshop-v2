@@ -22,6 +22,7 @@
 
             </div>
             <div class="dropdown-filters" v-if="!isHidden">
+
               <div class="filters-checkbox">
                 
                 <label for="paint">
@@ -29,7 +30,6 @@
                   <span class="p">PAINT</span>
                 </label>
               </div>
-
               <div class="filters-checkbox">
                 <label for="brush" >
                   <input type="checkbox" id="brush" value="brush" v-model="checkedCategories">
@@ -138,10 +138,15 @@ export default {
     },
     paintingFI() {
   //    this.geFilterfish = this.paintingItems.filter(paintingItem => paintingItems.category === "Paint")
-        return this.$store.state.paintingItems.filter(paintfilter => paintfilter.category === this.checkedCategories[0] || this.checkedCategories[1] )
+        if(this.checkedCategories == '') {
+          return this.$store.getters.getPaintingItems
+        } else {
+          return this.$store.state.paintingItems.filter(paintfilter => paintfilter.category === this.checkedCategories[0] || this.checkedCategories[1] )
+        }
       //  console.log("Much test", this.geFilterfish)
-    
     },
+
+
 
   },
   
