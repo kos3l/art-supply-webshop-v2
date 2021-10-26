@@ -43,18 +43,20 @@
       </v-row>
       <v-row class="row-size ma-0">
         <v-col class=" d-flex justify-center align-center">
-
+          <ProductCardRandom  :chosenItem="chosenItem" />
         </v-col>
         <v-col class=" d-flex justify-center align-center">
-
+          <CardRandomD :chosenItemD="chosenItemD" />
         </v-col>
         <v-col class=" d-flex justify-center align-center">
-
+          <CardRandomB :chosenItemB="chosenItemB" />
         </v-col>
       </v-row>
       <v-row class="row-size ">
         <v-col class=" d-flex justify-end align-center mr-16 mt-6 mb-16">
-          <ButtonRefresh />
+            <button class="refresh" @click="randomItems">
+              <p>NEXT</p>
+            </button>
         </v-col>
       </v-row>
     </v-container>
@@ -83,7 +85,7 @@
             </div>
           </v-col>
           <v-col class="btn-info d-flex justify-center align-center">
-            <ButtonRefresh />
+
           </v-col>
         </v-col>
       </v-row>
@@ -93,12 +95,17 @@
 
 <script>
 
-import ButtonRefresh from "../components/ButtonRefresh.vue";
+import ProductCardRandom from "../components/ProductCardRandom.vue";
+import CardRandomD from "../components/CardRandomD.vue";
+import CardRandomB from "../components/CardRandomB.vue";
 export default {
   name: "Home",
   components: {
 
-    ButtonRefresh,
+    ProductCardRandom,
+    CardRandomD,
+    CardRandomB
+
   },
   data() {
     return {
@@ -106,8 +113,41 @@ export default {
       middleTitle: "BEST QUALITY PRODUCTS SHIPPED WORLDWIDE",
       brush: require("../assets/ferdek.jpg"),
       arrow: require("../assets/arrow.png"),
+      chosenItem: [],
+      chosenItemD: [],
+      chosenItemB: []
     };
   },
+    beforeCreate() {
+    this.$store.dispatch('setPaintingItems');
+    this.$store.dispatch('setDrawingItems');
+    this.$store.dispatch('setBundlesItems');
+
+  },
+
+  methods: {
+    randomItems(){
+      var chosenNumber = Math.floor(Math.random() * this.paintingItems.length);
+      var chosenNumberD = Math.floor(Math.random() * this.drawingItems.length);
+      var chosenNumberB = Math.floor(Math.random() * this.bundlesItems.length);
+      this.chosenItem = this.paintingItems[chosenNumber]
+      this.chosenItemD = this.drawingItems[chosenNumberD]
+      this.chosenItemB = this.bundlesItems[chosenNumberB]
+    },
+
+  },
+  computed: {
+
+    paintingItems() {
+      return this.$store.getters.getPaintingItems
+    },
+    drawingItems() {
+      return this.$store.getters.getDrawingItems
+    },
+    bundlesItems() {
+      return this.$store.getters.getBundlesItems
+    }
+}
 };
 </script>
 <style lang="scss">

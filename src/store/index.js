@@ -23,7 +23,7 @@ export default new Vuex.Store({
     paintingItems: [],
     drawingItems: [],
     bundlesItems: [],
-    checkedCategories: [],
+    checkedBrands: [],
 
   },
   mutations: {
@@ -73,8 +73,8 @@ export default new Vuex.Store({
         state.bundlesItems = bundlesItems
       })
     },
-    updateCategory(state, checkedCategories) {
-      state.checkedCategories = checkedCategories
+    updateBrand(state, checkedBrands) {
+      state.checkedBrands = checkedBrands
       
 
     },

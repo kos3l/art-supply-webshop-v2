@@ -1,5 +1,5 @@
 <template>
-  <button class="refresh">
+  <button class="refresh" >
     <p>NEXT</p>
   </button>
 </template>
@@ -7,6 +7,7 @@
 <script>
 export default {
   name: "ButtonRefresh",
+
 };
 </script>
 

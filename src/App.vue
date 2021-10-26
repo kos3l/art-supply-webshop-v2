@@ -181,8 +181,9 @@ export default {
     paintingC() {
       return this.$store.getters.getCategory
     },
+    
 
-  }
+  },
 
     }
 </script>
