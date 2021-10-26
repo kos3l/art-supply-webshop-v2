@@ -6,7 +6,7 @@ import Drawing from "../views/Drawing.vue";
 import Bundles from "../views/Bundles.vue";
 import Product from "../views/Product.vue";
 import BasketPage from "../views/BasketPage.vue";
-
+import Paints from "../categories/Paints.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -46,6 +46,12 @@ const routes = [
     component: BasketPage,
     props: true,
   },
+  {
+    path: '/paints/:ctgr',
+    name: 'Paints',
+    component: Paints,
+    props: true
+  }
 ];
 
 const router = new VueRouter({

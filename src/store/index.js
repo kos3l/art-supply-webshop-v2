@@ -78,12 +78,7 @@ export default new Vuex.Store({
       
 
     },
-    setFilterProducts(/*state, checkedCategories*/) {
-      
-     // state.filteredItems = state.paintingItems.filter(paintingItems => paintingItems.category === checkedCategories)
-      //console.log("Much test", state.paintingItems)
-      
-    },
+
 
   },
   actions: {
@@ -104,6 +99,7 @@ export default new Vuex.Store({
     getPaintingItems: state => state.paintingItems,
     getDrawingItems: state => state.drawingItems,
     getBundlesItems: state => state.bundlesItems,
+    getCategory: state => state.paintingItems.category,
 
   },
   modules: {},

@@ -41,8 +41,11 @@
           </div>
 
         </v-col>
-        <v-col sm="12" md="8" lg="9" xl="10" class="pr-10 itemColumn d-flex flex-wrap justify-start align-start">
-            <ProductCardPainting  v-for="paintingItem in paintingFI" :paintingItem="paintingItem" :key="paintingItem.name"/>
+        <v-col sm="12" md="8" lg="9" xl="10" class="pr-10 itemColumn d-flex flex-wrap justify-start align-start" v-if="ctgr === 'paint'">
+            <ProductCardPainting  v-for="paintingItem in paintsOnly" :paintingItem="paintingItem" :key="paintingItem.name"/>
+        </v-col>
+        <v-col sm="12" md="8" lg="9" xl="10" class="pr-10 itemColumn d-flex flex-wrap justify-start align-start" v-if="ctgr === 'brush'">
+            <ProductCardPainting  v-for="paintingItem in brushOnly" :paintingItem="paintingItem" :key="paintingItem.name"/>
         </v-col>
       </v-row>
     </v-container>
@@ -55,11 +58,11 @@ import '@firebase/firestore';
 import ProductCardPainting from "../components/ProductCardPainting.vue";
 
 export default {
-  name: "Painting",
+  name: "Paints",
   components: {
     ProductCardPainting
   },
-  props: ["PaintingCat"],
+  props:['ctgr'],
 
   data() {
     return {
@@ -134,107 +137,25 @@ export default {
       },
       set (value) {
         this.$store.commit('updateCategory', value)
+
       }
       },
     paintingItems() {
       return this.$store.getters.getPaintingItems
-    },
-        paintingFI() {
-  //    this.geFilterfish = this.paintingItems.filter(paintingItem => paintingItems.category === "Paint")
-        if(this.checkedCategories == '') {
-          return this.$store.getters.getPaintingItems
-        } else {
-          return this.$store.state.paintingItems.filter(paintfilter => paintfilter.category === this.checkedCategories[0] || this.checkedCategories[1] )
-        }
-    },
 
+    },
+    paintsOnly() {
+        console.log(this.$route.params);
+          return this.$store.state.paintingItems.filter(paintfilter => paintfilter.category === "paint" )
+    },
+    brushOnly() {
+          return this.$store.state.paintingItems.filter(paintfilter => paintfilter.category === "brush" )
+    }
 
   },
   
 };
 </script>
 <style lang="scss">
-.product-page {
-  margin-top: 4.4rem;
-  height: auto;
-}
-.window-img {
-  height: 10rem;
-  width: 100%;
-  background-image: url("../assets/bowbow.jpg");
-  background-size: cover;
-  border: 2px solid map-get($colorz, secondary);
-}
-.itemColumn{
-  height: auto;
-}
 
-.filter-container{
-  @include container_mixin(
-    2px,
-    map-get($colorz, secondary),
-    1.5rem,
-    0,
-    map-get($colorz, secondary),
-    map-get($colorz, primary)
-  );
-  border-bottom: 0;
-  font-size: 1.3rem;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 2px solid map-get($colorz, secondary );
-  transition: 0.5s;
-}
-.filter-container:hover{
-  text-shadow: 0px 1px 8px #7f7f88;
-  transition: 0.5s;
-
-}
-.dropdown-filters{
-  @include container_mixin(
-    2px,
-    map-get($colorz, secondary),
-    0,
-    0,
-    map-get($colorz, secondary),
-    map-get($colorz, primary)
-  );
-  display: flex;
-  flex-direction: column;
-  border-top: 0;
-
-}
-.filters-checkbox{
-  height: auto;
-  width:100%;
-}
-.filters-checkbox label  {
-  cursor: pointer;
-}
-.filters-checkbox input[type="checkbox"]{
-  display: none;
-}
-.filters-checkbox label span {
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding-left: 1.5rem;
-  font-size: 1.2rem;
-  border-bottom: solid 2px black;
-  width: 100%;
-  height: 2.5rem;
-  transition: 0.5s;
-  user-select: none;
-  overflow: hidden;
-
-}
-.filters-checkbox:last-child label span {
-  border-bottom: 0;
-}
-
-.filters-checkbox input[type="checkbox"]:checked ~ span.p{
-  background-color: map-get($colorz, secondary );
-  color: map-get($colorz, primary );
-
-}
 </style>

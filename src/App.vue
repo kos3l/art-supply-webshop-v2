@@ -44,8 +44,22 @@
 
             <v-col class="dark hover-col pa-0 ma-0 ">
               <div class="dropdown d-flex justify-start align-center ">
-                <p class="ma-0 ">Paints</p>
-                <p class="ma-0 ">Brushes</p>
+                <router-link
+                  :to="{ name: 'Paints', params: { ctgr: 'paint' }}"
+                  style="transition: opacity 0.3s ease-out; cursor:auto"
+
+                >
+                <p> PAINTS </p>
+                </router-link>
+
+                <router-link
+                  :to="{ name: 'Paints', params: { ctgr: 'brush' }}"
+                  style="transition: opacity 0.3s ease-out; cursor:auto"
+
+                >
+                <p> BRUSHES </p>
+                </router-link>
+
               </div>
             </v-col>
           </v-col>
@@ -126,6 +140,17 @@ export default {
   data() {
     return {
       currentPage: window.location.pathname,
+      PaintingCat: [
+        {
+          name:'Paints',
+          routeCat: 'paint'
+        },
+        {
+          name:'Brushes',
+          routeCat: 'brush'
+        },
+        
+      ]
 
     };
   },
@@ -133,6 +158,13 @@ export default {
     this.currentPage = this.$router.currentRoute.path;
     console.info(this.currentPage);
   },
+  computed: {
+
+    paintingC() {
+      return this.$store.getters.getCategory
+    },
+
+  }
 
     }
 </script>
@@ -247,8 +279,8 @@ a:hover + .hover-col, .hover-col:hover {
     map-get($colorz, primary)
   );
   border-top: none;
-  border-left: 2px solid map-get($colorz, secondary);
-  border-right: 2px solid map-get($colorz, secondary); 
+  border-left: 0;
+  border-right: 0; 
 
 }
 .dropdown p {
