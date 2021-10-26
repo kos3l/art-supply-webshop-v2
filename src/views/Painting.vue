@@ -11,7 +11,7 @@
 
           <div class="filter-wrap">
             <div class="filter-container">
-              <h3>CATEGORY</h3>
+              <h3>BRAND</h3>
               <v-btn
                 icon
               >
@@ -25,16 +25,33 @@
              
               <div class="filters-checkbox">
                 
-                <label for="paint">
-                  <input type="checkbox" id="paint" value="paint" v-model="checkedCategories" >
-                  <span class="p">PAINT</span>
+                <label for="Winsor & Newton">
+                  <input type="checkbox" id="Winsor & Newton" value="Winsor & Newton" v-model="checkedCategories" >
+                  <span class="p">Winsor & Newton</span>
                 </label>
               </div>
               <div class="filters-checkbox">
-                <label for="brush" >
-                  <input type="checkbox" id="brush" value="brush" v-model="checkedCategories">
-                  <span class="p">BRUSH</span>
-                  
+                <label for="Lefranc Artist" >
+                  <input type="checkbox" id="Lefranc Artist" value="Lefranc Artist" v-model="checkedCategories">
+                  <span class="p">Lefranc Artist</span>
+                </label>
+              </div>
+              <div class="filters-checkbox">
+                <label for="alens Amesterdam" >
+                  <input type="checkbox" id="alens Amesterdam" value="alens Amesterdam" v-model="checkedCategories">
+                  <span class="p">alens Amesterdam</span>
+                </label>
+              </div>
+              <div class="filters-checkbox">
+                <label for="Raphael" >
+                  <input type="checkbox" id="Raphael" value="Raphael" v-model="checkedCategories">
+                  <span class="p">Raphael</span>
+                </label>
+              </div>
+              <div class="filters-checkbox">
+                <label for="Van Gogh" >
+                  <input type="checkbox" id="Van Gogh" value="Van Gogh" v-model="checkedCategories">
+                  <span class="p">Van Gogh</span>
                 </label>
               </div>
             </div>
@@ -42,7 +59,7 @@
 
         </v-col>
         <v-col sm="12" md="8" lg="9" xl="10" class="pr-10 itemColumn d-flex flex-wrap justify-start align-start">
-            <ProductCardPainting  v-for="paintingItem in paintingFI" :paintingItem="paintingItem" :key="paintingItem.name"/>
+            <ProductCardPainting  v-for="paintingItem in paintingBrand" :paintingItem="paintingItem" :key="paintingItem.name"/>
         </v-col>
       </v-row>
     </v-container>
@@ -127,7 +144,7 @@ export default {
 
   
   computed: {
-    //console.log(this.checkedCategories)
+
     checkedCategories: {
       get () {
         return this.$store.state.checkedCategories
@@ -139,12 +156,13 @@ export default {
     paintingItems() {
       return this.$store.getters.getPaintingItems
     },
-        paintingFI() {
+        paintingBrand() {
+              console.log(this.checkedCategories)
   //    this.geFilterfish = this.paintingItems.filter(paintingItem => paintingItems.category === "Paint")
         if(this.checkedCategories == '') {
           return this.$store.getters.getPaintingItems
         } else {
-          return this.$store.state.paintingItems.filter(paintfilter => paintfilter.category === this.checkedCategories[0] || this.checkedCategories[1] )
+          return this.$store.state.paintingItems.filter(paintfilter => paintfilter.brand === this.checkedCategories[0] || this.checkedCategories[1] || this.checkedCategories[2] || this.checkedCategories[3] || this.checkedCategories[4] )
         }
     },
 

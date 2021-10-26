@@ -99,7 +99,7 @@ export default new Vuex.Store({
     getPaintingItems: state => state.paintingItems,
     getDrawingItems: state => state.drawingItems,
     getBundlesItems: state => state.bundlesItems,
-    getCategory: state => state.paintingItems.category,
+    getPaintingBrand: state => state.paintingItems.brand,
 
   },
   modules: {},
