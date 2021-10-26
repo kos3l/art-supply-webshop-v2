@@ -133,9 +133,7 @@ export default {
       this.chosenItem = this.paintingItems[chosenNumber]
       this.chosenItemD = this.drawingItems[chosenNumberD]
       this.chosenItemB = this.bundlesItems[chosenNumberB]
-    },
-
-  },
+    }},
   computed: {
 
     paintingItems() {
@@ -146,8 +144,10 @@ export default {
     },
     bundlesItems() {
       return this.$store.getters.getBundlesItems
-    }
-}
+    },
+  },
+
+
 };
 </script>
 <style lang="scss">
