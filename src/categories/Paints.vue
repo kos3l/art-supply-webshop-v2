@@ -145,7 +145,7 @@ export default {
 
     },
     paintsOnly() {
-        console.log(this.$route.params);
+
           return this.$store.state.paintingItems.filter(paintfilter => paintfilter.category === "paint" )
     },
     brushOnly() {

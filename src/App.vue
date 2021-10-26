@@ -43,13 +43,13 @@
             </router-link>
 
             <v-col class="dark hover-col pa-0 ma-0 ">
-              <div class="dropdown d-flex justify-start align-center ">
+              <div class="dropdown d-flex justify-space-around align-center ">
                 <router-link
                   :to="{ name: 'Paints', params: { ctgr: 'paint' }}"
                   style="transition: opacity 0.3s ease-out; cursor:auto"
 
                 >
-                <p> PAINTS </p>
+                <p class="ma-0 ">PAINTS </p>
                 </router-link>
 
                 <router-link
@@ -57,7 +57,7 @@
                   style="transition: opacity 0.3s ease-out; cursor:auto"
 
                 >
-                <p> BRUSHES </p>
+                <p class="ma-0 ">BRUSHES </p>
                 </router-link>
 
               </div>
@@ -76,10 +76,19 @@
             </router-link>
             <v-col class="dark hover-col pa-0 ma-0 ">
               <div class="dropdown d-flex justify-space-around align-center">
-                <p class="ma-0 ">brush</p>
-                <p class="ma-0 ">brush</p>
-                <p class="ma-0 ">brush</p>
-                <p class="ma-0 ">brush</p>
+                <router-link
+                  :to="{ name: 'Pencils', params: { ctgr: 'crayon' }}"
+                  style="transition: opacity 0.3s ease-out; cursor:auto"
+
+                >
+                  <p class="ma-0 ">CRAYONS </p>
+                </router-link>
+                <router-link
+                  :to="{ name: 'Pencils', params: { ctgr: 'pencil' }}"
+                  style="transition: opacity 0.3s ease-out; cursor:auto"
+                >
+                  <p class="ma-0 ">PENCILS </p>
+                </router-link>
               </div>
             </v-col>
           </v-col>
@@ -96,10 +105,19 @@
             </router-link>
             <v-col class="dark hover-col pa-0 ma-0 ">
               <div class="dropdown d-flex justify-space-around align-center">
-                <p class="ma-0 ">brush</p>
-                <p class="ma-0 ">brush</p>
-                <p class="ma-0 ">brush</p>
-                <p class="ma-0 ">brush</p>
+                <router-link
+                  :to="{ name: 'BundleCategory', params: { ctgr: 'forDrawers' }}"
+                  style="transition: opacity 0.3s ease-out; cursor:auto"
+
+                >
+                  <p class="ma-0 ">FOR DRAWERS </p>
+                </router-link>
+                <router-link
+                  :to="{ name: 'BundleCategory', params: { ctgr: 'forPainters' }}"
+                  style="transition: opacity 0.3s ease-out; cursor:auto"
+                >
+                  <p class="ma-0 ">FOR PAINTERS </p>
+                </router-link>
               </div>
             </v-col>
           </v-col>

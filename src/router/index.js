@@ -7,6 +7,8 @@ import Bundles from "../views/Bundles.vue";
 import Product from "../views/Product.vue";
 import BasketPage from "../views/BasketPage.vue";
 import Paints from "../categories/Paints.vue";
+import Pencils from "../categories/Pencils.vue";
+import BundleCategory from "../categories/BundleCategory.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -50,6 +52,18 @@ const routes = [
     path: '/paints/:ctgr',
     name: 'Paints',
     component: Paints,
+    props: true
+  },
+  {
+    path: '/pencils/:ctgr',
+    name: 'Pencils',
+    component: Pencils,
+    props: true
+  },
+    {
+    path: '/bundleCategory/:ctgr',
+    name: 'BundleCategory',
+    component: BundleCategory,
     props: true
   }
 ];
