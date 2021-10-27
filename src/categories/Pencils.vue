@@ -7,12 +7,13 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col sm="12" md="4" lg="3" xl="2" class="pl-10 pt-7"> </v-col>
-
+        <v-col sm="12" md="4" lg="4" xl="2" class="pl-10 pt-7">
+          <SideInfo />
+        </v-col>
         <v-col
           sm="12"
           md="8"
-          lg="9"
+          lg="8"
           xl="10"
           class="pr-10 itemColumn d-flex flex-wrap justify-start align-start"
           v-if="ctgr === 'pencil'"
@@ -26,7 +27,7 @@
         <v-col
           sm="12"
           md="8"
-          lg="9"
+          lg="8"
           xl="10"
           class="pr-10 itemColumn d-flex flex-wrap justify-start align-start"
           v-if="ctgr === 'crayon'"
@@ -46,11 +47,12 @@
 import "@firebase/firestore";
 //import { dbPaintingItemsList } from "/firebase"
 import ProductCardDrawing from "../components/ProductCardDrawing.vue";
-
+import SideInfo from "../components/SideInfo.vue";
 export default {
   name: "Pencils",
   components: {
     ProductCardDrawing,
+    SideInfo,
   },
   props: ["ctgr"],
 
