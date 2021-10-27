@@ -11,21 +11,22 @@
               <p class="ma-0">ART SUPPLY STORE</p>
             </router-link>
           </v-col>
-          <v-col class="height-fix pa-0 pt-4 pr-4 d-flex justify-end align-center">
-              <v-icon dense color="primary" >
-                mdi-magnify
-              </v-icon>
-            
-              <router-link
+          <v-col
+            class="height-fix pa-0 pt-4 pr-4 d-flex justify-end align-center"
+          >
+            <v-icon dense color="primary">
+              mdi-magnify
+            </v-icon>
+
+            <router-link
               :to="{ name: 'BasketPage' }"
               style="transition: opacity 0.3s ease-out; cursor:auto"
-              >
-                <v-icon dense color="primary" class="ml-6" >
-                  mdi-basket-outline
-                </v-icon>
-              </router-link>
+            >
+              <v-icon dense color="primary" class="ml-6">
+                mdi-basket-outline
+              </v-icon>
+            </router-link>
           </v-col>
-          
         </v-row>
         <v-row>
           <v-col class="pa-0  ">
@@ -45,21 +46,18 @@
             <v-col class="dark hover-col pa-0 ma-0 ">
               <div class="dropdown d-flex justify-space-around align-center ">
                 <router-link
-                  :to="{ name: 'Paints', params: { ctgr: 'paint' }}"
+                  :to="{ name: 'Paints', params: { ctgr: 'paint' } }"
                   style="transition: opacity 0.3s ease-out; cursor:auto"
-
                 >
-                <p class="ma-0 ">PAINTS </p>
+                  <p class="ma-0 ">PAINTS</p>
                 </router-link>
 
                 <router-link
-                  :to="{ name: 'Paints', params: { ctgr: 'brush' }}"
+                  :to="{ name: 'Paints', params: { ctgr: 'brush' } }"
                   style="transition: opacity 0.3s ease-out; cursor:auto"
-
                 >
-                <p class="ma-0 ">BRUSHES </p>
+                  <p class="ma-0 ">BRUSHES</p>
                 </router-link>
-
               </div>
             </v-col>
           </v-col>
@@ -68,7 +66,6 @@
               <button
                 class="nav-box d-flex justify-center"
                 id="drawing"
-
                 :class="currentPage === '/drawing' ? 'current' : 'inactive'"
               >
                 DRAWING
@@ -77,17 +74,16 @@
             <v-col class="dark hover-col pa-0 ma-0 ">
               <div class="dropdown d-flex justify-space-around align-center">
                 <router-link
-                  :to="{ name: 'Pencils', params: { ctgr: 'crayon' }}"
+                  :to="{ name: 'Pencils', params: { ctgr: 'crayon' } }"
                   style="transition: opacity 0.3s ease-out; cursor:auto"
-
                 >
-                  <p class="ma-0 ">CRAYONS </p>
+                  <p class="ma-0 ">CRAYONS</p>
                 </router-link>
                 <router-link
-                  :to="{ name: 'Pencils', params: { ctgr: 'pencil' }}"
+                  :to="{ name: 'Pencils', params: { ctgr: 'pencil' } }"
                   style="transition: opacity 0.3s ease-out; cursor:auto"
                 >
-                  <p class="ma-0 ">PENCILS </p>
+                  <p class="ma-0 ">PENCILS</p>
                 </router-link>
               </div>
             </v-col>
@@ -96,7 +92,6 @@
             <router-link :to="{ name: 'Bundles' }">
               <button
                 class="nav-box d-flex justify-center "
-
                 id="bundles"
                 :class="currentPage === '/bundles' ? 'current' : 'inactive'"
               >
@@ -106,17 +101,22 @@
             <v-col class="dark hover-col pa-0 ma-0 ">
               <div class="dropdown d-flex justify-space-around align-center">
                 <router-link
-                  :to="{ name: 'BundleCategory', params: { ctgr: 'forDrawers' }}"
+                  :to="{
+                    name: 'BundleCategory',
+                    params: { ctgr: 'forDrawers' },
+                  }"
                   style="transition: opacity 0.3s ease-out; cursor:auto"
-
                 >
-                  <p class="ma-0 ">FOR DRAWERS </p>
+                  <p class="ma-0 ">FOR DRAWERS</p>
                 </router-link>
                 <router-link
-                  :to="{ name: 'BundleCategory', params: { ctgr: 'forPainters' }}"
+                  :to="{
+                    name: 'BundleCategory',
+                    params: { ctgr: 'forPainters' },
+                  }"
                   style="transition: opacity 0.3s ease-out; cursor:auto"
                 >
-                  <p class="ma-0 ">FOR PAINTERS </p>
+                  <p class="ma-0 ">FOR PAINTERS</p>
                 </router-link>
               </div>
             </v-col>
@@ -135,8 +135,6 @@
         <v-row class="ma-0 pr-7 pl-8">
           <v-col>
             <p>CONTACT:</p>
-            
-
           </v-col>
           <v-col><p>GENERAL INFORMATION</p></v-col>
           <v-col><p>ADMIN SECTION</p></v-col>
@@ -148,7 +146,6 @@
 </template>
 
 <script>
-
 import "@firebase/firestore";
 
 export default {
@@ -160,16 +157,14 @@ export default {
       currentPage: window.location.pathname,
       PaintingCat: [
         {
-          name:'Paints',
-          routeCat: 'paint'
+          name: "Paints",
+          routeCat: "paint",
         },
         {
-          name:'Brushes',
-          routeCat: 'brush'
+          name: "Brushes",
+          routeCat: "brush",
         },
-        
-      ]
-
+      ],
     };
   },
   updated() {
@@ -177,15 +172,11 @@ export default {
     console.info(this.currentPage);
   },
   computed: {
-
     paintingC() {
-      return this.$store.getters.getCategory
+      return this.$store.getters.getCategory;
     },
-    
-
   },
-
-    }
+};
 </script>
 <style lang="scss">
 #app {
@@ -230,7 +221,7 @@ export default {
     map-get($colorz, primary),
     map-get($colorz, secondary)
   );
-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .current {
@@ -242,12 +233,11 @@ transition: 0.5s;
     map-get($colorz, primary),
     map-get($colorz, secondary)
   );
-
 }
 
 .inactive {
   background-color: map-get($colorz, primary);
-  transition: 0.5s; 
+  transition: 0.5s;
 }
 button {
   width: 100%;
@@ -256,7 +246,6 @@ button {
 
 a:-webkit-any-link {
   text-decoration: none;
-
 }
 
 .footer {
@@ -268,9 +257,9 @@ a:-webkit-any-link {
   width: auto;
 }
 
-a:hover + .hover-col, .hover-col:hover {
+a:hover + .hover-col,
+.hover-col:hover {
   display: flex;
-  
 }
 
 .hover-col {
@@ -278,17 +267,14 @@ a:hover + .hover-col, .hover-col:hover {
   width: 100%;
   height: 10vh;
   z-index: 100;
-  position:absolute;
+  position: absolute;
   left: 0rem;
-  box-shadow: 0px 2px 5px map-get($colorz, secondary );
-
-
+  box-shadow: 0px 2px 5px map-get($colorz, secondary);
 }
 
 .dropdown {
-
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
   @include container_mixin(
     2px,
     map-get($colorz, secondary),
@@ -299,11 +285,9 @@ a:hover + .hover-col, .hover-col:hover {
   );
   border-top: none;
   border-left: 0;
-  border-right: 0; 
-
+  border-right: 0;
 }
 .dropdown p {
-
   color: map-get($colorz, secondary);
 }
 </style>

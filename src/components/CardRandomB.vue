@@ -8,11 +8,11 @@
     </div>
     <div class="bottom-bar dark d-flex pa-3">
       <div class="details d-flex flex-column justify-center align-start">
-        <p> {{ chosenItemB.name }}</p> 
-        <p style="margin-top:0.5rem;"> {{ chosenItemB.brand }} </p> 
+        <p>{{ chosenItemB.name }}</p>
+        <p style="margin-top:0.5rem;">{{ chosenItemB.brand }}</p>
       </div>
       <div class="price d-flex flex-column justify-center align-end">
-        <p> {{ chosenItemB.price }} DKK </p>
+        <p>{{ chosenItemB.price }} DKK</p>
       </div>
     </div>
   </div>
@@ -21,6 +21,6 @@
 <script>
 export default {
   name: "CardRandomB",
-  props: ['chosenItemB']
+  props: ["chosenItemB"],
 };
 </script>

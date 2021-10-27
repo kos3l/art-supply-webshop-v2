@@ -1,5 +1,5 @@
 <template>
-    <div class="outer d-flex flex-column ">
+  <div class="outer d-flex flex-column ">
     <div class="picture-container">
       <img
         src="https://images.pexels.com/photos/1084406/pexels-photo-1084406.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
@@ -8,11 +8,11 @@
     </div>
     <div class="bottom-bar dark d-flex pa-3">
       <div class="details d-flex flex-column justify-center align-start">
-        <p> {{ bundlesItem.name }}</p> 
-        <p style="margin-top:0.5rem;"> {{ bundlesItem.brand }} </p> 
+        <p>{{ bundlesItem.name }}</p>
+        <p style="margin-top:0.5rem;">{{ bundlesItem.brand }}</p>
       </div>
       <div class="price d-flex flex-column justify-center align-end">
-        <p> {{ bundlesItem.price }} DKK </p>
+        <p>{{ bundlesItem.price }} DKK</p>
       </div>
     </div>
   </div>
@@ -21,7 +21,7 @@
 <script>
 export default {
   name: "ProductCardBundles",
-  props: ['bundlesItem']
+  props: ["bundlesItem"],
 };
 </script>
 <style lang="scss">
@@ -34,7 +34,7 @@ export default {
     map-get($colorz, secondary),
     map-get($colorz, primary)
   );
-  margin: 1rem 0 1rem 2rem; 
+  margin: 1rem 0 1rem 2rem;
 
   height: 400px;
   width: 290px;
@@ -52,7 +52,7 @@ export default {
   height: 25%;
   font-size: 0.9rem;
 }
-.details{
+.details {
   width: 70%;
 }
 .details p {
@@ -69,17 +69,17 @@ export default {
 }
 @media screen and (max-width: 960px) {
   .outer {
-  @include container_mixin(
-    2px,
-    map-get($colorz, secondary),
-    0,
-    0,
-    map-get($colorz, secondary),
-    map-get($colorz, primary)
-  );
-  margin: 1rem 0 1rem 2rem; 
-  height: 370px;
-  width: 280px;
-}
+    @include container_mixin(
+      2px,
+      map-get($colorz, secondary),
+      0,
+      0,
+      map-get($colorz, secondary),
+      map-get($colorz, primary)
+    );
+    margin: 1rem 0 1rem 2rem;
+    height: 370px;
+    width: 280px;
+  }
 }
 </style>

@@ -8,11 +8,11 @@
     </div>
     <div class="bottom-bar dark d-flex pa-3">
       <div class="details d-flex flex-column justify-center align-start">
-        <p> {{ paintingItem.name }}</p> 
-        <p style="margin-top:0.5rem;"> {{ paintingItem.brand }} </p> 
+        <p>{{ paintingItem.name }}</p>
+        <p style="margin-top:0.5rem;">{{ paintingItem.brand }}</p>
       </div>
       <div class="price d-flex flex-column justify-center align-end">
-        <p> {{ paintingItem.price }} DKK </p>
+        <p>{{ paintingItem.price }} DKK</p>
       </div>
     </div>
   </div>
@@ -21,7 +21,7 @@
 <script>
 export default {
   name: "ProductCardPainting",
-  props: ['paintingItem']
+  props: ["paintingItem"],
 };
 </script>
 
@@ -35,7 +35,7 @@ export default {
     map-get($colorz, secondary),
     map-get($colorz, primary)
   );
-  margin: 1rem 0 1rem 2rem; 
+  margin: 1rem 0 1rem 2rem;
 
   height: 400px;
   width: 290px;
@@ -53,7 +53,7 @@ export default {
   height: 25%;
   font-size: 0.9rem;
 }
-.details{
+.details {
   width: 70%;
 }
 .details p {
@@ -70,17 +70,17 @@ export default {
 }
 @media screen and (max-width: 960px) {
   .outer {
-  @include container_mixin(
-    2px,
-    map-get($colorz, secondary),
-    0,
-    0,
-    map-get($colorz, secondary),
-    map-get($colorz, primary)
-  );
-  margin: 1rem 0 1rem 2rem; 
-  height: 370px;
-  width: 280px;
-}
+    @include container_mixin(
+      2px,
+      map-get($colorz, secondary),
+      0,
+      0,
+      map-get($colorz, secondary),
+      map-get($colorz, primary)
+    );
+    margin: 1rem 0 1rem 2rem;
+    height: 370px;
+    width: 280px;
+  }
 }
 </style>

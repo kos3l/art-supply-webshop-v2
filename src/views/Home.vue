@@ -2,7 +2,7 @@
   <div id="home">
     <v-container fluid class="wrap">
       <v-row class="top-row">
-        <v-col class="pa-0 d-flex justify-center align-end" >
+        <v-col class="pa-0 d-flex justify-center align-end">
           <div class="arrow left">
             <img :src="arrow" alt="" />
           </div>
@@ -43,7 +43,7 @@
       </v-row>
       <v-row class="row-size ma-0">
         <v-col class=" d-flex justify-center align-center">
-          <ProductCardRandom  :chosenItem="chosenItem" />
+          <ProductCardRandom :chosenItem="chosenItem" />
         </v-col>
         <v-col class=" d-flex justify-center align-center">
           <CardRandomD :chosenItemD="chosenItemD" />
@@ -54,9 +54,9 @@
       </v-row>
       <v-row class="row-size ">
         <v-col class=" d-flex justify-end align-center mr-16 mt-6 mb-16">
-            <button class="refresh" @click="randomItems">
-              <p>NEXT</p>
-            </button>
+          <button class="refresh" @click="randomItems">
+            <p>NEXT</p>
+          </button>
         </v-col>
       </v-row>
     </v-container>
@@ -84,9 +84,7 @@
               </p>
             </div>
           </v-col>
-          <v-col class="btn-info d-flex justify-center align-center">
-
-          </v-col>
+          <v-col class="btn-info d-flex justify-center align-center"> </v-col>
         </v-col>
       </v-row>
     </v-container>
@@ -94,18 +92,15 @@
 </template>
 
 <script>
-
 import ProductCardRandom from "../components/ProductCardRandom.vue";
 import CardRandomD from "../components/CardRandomD.vue";
 import CardRandomB from "../components/CardRandomB.vue";
 export default {
   name: "Home",
   components: {
-
     ProductCardRandom,
     CardRandomD,
-    CardRandomB
-
+    CardRandomB,
   },
   data() {
     return {
@@ -115,43 +110,39 @@ export default {
       arrow: require("../assets/arrow.png"),
       chosenItem: [],
       chosenItemD: [],
-      chosenItemB: []
+      chosenItemB: [],
     };
   },
-    beforeCreate() {
-    this.$store.dispatch('setPaintingItems');
-    this.$store.dispatch('setDrawingItems');
-    this.$store.dispatch('setBundlesItems');
-
+  beforeCreate() {
+    this.$store.dispatch("setPaintingItems");
+    this.$store.dispatch("setDrawingItems");
+    this.$store.dispatch("setBundlesItems");
   },
 
-
   methods: {
-    randomItems(){
+    randomItems() {
       var chosenNumber = Math.floor(Math.random() * this.paintingItems.length);
       var chosenNumberD = Math.floor(Math.random() * this.drawingItems.length);
       var chosenNumberB = Math.floor(Math.random() * this.bundlesItems.length);
-      this.chosenItem = this.paintingItems[chosenNumber]
-      this.chosenItemD = this.drawingItems[chosenNumberD]
-      this.chosenItemB = this.bundlesItems[chosenNumberB]
-    }},
+      this.chosenItem = this.paintingItems[chosenNumber];
+      this.chosenItemD = this.drawingItems[chosenNumberD];
+      this.chosenItemB = this.bundlesItems[chosenNumberB];
+    },
+  },
   computed: {
-
     paintingItems() {
-      return this.$store.getters.getPaintingItems
+      return this.$store.getters.getPaintingItems;
     },
     drawingItems() {
-      return this.$store.getters.getDrawingItems
+      return this.$store.getters.getDrawingItems;
     },
     bundlesItems() {
-      return this.$store.getters.getBundlesItems
+      return this.$store.getters.getBundlesItems;
     },
   },
-    mounted() {
-      this.randomItems()
+  mounted() {
+    this.randomItems();
   },
-
-
 };
 </script>
 <style lang="scss">
@@ -219,8 +210,7 @@ export default {
   font-weight: 900;
 }
 .arrow {
-  margin-bottom: 25vh
-
+  margin-bottom: 25vh;
 }
 .arrow img {
   width: 50px;
@@ -245,6 +235,5 @@ export default {
 }
 
 @media screen and (max-width: 600px) {
-
 }
 </style>

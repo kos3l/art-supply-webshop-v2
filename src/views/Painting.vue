@@ -6,51 +6,70 @@
           <div class="window-img"></div>
         </v-col>
       </v-row>
-      <v-row >
-        <v-col sm="12" md="4" lg="3" xl="2"  class="pl-10 pt-7" >
-
+      <v-row>
+        <v-col sm="12" md="4" lg="3" xl="2" class="pl-10 pt-7">
           <div class="filter-wrap">
             <div class="filter-container">
               <h3>BRAND</h3>
-              <v-btn
-                icon
-              >
-                <v-icon v-on:click="isHidden = !isHidden" >
-                  mdi-chevron-down 
+              <v-btn icon>
+                <v-icon v-on:click="isHidden = !isHidden">
+                  mdi-chevron-down
                 </v-icon>
               </v-btn>
-
             </div>
             <div class="dropdown-filters" v-if="!isHidden">
-             
               <div class="filters-checkbox">
-                
                 <label for="Winsor&Newton">
-                  <input type="checkbox" id="Winsor&Newton" value="Winsor & Newton" v-model="checkedCategories" >
+                  <input
+                    type="checkbox"
+                    id="Winsor&Newton"
+                    value="Winsor & Newton"
+                    v-model="checkedCategories"
+                  />
                   <span class="p">Winsor & Newton</span>
                 </label>
               </div>
               <div class="filters-checkbox">
-                <label for="LefrancArtist" >
-                  <input type="checkbox" id="LefrancArtist" value="Lefranc Artist" v-model="checkedCategories">
+                <label for="LefrancArtist">
+                  <input
+                    type="checkbox"
+                    id="LefrancArtist"
+                    value="Lefranc Artist"
+                    v-model="checkedCategories"
+                  />
                   <span class="p">Lefranc Artist</span>
                 </label>
               </div>
               <div class="filters-checkbox">
-                <label for="alensAmesterdam" >
-                  <input type="checkbox" id="alensAmesterdam" value="alens Amesterdam" v-model="checkedCategories">
+                <label for="alensAmesterdam">
+                  <input
+                    type="checkbox"
+                    id="alensAmesterdam"
+                    value="alens Amesterdam"
+                    v-model="checkedCategories"
+                  />
                   <span class="p">alens Amesterdam</span>
                 </label>
               </div>
               <div class="filters-checkbox">
-                <label for="Raphael" >
-                  <input type="checkbox" id="Raphael" value="Raphael" v-model="checkedCategories">
+                <label for="Raphael">
+                  <input
+                    type="checkbox"
+                    id="Raphael"
+                    value="Raphael"
+                    v-model="checkedCategories"
+                  />
                   <span class="p">Raphael</span>
                 </label>
               </div>
               <div class="filters-checkbox">
-                <label for="Van Gogh" >
-                  <input type="checkbox" id="Van Gogh" value="Van Gogh" v-model="checkedCategories">
+                <label for="Van Gogh">
+                  <input
+                    type="checkbox"
+                    id="Van Gogh"
+                    value="Van Gogh"
+                    v-model="checkedCategories"
+                  />
                   <span class="p">Van Gogh</span>
                 </label>
               </div>
@@ -59,47 +78,72 @@
           <div class="filter-wrap">
             <div class="filter-container">
               <h3>TYPE</h3>
-              <v-btn
-                icon
-              >
-                <v-icon v-on:click="isHiddenType = !isHiddenType" >
-                  mdi-chevron-down 
+              <v-btn icon>
+                <v-icon v-on:click="isHiddenType = !isHiddenType">
+                  mdi-chevron-down
                 </v-icon>
               </v-btn>
-
             </div>
             <div class="dropdown-filters" v-if="!isHiddenType">
               <div class="filters-checkbox">
                 <label for="Flat">
-                  <input type="checkbox" id="Flat" value="Flat" v-model="checkedCategories" >
+                  <input
+                    type="checkbox"
+                    id="Flat"
+                    value="Flat"
+                    v-model="checkedCategories"
+                  />
                   <span class="p">Flat</span>
                 </label>
               </div>
               <div class="filters-checkbox">
                 <label for="Round">
-                  <input type="checkbox" id="Round" value="Round" v-model="checkedCategories" >
+                  <input
+                    type="checkbox"
+                    id="Round"
+                    value="Round"
+                    v-model="checkedCategories"
+                  />
                   <span class="p">Round</span>
                 </label>
               </div>
-                            <div class="filters-checkbox">
+              <div class="filters-checkbox">
                 <label for="Acrylic">
-                  <input type="checkbox" id="Acrylic" value="Acrylic" v-model="checkedCategories" >
+                  <input
+                    type="checkbox"
+                    id="Acrylic"
+                    value="Acrylic"
+                    v-model="checkedCategories"
+                  />
                   <span class="p">Acrylic</span>
                 </label>
               </div>
-                            <div class="filters-checkbox">
+              <div class="filters-checkbox">
                 <label for="Oil">
-                  <input type="checkbox" id="Oil" value="Oil" v-model="checkedCategories" >
+                  <input
+                    type="checkbox"
+                    id="Oil"
+                    value="Oil"
+                    v-model="checkedCategories"
+                  />
                   <span class="p">Oil</span>
                 </label>
               </div>
             </div>
-            
           </div>
-
         </v-col>
-        <v-col sm="12" md="8" lg="9" xl="10" class="pr-10 itemColumn d-flex flex-wrap justify-start align-start">
-            <ProductCardPainting  v-for="paintingItem in paintingAll" :paintingItem="paintingItem" :key="paintingItem.name"/>
+        <v-col
+          sm="12"
+          md="8"
+          lg="9"
+          xl="10"
+          class="pr-10 itemColumn d-flex flex-wrap justify-start align-start"
+        >
+          <ProductCardPainting
+            v-for="paintingItem in paintingAll"
+            :paintingItem="paintingItem"
+            :key="paintingItem.name"
+          />
         </v-col>
       </v-row>
     </v-container>
@@ -107,14 +151,14 @@
   </div>
 </template>
 <script>
-import '@firebase/firestore';
+import "@firebase/firestore";
 //import { dbPaintingItemsList } from "/firebase"
 import ProductCardPainting from "../components/ProductCardPainting.vue";
 
 export default {
   name: "Painting",
   components: {
-    ProductCardPainting
+    ProductCardPainting,
   },
   props: ["PaintingCat"],
 
@@ -123,7 +167,7 @@ export default {
       isHidden: true,
       isHiddenType: true,
       geFilterfish: [],
-     /*paintingItems: [
+      /*paintingItems: [
         {
           name: "Oil Paint - 200ml",
           brand: "Van Gogh",
@@ -174,44 +218,61 @@ export default {
         },
       ],*/
       windowImg: require("../assets/bowbow.jpg"),
-   
-
     };
-    
   },
   beforeCreate() {
-    this.$store.dispatch('setPaintingItems')
+    this.$store.dispatch("setPaintingItems");
   },
 
   computed: {
-
     checkedCategories: {
-      get () {
-        return this.$store.state.checkedCategories
+      get() {
+        return this.$store.state.checkedCategories;
       },
-      set (value) {
-        this.$store.commit('updateCategory', value)
-      }
+      set(value) {
+        this.$store.commit("updateCategory", value);
       },
+    },
     paintingItems() {
-      return this.$store.getters.getPaintingItems
+      return this.$store.getters.getPaintingItems;
     },
     paintingAll() {
-        if(this.checkedCategories == '') {
-          return this.$store.getters.getPaintingItems
-        } else if ( this.checkedCategories == 'Winsor & Newton' || this.checkedCategories == 'Lefranc Artist' || this.checkedCategories == 'alens Amesterdam' || this.checkedCategories == 'Raphael' || this.checkedCategories == 'Van Gogh' ){
-          return this.$store.state.paintingItems.filter(paintfilter => paintfilter.brand === this.checkedCategories[0] || this.checkedCategories[1] || this.checkedCategories[2] || this.checkedCategories[3] || this.checkedCategories[4] )
-        } else if(this.checkedCategories == 'Flat' || this.checkedCategories == 'Round' || this.checkedCategories == 'Acrylic' || this.checkedCategories == 'Oil'){
-          return this.$store.state.paintingItems.filter(paintfilter => paintfilter.type === this.checkedCategories[0] || this.checkedCategories[1] || this.checkedCategories[2] || this.checkedCategories[3])
-        } else {
-          return []
-        }
-       
-    }
-
+      if (this.checkedCategories == "") {
+        return this.$store.getters.getPaintingItems;
+      } else if (
+        this.checkedCategories == "Winsor & Newton" ||
+        this.checkedCategories == "Lefranc Artist" ||
+        this.checkedCategories == "alens Amesterdam" ||
+        this.checkedCategories == "Raphael" ||
+        this.checkedCategories == "Van Gogh"
+      ) {
+        return this.$store.state.paintingItems.filter(
+          (paintfilter) =>
+            paintfilter.brand === this.checkedCategories[0] ||
+            this.checkedCategories[1] ||
+            this.checkedCategories[2] ||
+            this.checkedCategories[3] ||
+            this.checkedCategories[4]
+        );
+      } else if (
+        this.checkedCategories == "Flat" ||
+        this.checkedCategories == "Round" ||
+        this.checkedCategories == "Acrylic" ||
+        this.checkedCategories == "Oil"
+      ) {
+        return this.$store.state.paintingItems.filter(
+          (paintfilter) =>
+            paintfilter.type === this.checkedCategories[0] ||
+            this.checkedCategories[1] ||
+            this.checkedCategories[2] ||
+            this.checkedCategories[3]
+        );
+      } else {
+        return [];
+      }
+    },
   },
-  
-}
+};
 </script>
 <style lang="scss">
 .product-page {
@@ -225,13 +286,13 @@ export default {
   background-size: cover;
   border: 2px solid map-get($colorz, secondary);
 }
-.itemColumn{
+.itemColumn {
   height: auto;
 }
-.filter-wrap{
-  margin-bottom: 2rem
+.filter-wrap {
+  margin-bottom: 2rem;
 }
-.filter-container{
+.filter-container {
   @include container_mixin(
     2px,
     map-get($colorz, secondary),
@@ -244,15 +305,14 @@ export default {
   font-size: 1.3rem;
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid map-get($colorz, secondary );
+  border-bottom: 2px solid map-get($colorz, secondary);
   transition: 0.5s;
 }
-.filter-container:hover{
+.filter-container:hover {
   text-shadow: 0px 1px 8px #7f7f88;
   transition: 0.5s;
-
 }
-.dropdown-filters{
+.dropdown-filters {
   @include container_mixin(
     2px,
     map-get($colorz, secondary),
@@ -264,16 +324,15 @@ export default {
   display: flex;
   flex-direction: column;
   border-top: 0;
-
 }
-.filters-checkbox{
+.filters-checkbox {
   height: auto;
-  width:100%;
+  width: 100%;
 }
-.filters-checkbox label  {
+.filters-checkbox label {
   cursor: pointer;
 }
-.filters-checkbox input[type="checkbox"]{
+.filters-checkbox input[type="checkbox"] {
   display: none;
 }
 .filters-checkbox label span {
@@ -288,15 +347,13 @@ export default {
   transition: 0.5s;
   user-select: none;
   overflow: hidden;
-
 }
 .filters-checkbox:last-child label span {
   border-bottom: 0;
 }
 
-.filters-checkbox input[type="checkbox"]:checked ~ span.p{
-  background-color: map-get($colorz, secondary );
-  color: map-get($colorz, primary );
-
+.filters-checkbox input[type="checkbox"]:checked ~ span.p {
+  background-color: map-get($colorz, secondary);
+  color: map-get($colorz, primary);
 }
 </style>
