@@ -125,6 +125,7 @@ export default {
 
   },
 
+
   methods: {
     randomItems(){
       var chosenNumber = Math.floor(Math.random() * this.paintingItems.length);
@@ -145,6 +146,9 @@ export default {
     bundlesItems() {
       return this.$store.getters.getBundlesItems
     },
+  },
+    mounted() {
+      this.randomItems()
   },
 
 
@@ -238,5 +242,9 @@ export default {
 }
 .btn-info {
   height: 40vh;
+}
+
+@media screen and (max-width: 600px) {
+
 }
 </style>

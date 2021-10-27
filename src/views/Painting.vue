@@ -25,32 +25,32 @@
              
               <div class="filters-checkbox">
                 
-                <label for="Winsor & Newton">
-                  <input type="checkbox" id="Winsor & Newton" value="Winsor & Newton" v-model="checkedBrands" >
+                <label for="Winsor&Newton">
+                  <input type="checkbox" id="Winsor&Newton" value="Winsor & Newton" v-model="checkedCategories" >
                   <span class="p">Winsor & Newton</span>
                 </label>
               </div>
               <div class="filters-checkbox">
-                <label for="Lefranc Artist" >
-                  <input type="checkbox" id="Lefranc Artist" value="Lefranc Artist" v-model="checkedBrands">
+                <label for="LefrancArtist" >
+                  <input type="checkbox" id="LefrancArtist" value="Lefranc Artist" v-model="checkedCategories">
                   <span class="p">Lefranc Artist</span>
                 </label>
               </div>
               <div class="filters-checkbox">
-                <label for="alens Amesterdam" >
-                  <input type="checkbox" id="alens Amesterdam" value="alens Amesterdam" v-model="checkedBrands">
+                <label for="alensAmesterdam" >
+                  <input type="checkbox" id="alensAmesterdam" value="alens Amesterdam" v-model="checkedCategories">
                   <span class="p">alens Amesterdam</span>
                 </label>
               </div>
               <div class="filters-checkbox">
                 <label for="Raphael" >
-                  <input type="checkbox" id="Raphael" value="Raphael" v-model="checkedBrands">
+                  <input type="checkbox" id="Raphael" value="Raphael" v-model="checkedCategories">
                   <span class="p">Raphael</span>
                 </label>
               </div>
               <div class="filters-checkbox">
                 <label for="Van Gogh" >
-                  <input type="checkbox" id="Van Gogh" value="Van Gogh" v-model="checkedBrands">
+                  <input type="checkbox" id="Van Gogh" value="Van Gogh" v-model="checkedCategories">
                   <span class="p">Van Gogh</span>
                 </label>
               </div>
@@ -71,25 +71,25 @@
             <div class="dropdown-filters" v-if="!isHiddenType">
               <div class="filters-checkbox">
                 <label for="Flat">
-                  <input type="checkbox" id="Flat" value="Flat" v-model="checkedTypes" >
+                  <input type="checkbox" id="Flat" value="Flat" v-model="checkedCategories" >
                   <span class="p">Flat</span>
                 </label>
               </div>
               <div class="filters-checkbox">
                 <label for="Round">
-                  <input type="checkbox" id="Round" value="Round" v-model="checkedTypes" >
+                  <input type="checkbox" id="Round" value="Round" v-model="checkedCategories" >
                   <span class="p">Round</span>
                 </label>
               </div>
                             <div class="filters-checkbox">
                 <label for="Acrylic">
-                  <input type="checkbox" id="Acrylic" value="Acrylic" v-model="checkedTypes" >
+                  <input type="checkbox" id="Acrylic" value="Acrylic" v-model="checkedCategories" >
                   <span class="p">Acrylic</span>
                 </label>
               </div>
                             <div class="filters-checkbox">
                 <label for="Oil">
-                  <input type="checkbox" id="Oil" value="Oil" v-model="checkedTypes" >
+                  <input type="checkbox" id="Oil" value="Oil" v-model="checkedCategories" >
                   <span class="p">Oil</span>
                 </label>
               </div>
@@ -174,40 +174,44 @@ export default {
         },
       ],*/
       windowImg: require("../assets/bowbow.jpg"),
+   
 
     };
     
   },
   beforeCreate() {
-    this.$store.dispatch('setPaintingItems');
-
+    this.$store.dispatch('setPaintingItems')
   },
 
-  
   computed: {
 
-    checkedBrands: {
+    checkedCategories: {
       get () {
-        return this.$store.state.checkedBrands
+        return this.$store.state.checkedCategories
       },
       set (value) {
-        this.$store.commit('updateBrand', value)
+        this.$store.commit('updateCategory', value)
       }
       },
     paintingItems() {
       return this.$store.getters.getPaintingItems
     },
     paintingAll() {
-        if(this.checkedBrands == '') {
+        if(this.checkedCategories == '') {
           return this.$store.getters.getPaintingItems
+        } else if ( this.checkedCategories == 'Winsor & Newton' || this.checkedCategories == 'Lefranc Artist' || this.checkedCategories == 'alens Amesterdam' || this.checkedCategories == 'Raphael' || this.checkedCategories == 'Van Gogh' ){
+          return this.$store.state.paintingItems.filter(paintfilter => paintfilter.brand === this.checkedCategories[0] || this.checkedCategories[1] || this.checkedCategories[2] || this.checkedCategories[3] || this.checkedCategories[4] )
+        } else if(this.checkedCategories == 'Flat' || this.checkedCategories == 'Round' || this.checkedCategories == 'Acrylic' || this.checkedCategories == 'Oil'){
+          return this.$store.state.paintingItems.filter(paintfilter => paintfilter.type === this.checkedCategories[0] || this.checkedCategories[1] || this.checkedCategories[2] || this.checkedCategories[3])
         } else {
-          return this.$store.state.paintingItems.filter(paintfilter => paintfilter.brand === this.checkedBrands[0] || this.checkedBrands[1] || this.checkedBrands[2] || this.checkedBrands[3] || this.checkedBrands[4] )
+          return []
         }
-
+       
+    }
 
   },
   
-}}
+}
 </script>
 <style lang="scss">
 .product-page {
