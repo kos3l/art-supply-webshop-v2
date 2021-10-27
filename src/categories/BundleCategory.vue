@@ -7,16 +7,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col
-          sm="12"
-          md="4"
-          lg="3"
-          xl="2"
-          class="pl-10"
-          style="background-color:red;"
-        >
-          <p>meow</p>
-        </v-col>
+        <v-col sm="12" md="4" lg="3" xl="2" class="pt-7 pl-10"> </v-col>
         <v-col
           sm="12"
           md="8"

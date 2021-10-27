@@ -7,48 +7,31 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col sm="12" md="4" lg="3" xl="2" class="pl-10 pt-7">
-          <div class="filter-wrap">
-            <div class="filter-container">
-              <h3>CATEGORY</h3>
-              <v-btn icon>
-                <v-icon v-on:click="isHidden = !isHidden">
-                  mdi-chevron-down
-                </v-icon>
-              </v-btn>
+        <v-col sm="12" md="4" lg="4" xl="2" class="pl-10 pt-7">
+          <div class="information-container">
+            <div class="header-info">
+              <h1>PAINTS</h1>
             </div>
-            <div class="dropdown-filters" v-if="!isHidden">
-              <div class="filters-checkbox">
-                <label for="paint">
-                  <input
-                    type="checkbox"
-                    id="paint"
-                    value="paint"
-                    v-model="checkedCategories"
-                  />
-                  <span class="p">PAINT</span>
-                </label>
-              </div>
-              <div class="filters-checkbox">
-                <label for="brush">
-                  <input
-                    type="checkbox"
-                    id="brush"
-                    value="brush"
-                    v-model="checkedCategories"
-                  />
-                  <span class="p">BRUSH</span>
-                </label>
-              </div>
+            <div class="info-body">
+              <p>
+                Consider a Vue instance with the data property products,
+                products is an array of product objects. A product object
+              </p>
+              <p>
+                Hey, I’m Tushar, a full stack software engineer. I write about
+                my acquired knowledge of web-development, the motive of this
+                blog is to document my learnings and to help the viewers on the
+                similar journey.
+              </p>
             </div>
           </div>
         </v-col>
         <v-col
           sm="12"
           md="8"
-          lg="9"
+          lg="8"
           xl="10"
-          class="pr-10 itemColumn d-flex flex-wrap justify-start align-start"
+          class="pr-10  itemColumn d-flex flex-wrap justify-start align-start"
           v-if="ctgr === 'paint'"
         >
           <ProductCardPainting
@@ -60,7 +43,7 @@
         <v-col
           sm="12"
           md="8"
-          lg="9"
+          lg="8"
           xl="10"
           class="pr-10 itemColumn d-flex flex-wrap justify-start align-start"
           v-if="ctgr === 'brush'"
@@ -175,4 +158,25 @@ export default {
   },
 };
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+.information-container {
+  @include container_mixin(
+    2px,
+    map-get($colorz, secondary),
+    2rem,
+    0,
+    map-get($colorz, primary),
+    map-get($colorz, secondary)
+  );
+  height: auto;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 3rem;
+}
+.header-indo {
+  height: 30%;
+}
+.info-body {
+  height: 70%;
+}
+</style>

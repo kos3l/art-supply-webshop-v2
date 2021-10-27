@@ -34,7 +34,7 @@ export default {
     map-get($colorz, secondary),
     map-get($colorz, primary)
   );
-  margin: 1rem 0 1rem 2rem;
+  margin: 1rem 0 1rem 1rem;
 
   height: 400px;
   width: 290px;

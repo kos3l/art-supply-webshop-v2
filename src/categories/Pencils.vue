@@ -7,42 +7,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col sm="12" md="4" lg="3" xl="2" class="pl-10 pt-7">
-          <div class="filter-wrap">
-            <div class="filter-container">
-              <h3>CATEGORY</h3>
-              <v-btn icon>
-                <v-icon v-on:click="isHidden = !isHidden">
-                  mdi-chevron-down
-                </v-icon>
-              </v-btn>
-            </div>
-            <div class="dropdown-filters" v-if="!isHidden">
-              <div class="filters-checkbox">
-                <label for="paint">
-                  <input
-                    type="checkbox"
-                    id="paint"
-                    value="paint"
-                    v-model="checkedCategories"
-                  />
-                  <span class="p">PAINT</span>
-                </label>
-              </div>
-              <div class="filters-checkbox">
-                <label for="brush">
-                  <input
-                    type="checkbox"
-                    id="brush"
-                    value="brush"
-                    v-model="checkedCategories"
-                  />
-                  <span class="p">BRUSH</span>
-                </label>
-              </div>
-            </div>
-          </div>
-        </v-col>
+        <v-col sm="12" md="4" lg="3" xl="2" class="pl-10 pt-7"> </v-col>
 
         <v-col
           sm="12"
