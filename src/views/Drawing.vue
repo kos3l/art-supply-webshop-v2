@@ -7,7 +7,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col sm="12" md="4" lg="3" xl="2" class="pl-10">
+        <v-col sm="12" md="4" lg="3" xl="2" class="pl-10 pt-7">
           <div class="filter-wrap">
             <div class="filter-container">
               <h3>BRAND</h3>
