@@ -1,18 +1,12 @@
 <template>
   <div class="information-container">
     <div class="header-info">
-      <h1>PAINTS</h1>
+      <h1>{{ Text.name }}</h1>
       <div class="line"></div>
     </div>
     <div class="info-body">
       <p>
-        Consider a Vue instance with the data property products, products is an
-        array of product objects. A product object
-      </p>
-      <p>
-        Hey, I’m Tushar, a full stack software engineer. I write about my
-        acquired knowledge of web-development, the motive of this blog is to
-        document my learnings and to help the viewers on the similar journey.
+        {{ Text.content }}
       </p>
     </div>
   </div>
@@ -21,6 +15,7 @@
 <script>
 export default {
   name: "SideInfo",
+  props: ["Text"],
 };
 </script>
 

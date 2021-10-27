@@ -7,8 +7,26 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col sm="12" md="4" lg="4" xl="2" class="pl-10 pt-7">
-          <SideInfo />
+        <v-col
+          v-if="ctgr === 'forPainters'"
+          sm="12"
+          md="4"
+          lg="4"
+          xl="2"
+          class="pl-10 pt-7"
+        >
+          <SideInfo :Text="getTexts[5]" />
+          /
+        </v-col>
+        <v-col
+          v-if="ctgr === 'forDrawers'"
+          sm="12"
+          md="4"
+          lg="4"
+          xl="2"
+          class="pl-10 pt-7"
+        >
+          <SideInfo :Text="getTexts[2]" />
           /
         </v-col>
         <v-col
@@ -61,6 +79,7 @@ export default {
   },
   beforeCreate() {
     this.$store.dispatch("setBundlesItems");
+    this.$store.dispatch("setTextContentItems");
   },
 
   computed: {
@@ -76,6 +95,9 @@ export default {
       return this.$store.state.bundlesItems.filter(
         (bundlesfilter) => bundlesfilter.category === "forPainters"
       );
+    },
+    getTexts() {
+      return this.$store.getters.getTextContentItems;
     },
   },
 };

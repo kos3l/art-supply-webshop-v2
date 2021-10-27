@@ -7,8 +7,25 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col sm="12" md="4" lg="4" xl="2" class="pl-10 pt-7">
-          <SideInfo />
+        <v-col
+          v-if="ctgr === 'paint'"
+          sm="12"
+          md="4"
+          lg="4"
+          xl="2"
+          class="pl-10 pt-7"
+        >
+          <SideInfo :Text="getTexts[3]" />
+        </v-col>
+        <v-col
+          v-if="ctgr === 'brush'"
+          sm="12"
+          md="4"
+          lg="4"
+          xl="2"
+          class="pl-10 pt-7"
+        >
+          <SideInfo :Text="getTexts[4]" />
         </v-col>
         <v-col
           sm="12"
@@ -60,65 +77,15 @@ export default {
     return {
       isHidden: true,
       geFilterfish: [],
-      /*paintingItems: [
-        {
-          name: "Oil Paint - 200ml",
-          brand: "Van Gogh",
-          price: 200,
-          type: "Oil",
-        },
-        {
-          name: "Oil Paint - 40ml",
-          brand: "Lefranc Artist",
-          price: 150,
-          type: "Oil",
-        },
-        {
-          name: "Acrylic Paint - 250ml",
-          brand: "Talens Amesterdam",
-          price: 220,
-          type: "Acrylic",
-        },
-        {
-          name: "Acrylic Paint - 118ml",
-          brand: "Liquitex",
-          price: 240,
-          type: "Acrylic",
-        },
-        {
-          name: "Brush Precision 8930 nr 24",
-          brand: "Raphael",
-          price: 120,
-          type: "Flat",
-        },
-        {
-          name: "Brush One Stroke Professional nr 1/2",
-          brand: "Winsor & Newton",
-          price: 100,
-          type: "Flat",
-        },
-        {
-          name: "Brush Kolinsky 8402 nr 10",
-          brand: "Raphael",
-          price: 100,
-          type: "Round",
-        },
-        {
-          name: "Brush Pointed Round Professional nr 8",
-          brand: "Winsor & Newton",
-          price: 200,
-          type: "Round",
-        },
-      ],*/
       windowImg: require("../assets/bowbow.jpg"),
     };
   },
   beforeCreate() {
     this.$store.dispatch("setPaintingItems");
+    this.$store.dispatch("setTextContentItems");
   },
 
   computed: {
-    //console.log(this.checkedCategories)
     checkedCategories: {
       get() {
         return this.$store.state.checkedCategories;
@@ -139,6 +106,9 @@ export default {
       return this.$store.state.paintingItems.filter(
         (paintfilter) => paintfilter.category === "brush"
       );
+    },
+    getTexts() {
+      return this.$store.getters.getTextContentItems;
     },
   },
 };

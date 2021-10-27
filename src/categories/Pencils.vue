@@ -7,8 +7,25 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col sm="12" md="4" lg="4" xl="2" class="pl-10 pt-7">
-          <SideInfo />
+        <v-col
+          v-if="ctgr === 'pencil'"
+          sm="12"
+          md="4"
+          lg="4"
+          xl="2"
+          class="pl-10 pt-7"
+        >
+          <SideInfo :Text="getTexts[1]" />
+        </v-col>
+        <v-col
+          v-if="ctgr === 'crayon'"
+          sm="12"
+          md="4"
+          lg="4"
+          xl="2"
+          class="pl-10 pt-7"
+        >
+          <SideInfo :Text="getTexts[0]" />
         </v-col>
         <v-col
           sm="12"
@@ -64,6 +81,7 @@ export default {
   },
   beforeCreate() {
     this.$store.dispatch("setDrawingItems");
+    this.$store.dispatch("setTextContentItems");
   },
 
   computed: {
@@ -89,6 +107,9 @@ export default {
       return this.$store.state.drawingItems.filter(
         (drawingfilter) => drawingfilter.category === "crayon"
       );
+    },
+    getTexts() {
+      return this.$store.getters.getTextContentItems;
     },
   },
 };

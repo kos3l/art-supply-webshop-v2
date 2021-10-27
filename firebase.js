@@ -2,7 +2,7 @@
 // import { initializeApp } from "firebase/app";
 
 import firebase from "@firebase/app";
-import '@firebase/firestore';
+import "@firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -16,13 +16,12 @@ var firebaseConfig = {
   storageBucket: "art-webshop.appspot.com",
   messagingSenderId: "851706972677",
   appId: "1:851706972677:web:049f097274bd898624aa6c",
-  measurementId: "G-GLN0R8D33F"
+  measurementId: "G-GLN0R8D33F",
 };
 firebase.initializeApp(firebaseConfig);
 
 export const db = firebase.firestore();
-export const dbPaintingItemsList = db.collection('painting');
-export const dbDrawingItemsList = db.collection('drawing');
-export const dbBundlesItemsList = db.collection('bundles');
-
-
+export const dbPaintingItemsList = db.collection("painting");
+export const dbDrawingItemsList = db.collection("drawing");
+export const dbBundlesItemsList = db.collection("bundles");
+export const dbTextContentList = db.collection("textContent");
