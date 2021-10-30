@@ -112,6 +112,9 @@ export default new Vuex.Store({
     getDrawingItems: (state) => state.drawingItems,
     getBundlesItems: (state) => state.bundlesItems,
     getTextContentItems: (state) => state.textContent,
+    product: (state) => (id) => {
+      return state.paintingItems.find((p) => p.id == id);
+    },
   },
   modules: {},
 });

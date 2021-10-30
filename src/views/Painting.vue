@@ -142,7 +142,7 @@
           <ProductCardPainting
             v-for="paintingItem in paintingAll"
             :paintingItem="paintingItem"
-            :key="paintingItem.name"
+            :key="paintingItem.id"
           />
         </v-col>
       </v-row>
@@ -277,6 +277,7 @@ export default {
 <style lang="scss">
 .product-page {
   margin-top: 4.4rem;
+  min-height: 80vh;
   height: auto;
 }
 .window-img {

@@ -1,27 +1,32 @@
 <template>
-  <div class="outer d-flex flex-column ">
-    <div class="picture-container">
-      <img
-        src="https://images.pexels.com/photos/1084406/pexels-photo-1084406.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-        alt=""
-      />
-    </div>
-    <div class="bottom-bar dark d-flex pa-3">
-      <div class="details d-flex flex-column justify-center align-start">
-        <p>{{ paintingItem.name }}</p>
-        <p style="margin-top:0.5rem;">{{ paintingItem.brand }}</p>
+  <router-link :to="{ name: 'Product', params: { id: paintingItem.id } }">
+    <div class="outer d-flex flex-column ">
+      <div class="picture-container">
+        <img
+          src="https://images.pexels.com/photos/1084406/pexels-photo-1084406.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+          alt=""
+        />
       </div>
-      <div class="price d-flex flex-column justify-center align-end">
-        <p>{{ paintingItem.price }} DKK</p>
+      <div class="bottom-bar dark d-flex pa-3">
+        <div class="details d-flex flex-column justify-center align-start">
+          <p>{{ paintingItem.name }}</p>
+          <p style="margin-top:0.5rem;">{{ paintingItem.brand }}</p>
+        </div>
+        <div class="price d-flex flex-column justify-center align-end">
+          <p>{{ paintingItem.price }} DKK</p>
+        </div>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
 export default {
   name: "ProductCardPainting",
   props: ["paintingItem"],
+  data() {
+    return {};
+  },
 };
 </script>
 

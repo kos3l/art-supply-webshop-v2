@@ -37,7 +37,7 @@ const routes = [
     props: true,
   },
   {
-    path: "/product",
+    path: "/product/:id",
     name: "Product",
     component: Product,
     props: true,
@@ -49,23 +49,23 @@ const routes = [
     props: true,
   },
   {
-    path: '/paints/:ctgr',
-    name: 'Paints',
+    path: "/paints/:ctgr",
+    name: "Paints",
     component: Paints,
-    props: true
+    props: true,
   },
   {
-    path: '/pencils/:ctgr',
-    name: 'Pencils',
+    path: "/pencils/:ctgr",
+    name: "Pencils",
     component: Pencils,
-    props: true
+    props: true,
   },
-    {
-    path: '/bundleCategory/:ctgr',
-    name: 'BundleCategory',
+  {
+    path: "/bundleCategory/:ctgr",
+    name: "BundleCategory",
     component: BundleCategory,
-    props: true
-  }
+    props: true,
+  },
 ];
 
 const router = new VueRouter({

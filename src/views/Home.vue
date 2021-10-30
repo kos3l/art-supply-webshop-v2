@@ -34,7 +34,7 @@
       </v-row>
     </v-container>
     <v-container fluid class="light wrap-plain pa-0 ma-0 ">
-      <v-row class="row-size ma-0 pt-10">
+      <v-row class="row-size ma-0 pt-xl-15 pt-lg-10 pt-md-10">
         <v-col class=" d-flex justify-center align-center pl-0">
           <ProductCardRandom :chosenItem="chosenItem" />
         </v-col>
@@ -45,16 +45,18 @@
           <CardRandomB :chosenItemB="chosenItemB" />
         </v-col>
       </v-row>
-      <v-row class="row-size ">
+      <v-row class="row-size mt-10 pb-16">
         <v-col>
-          <div lg="8" class=" d-flex justify-start align-center pa-6 ">
-            <h1 class="ml-16">DISCOVER DIFFERENT PRODUCTS</h1>
+          <div
+            lg="9"
+            xl="7"
+            class=" d-flex justify-space-between align-center px-xl-16 px-lg-16"
+          >
+            <h1 class="ml-xl-15 ml-lg-5">DISCOVER DIFFERENT PRODUCTS</h1>
+            <button class="refresh mr-xl-8" @click="randomItems">
+              <p>MORE</p>
+            </button>
           </div>
-        </v-col>
-        <v-col lg="4" class=" d-flex justify-end align-center mr-16 mt-6 mb-16">
-          <button class="refresh" @click="randomItems">
-            <p>NEXT</p>
-          </button>
         </v-col>
       </v-row>
     </v-container>

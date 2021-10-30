@@ -12,7 +12,7 @@
           sm="12"
           md="4"
           lg="4"
-          xl="2"
+          xl="4"
           class="pl-10 pt-7"
         >
           <SideInfo :Text="getTexts[1]" />
@@ -22,7 +22,7 @@
           sm="12"
           md="4"
           lg="4"
-          xl="2"
+          xl="4"
           class="pl-10 pt-7"
         >
           <SideInfo :Text="getTexts[0]" />
@@ -31,7 +31,7 @@
           sm="12"
           md="8"
           lg="8"
-          xl="10"
+          xl="8"
           class="pr-10 itemColumn d-flex flex-wrap justify-start align-start"
           v-if="ctgr === 'pencil'"
         >
@@ -45,7 +45,7 @@
           sm="12"
           md="8"
           lg="8"
-          xl="10"
+          xl="8"
           class="pr-10 itemColumn d-flex flex-wrap justify-start align-start"
           v-if="ctgr === 'crayon'"
         >

@@ -12,7 +12,7 @@
           sm="12"
           md="4"
           lg="4"
-          xl="2"
+          xl="4"
           class="pl-10 pt-7"
         >
           <SideInfo :Text="getTexts[3]" />
@@ -22,7 +22,7 @@
           sm="12"
           md="4"
           lg="4"
-          xl="2"
+          xl="4"
           class="pl-10 pt-7"
         >
           <SideInfo :Text="getTexts[4]" />
@@ -31,7 +31,7 @@
           sm="12"
           md="8"
           lg="8"
-          xl="10"
+          xl="8"
           class="pr-10  itemColumn d-flex flex-wrap justify-start align-start"
           v-if="ctgr === 'paint'"
         >
@@ -39,13 +39,14 @@
             v-for="paintingItem in paintsOnly"
             :paintingItem="paintingItem"
             :key="paintingItem.name"
+            :productPainting="productPainting"
           />
         </v-col>
         <v-col
           sm="12"
           md="8"
           lg="8"
-          xl="10"
+          xl="8"
           class="pr-10 itemColumn d-flex flex-wrap justify-start align-start"
           v-if="ctgr === 'brush'"
         >
@@ -84,7 +85,6 @@ export default {
     this.$store.dispatch("setPaintingItems");
     this.$store.dispatch("setTextContentItems");
   },
-
   computed: {
     checkedCategories: {
       get() {
@@ -109,6 +109,9 @@ export default {
     },
     getTexts() {
       return this.$store.getters.getTextContentItems;
+    },
+    productPainting() {
+      return this.$store.getters.product(this.$route.params.id);
     },
   },
 };
