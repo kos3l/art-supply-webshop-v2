@@ -6,7 +6,17 @@
           <div class="window-img"></div>
         </v-col>
         <v-col class="pa-16 o">
-          <p>{{ productPainting }}</p>
+          <div v-if="!loading" class="loading">
+            <p>{{ item }}</p>
+          </div>
+
+          <div v-if="loading" class="loading">
+            Loading...
+          </div>
+
+          <div v-if="error" class="error">
+            {{ error }}
+          </div>
         </v-col>
       </v-row>
     </v-container>
@@ -18,29 +28,47 @@ export default {
   name: "Product",
 
   data() {
-    return {};
+    return {
+      loading: false,
+      post: null,
+      error: null,
+    };
   },
   computed: {
-    productPainting() {
-      return this.$store.state.paintingItems[this.$route.params.id];
-    },
-    serverPrefetch() {
-      // return the Promise from the action
-      // so that the component waits before rendering
-      return this.fetchItem();
+    item() {
+      return this.$store.getters.productId(this.post);
     },
   },
-  mounted() {
-    // If we didn't already do it on the server
-    // we fetch the item (will first show the loading text)
-    if (!this.productPainting) {
-      this.fetchItem();
-    }
+  beforeCreate() {
+    this.$store.dispatch("setPaintingItems");
+  },
+
+  created() {
+    // fetch the data when the view is created and the data is
+    // already being observed
+    this.fetchData();
+    console.log(this.post);
+  },
+  watch: {
+    // call again the method if the route changes
+    $route: "fetchData",
   },
   methods: {
-    fetchItem() {
-      // return the Promise from the action
-      return this.$store.dispatch("setPaintingItems", this.$route.params.id);
+    fetchData() {
+      this.error = this.post = null;
+      this.loading = true;
+      const fetchedId = this.$route.params.id;
+      // replace `getPost` with your data fetching util / API wrapper
+      productId(fetchedId, (err, post) => {
+        // make sure this request is the last one we did, discard otherwise
+        if (this.$route.params.id !== fetchedId) return;
+        this.loading = false;
+        if (err) {
+          this.error = err.toString();
+        } else {
+          this.post = post;
+        }
+      });
     },
   },
 };
