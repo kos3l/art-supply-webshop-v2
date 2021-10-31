@@ -100,7 +100,7 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    setPaintingItems: (context) => {
+    setPaintingItemsAction: (context) => {
       context.commit("setPaintingItems");
     },
     setDrawingItems: (context) => {

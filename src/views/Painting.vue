@@ -221,7 +221,7 @@ export default {
     };
   },
   beforeCreate() {
-    this.$store.dispatch("setPaintingItems");
+    this.$store.dispatch("setPaintingItemsAction");
   },
 
   computed: {

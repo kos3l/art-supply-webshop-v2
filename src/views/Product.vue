@@ -6,8 +6,10 @@
           <div class="window-img"></div>
         </v-col>
         <v-col class="pa-16 o">
-          <div class="loading">
-            <p>{{ this.item }}</p>
+          <div v-if="getItem" class="loading">
+            <p>{{ this.getItem.name }}</p>
+            <p>{{ this.getItem.brand }}</p>
+            <p>{{ this.getItem.price }}</p>
           </div>
         </v-col>
       </v-row>
@@ -18,32 +20,38 @@
 <script>
 export default {
   name: "Product",
+  props: {
+    id: {
+      default: 0,
+    },
+  },
 
   data() {
     return {
       post: "",
     };
   },
+
   computed: {
-    item() {
-      return this.$store.getters.productId(this.$route.params.id);
+    getItem: {
+      get() {
+        return this.$store.getters.productId(this.id);
+      },
+      set(post) {
+        return post;
+      },
     },
   },
-  created() {
-    // fetch the data when the view is created and the data is
-    // already being observed
-    this.fetchData();
-    console.log(this.post);
+
+  serverPrefetch() {
+    // return the Promise from the action
+    // so that the component waits before rendering
+    return this.setPaintingItemsAction();
   },
-  watch: {
-    // call again the method if the route changes
-    $route: "fetchData",
-  },
-  methods: {
-    fetchData() {
-      console.log(this.item);
-      this.item = this.post;
-    },
+  mounted() {
+    if (!this.getItem) {
+      this.$store.dispatch("setPaintingItemsAction");
+    }
   },
 };
 </script>
