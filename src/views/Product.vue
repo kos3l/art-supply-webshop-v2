@@ -6,16 +6,8 @@
           <div class="window-img"></div>
         </v-col>
         <v-col class="pa-16 o">
-          <div v-if="!loading" class="loading">
-            <p>{{ item }}</p>
-          </div>
-
-          <div v-if="loading" class="loading">
-            Loading...
-          </div>
-
-          <div v-if="error" class="error">
-            {{ error }}
+          <div class="loading">
+            <p>{{ this.item }}</p>
           </div>
         </v-col>
       </v-row>
@@ -29,20 +21,14 @@ export default {
 
   data() {
     return {
-      loading: false,
-      post: null,
-      error: null,
+      post: "",
     };
   },
   computed: {
     item() {
-      return this.$store.getters.productId(this.post);
+      return this.$store.getters.productId(this.$route.params.id);
     },
   },
-  beforeCreate() {
-    this.$store.dispatch("setPaintingItems");
-  },
-
   created() {
     // fetch the data when the view is created and the data is
     // already being observed
@@ -55,20 +41,8 @@ export default {
   },
   methods: {
     fetchData() {
-      this.error = this.post = null;
-      this.loading = true;
-      const fetchedId = this.$route.params.id;
-      // replace `getPost` with your data fetching util / API wrapper
-      productId(fetchedId, (err, post) => {
-        // make sure this request is the last one we did, discard otherwise
-        if (this.$route.params.id !== fetchedId) return;
-        this.loading = false;
-        if (err) {
-          this.error = err.toString();
-        } else {
-          this.post = post;
-        }
-      });
+      console.log(this.item);
+      this.item = this.post;
     },
   },
 };

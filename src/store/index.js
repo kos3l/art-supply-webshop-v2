@@ -26,6 +26,13 @@ export default new Vuex.Store({
     bundlesItems: [],
     checkedCategories: [],
     textContent: [],
+    productDetails: {
+      name: "name",
+      brand: "brand",
+      price: "111",
+      category: "cat",
+      type: "meow",
+    },
   },
   mutations: {
     setPaintingItems: (state) => {
@@ -115,6 +122,7 @@ export default new Vuex.Store({
     productId: (state) => (id) => {
       return state.paintingItems.find((p) => p.id == id);
     },
+    getProductDetail: (state) => state.productDetails,
   },
   modules: {},
 });
