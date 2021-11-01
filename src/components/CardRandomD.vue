@@ -1,5 +1,8 @@
 <template>
-  <router-link :to="{ name: 'Product', params: { id: chosenItemD.id } }">
+  <router-link
+    v-if="!loading"
+    :to="{ name: 'Product', params: { id: chosenItemD.id } }"
+  >
     <div class="outer-random d-flex flex-column ">
       <div class="picture-container">
         <img
@@ -24,6 +27,16 @@
 export default {
   name: "CardRandomD",
   props: ["chosenItemD"],
+  data() {
+    return {
+      loading: true,
+    };
+  },
+  watch: {
+    chosenItemD: function() {
+      if (this.chosenItemD !== undefined) this.loading = false;
+    },
+  },
 };
 </script>
 <style lang="scss">

@@ -36,14 +36,14 @@
     <v-container fluid class="light wrap-plain pa-0 ma-0 ">
       <v-row class="row-size ma-0 pt-xl-15 pt-lg-10 pt-md-10">
         <v-col class=" d-flex justify-center align-center pl-0">
-          <ProductCardRandom v-if="!loading" :chosenItem="randomItemsVuex" />
+          <ProductCardRandom :chosenItem="randomItemsVuex" />
         </v-col>
 
         <v-col class=" d-flex justify-center align-center">
-          <CardRandomD v-if="!loading" :chosenItemD="randomItemsVuexDrawing" />
+          <CardRandomD :chosenItemD="randomItemsVuexDrawing" />
         </v-col>
         <v-col class=" d-flex justify-center align-center ">
-          <CardRandomB v-if="!loading" :chosenItemB="randomItemsVuexBundles" />
+          <CardRandomB :chosenItemB="randomItemsVuexBundles" />
         </v-col>
       </v-row>
       <v-row class="row-size mt-10 pb-16">
@@ -111,27 +111,8 @@ export default {
       middleTitle: "BEST QUALITY PRODUCTS SHIPPED WORLDWIDE",
       brush: require("../assets/ferdek.jpg"),
       arrow: require("../assets/arrow.png"),
-
-      loading: true,
     };
   },
-
-  beforeCreate() {
-    this.$store.dispatch("setDrawingItemsAction");
-    this.$store.dispatch("setBundlesItemsAction");
-    this.$store.dispatch("setPaintingItemsAction");
-  },
-
-  created() {
-    this.updateData();
-  },
-  mounted() {
-    this.loading = false;
-    this.$nextTick(function() {
-      this.loading = false;
-    });
-  },
-
   computed: {
     randomItemsVuex() {
       return this.$store.getters.getRandomItems;
@@ -145,10 +126,20 @@ export default {
   },
   methods: {
     updateData() {
-      this.$store.commit("randomizeNumber");
-      this.$store.commit("randomizeNumberDrawing");
-      this.$store.commit("randomizeNumberBundles");
+      this.$store.dispatch("setRandomPainting");
+      this.$store.dispatch("setRandomDrawing");
+      this.$store.dispatch("setRandomBundles");
     },
+  },
+
+  beforeCreate() {
+    this.$store.dispatch("setDrawingItemsAction");
+    this.$store.dispatch("setBundlesItemsAction");
+    this.$store.dispatch("setPaintingItemsAction");
+  },
+
+  mounted() {
+    this.updateData();
   },
 };
 </script>

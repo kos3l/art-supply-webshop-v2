@@ -113,6 +113,15 @@ export default new Vuex.Store({
     setTextContentItems: (context) => {
       context.commit("setTextContentItems");
     },
+    setRandomPainting: (context) => {
+      context.commit("randomizeNumber");
+    },
+    setRandomDrawing: (context) => {
+      context.commit("randomizeNumberDrawing");
+    },
+    setRandomBundles: (context) => {
+      context.commit("randomizeNumberBundles");
+    },
   },
   getters: {
     getBasketItems: (state) => state.basketItems,
