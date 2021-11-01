@@ -155,26 +155,11 @@ export default {
   data() {
     return {
       currentPage: window.location.pathname,
-      PaintingCat: [
-        {
-          name: "Paints",
-          routeCat: "paint",
-        },
-        {
-          name: "Brushes",
-          routeCat: "brush",
-        },
-      ],
     };
   },
   updated() {
     this.currentPage = this.$router.currentRoute.path;
     console.info(this.currentPage);
-  },
-  computed: {
-    paintingC() {
-      return this.$store.getters.getCategory;
-    },
   },
 };
 </script>

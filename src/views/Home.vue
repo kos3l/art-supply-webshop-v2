@@ -36,13 +36,14 @@
     <v-container fluid class="light wrap-plain pa-0 ma-0 ">
       <v-row class="row-size ma-0 pt-xl-15 pt-lg-10 pt-md-10">
         <v-col class=" d-flex justify-center align-center pl-0">
-          <ProductCardRandom :chosenItem="chosenItem" />
+          <ProductCardRandom v-if="!loading" :chosenItem="randomItemsVuex" />
         </v-col>
+
         <v-col class=" d-flex justify-center align-center">
-          <CardRandomD :chosenItemD="chosenItemD" />
+          <CardRandomD v-if="!loading" :chosenItemD="randomItemsVuexDrawing" />
         </v-col>
         <v-col class=" d-flex justify-center align-center ">
-          <CardRandomB :chosenItemB="chosenItemB" />
+          <CardRandomB v-if="!loading" :chosenItemB="randomItemsVuexBundles" />
         </v-col>
       </v-row>
       <v-row class="row-size mt-10 pb-16">
@@ -53,7 +54,8 @@
             class=" d-flex justify-space-between align-center px-xl-16 px-lg-16"
           >
             <h1 class="ml-xl-15 ml-lg-5">DISCOVER DIFFERENT PRODUCTS</h1>
-            <button class="refresh mr-xl-8" @click="randomItems">
+
+            <button class="refresh mr-xl-8" @click="updateData">
               <p>MORE</p>
             </button>
           </div>
@@ -93,6 +95,7 @@
 
 <script>
 import ProductCardRandom from "../components/ProductCardRandom.vue";
+
 import CardRandomD from "../components/CardRandomD.vue";
 import CardRandomB from "../components/CardRandomB.vue";
 export default {
@@ -108,40 +111,44 @@ export default {
       middleTitle: "BEST QUALITY PRODUCTS SHIPPED WORLDWIDE",
       brush: require("../assets/ferdek.jpg"),
       arrow: require("../assets/arrow.png"),
-      chosenItem: [],
-      chosenItemD: [],
-      chosenItemB: [],
+
+      loading: true,
     };
   },
+
   beforeCreate() {
-    this.$store.dispatch("setPaintingItems");
-    this.$store.dispatch("setDrawingItems");
-    this.$store.dispatch("setBundlesItems");
+    this.$store.dispatch("setDrawingItemsAction");
+    this.$store.dispatch("setBundlesItemsAction");
+    this.$store.dispatch("setPaintingItemsAction");
   },
 
-  methods: {
-    randomItems() {
-      var chosenNumber = Math.floor(Math.random() * this.paintingItems.length);
-      var chosenNumberD = Math.floor(Math.random() * this.drawingItems.length);
-      var chosenNumberB = Math.floor(Math.random() * this.bundlesItems.length);
-      this.chosenItem = this.paintingItems[chosenNumber];
-      this.chosenItemD = this.drawingItems[chosenNumberD];
-      this.chosenItemB = this.bundlesItems[chosenNumberB];
-    },
-  },
-  computed: {
-    paintingItems() {
-      return this.$store.getters.getPaintingItems;
-    },
-    drawingItems() {
-      return this.$store.getters.getDrawingItems;
-    },
-    bundlesItems() {
-      return this.$store.getters.getBundlesItems;
-    },
+  created() {
+    this.updateData();
   },
   mounted() {
-    this.randomItems();
+    this.loading = false;
+    this.$nextTick(function() {
+      this.loading = false;
+    });
+  },
+
+  computed: {
+    randomItemsVuex() {
+      return this.$store.getters.getRandomItems;
+    },
+    randomItemsVuexDrawing() {
+      return this.$store.getters.getRandomItemsDrawing;
+    },
+    randomItemsVuexBundles() {
+      return this.$store.getters.getRandomItemsBundles;
+    },
+  },
+  methods: {
+    updateData() {
+      this.$store.commit("randomizeNumber");
+      this.$store.commit("randomizeNumberDrawing");
+      this.$store.commit("randomizeNumberBundles");
+    },
   },
 };
 </script>
@@ -161,7 +168,9 @@ export default {
 .wrap-plain {
   height: auto;
 }
-
+[v-cloak] {
+  display: none;
+}
 .light {
   background-color: map-get($colorz, primary);
   color: map-get($colorz, secondary);

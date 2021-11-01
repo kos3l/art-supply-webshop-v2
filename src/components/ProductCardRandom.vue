@@ -26,3 +26,35 @@ export default {
   props: ["chosenItem"],
 };
 </script>
+<style lang="scss">
+.outer-random {
+  @include container_mixin(
+    2px,
+    map-get($colorz, secondary),
+    0,
+    0,
+    map-get($colorz, secondary),
+    map-get($colorz, primary)
+  );
+  margin: 1rem 0 1rem 1rem;
+
+  height: 45vh;
+  width: 20vw;
+}
+@media screen and (max-width: 1600px) {
+  .outer-random {
+    @include container_mixin(
+      2px,
+      map-get($colorz, secondary),
+      0,
+      0,
+      map-get($colorz, secondary),
+      map-get($colorz, primary)
+    );
+    margin: 1rem 0 1rem 1rem;
+
+    height: 400px;
+    width: 290px;
+  }
+}
+</style>

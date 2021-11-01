@@ -39,7 +39,6 @@
             v-for="paintingItem in paintsOnly"
             :paintingItem="paintingItem"
             :key="paintingItem.name"
-            :productPainting="productPainting"
           />
         </v-col>
         <v-col
@@ -82,7 +81,7 @@ export default {
     };
   },
   beforeCreate() {
-    this.$store.dispatch("setPaintingItems");
+    this.$store.dispatch("setPaintingItemsAction");
     this.$store.dispatch("setTextContentItems");
   },
   computed: {
@@ -109,9 +108,6 @@ export default {
     },
     getTexts() {
       return this.$store.getters.getTextContentItems;
-    },
-    productPainting() {
-      return this.$store.getters.product(this.$route.params.id);
     },
   },
 };

@@ -11,28 +11,14 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    basketItems: [
-      {
-        /*
-        name: "Caat",
-        brand: "orange",
-        price: 200,
-        type: "Oil",
-        */
-      },
-    ],
     paintingItems: [],
     drawingItems: [],
     bundlesItems: [],
     checkedCategories: [],
     textContent: [],
-    productDetails: {
-      name: "name",
-      brand: "brand",
-      price: "111",
-      category: "cat",
-      type: "meow",
-    },
+    randomNumber: null,
+    randomNumberDrawing: null,
+    randomNumberBundles: null,
   },
   mutations: {
     setPaintingItems: (state) => {
@@ -98,15 +84,30 @@ export default new Vuex.Store({
     updateCategory(state, checkedCategories) {
       state.checkedCategories = checkedCategories;
     },
+    randomizeNumber: (state) => {
+      state.randomNumber = Math.floor(
+        Math.random() * state.paintingItems.length
+      );
+    },
+    randomizeNumberDrawing: (state) => {
+      state.randomNumberDrawing = Math.floor(
+        Math.random() * state.drawingItems.length
+      );
+    },
+    randomizeNumberBundles: (state) => {
+      state.randomNumberBundles = Math.floor(
+        Math.random() * state.bundlesItems.length
+      );
+    },
   },
   actions: {
     setPaintingItemsAction: (context) => {
       context.commit("setPaintingItems");
     },
-    setDrawingItems: (context) => {
+    setDrawingItemsAction: (context) => {
       context.commit("setDrawingItems");
     },
-    setBundlesItems: (context) => {
+    setBundlesItemsAction: (context) => {
       context.commit("setBundlesItems");
     },
     setTextContentItems: (context) => {
@@ -122,7 +123,15 @@ export default new Vuex.Store({
     productId: (state) => (id) => {
       return state.paintingItems.find((p) => p.id == id);
     },
-    getProductDetail: (state) => state.productDetails,
+    getRandomItems: (state) => {
+      return state.paintingItems[state.randomNumber];
+    },
+    getRandomItemsDrawing: (state) => {
+      return state.drawingItems[state.randomNumberDrawing];
+    },
+    getRandomItemsBundles: (state) => {
+      return state.bundlesItems[state.randomNumberBundles];
+    },
   },
   modules: {},
 });
