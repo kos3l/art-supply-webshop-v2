@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ name: 'Product', params: { id: drawingItem.id } }">
+  <router-link :to="{ name: 'ProductDrawing', params: { id: drawingItem.id } }">
     <div class="outer d-flex flex-column ">
       <div class="picture-container">
         <img

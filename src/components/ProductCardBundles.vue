@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ name: 'Product', params: { id: bundlesItem.id } }">
+  <router-link :to="{ name: 'ProductBundles', params: { id: bundlesItem.id } }">
     <div class="outer d-flex flex-column ">
       <div class="picture-container">
         <img

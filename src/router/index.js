@@ -4,7 +4,9 @@ import Home from "../views/Home.vue";
 import Painting from "../views/Painting.vue";
 import Drawing from "../views/Drawing.vue";
 import Bundles from "../views/Bundles.vue";
-import Product from "../views/Product.vue";
+import Product from "../views/ProductPages/Product.vue";
+import ProductDrawing from "../views/ProductPages/ProductDrawing.vue";
+import ProductBundles from "../views/ProductPages/ProductBundles.vue";
 import BasketPage from "../views/BasketPage.vue";
 import Paints from "../categories/Paints.vue";
 import Pencils from "../categories/Pencils.vue";
@@ -40,6 +42,18 @@ const routes = [
     path: "/product/:id",
     name: "Product",
     component: Product,
+    props: true,
+  },
+  {
+    path: "/productDrawing/:id",
+    name: "ProductDrawing",
+    component: ProductDrawing,
+    props: true,
+  },
+  {
+    path: "/productBundles/:id",
+    name: "ProductBundles",
+    component: ProductBundles,
     props: true,
   },
   {

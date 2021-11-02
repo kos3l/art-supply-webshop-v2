@@ -132,6 +132,13 @@ export default new Vuex.Store({
     productId: (state) => (id) => {
       return state.paintingItems.find((p) => p.id == id);
     },
+    productIdDrawing: (state) => (id) => {
+      return state.drawingItems.find((p) => p.id == id);
+    },
+    productIdBundles: (state) => (id) => {
+      return state.bundlesItems.find((p) => p.id == id);
+    },
+
     getRandomItems: (state) => {
       return state.paintingItems[state.randomNumber];
     },
