@@ -80,7 +80,7 @@ export default {
     };
   },
   beforeCreate() {
-    this.$store.dispatch("setDrawingItems");
+    this.$store.dispatch("setDrawingItemsAction");
     this.$store.dispatch("setTextContentItems");
   },
 
@@ -98,7 +98,6 @@ export default {
       return this.$store.getters.getDrawingItems;
     },
     pencilOnly() {
-      console.log(this.drawingItems);
       return this.$store.state.drawingItems.filter(
         (drawingfilter) => drawingfilter.category === "pencil"
       );

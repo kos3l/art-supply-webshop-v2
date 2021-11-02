@@ -99,7 +99,7 @@ export default {
     };
   },
   beforeCreate() {
-    this.$store.dispatch("setDrawingItems");
+    this.$store.dispatch("setDrawingItemsAction");
   },
 
   computed: {

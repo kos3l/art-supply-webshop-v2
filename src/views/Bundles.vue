@@ -99,7 +99,7 @@ export default {
     };
   },
   beforeCreate() {
-    this.$store.dispatch("setBundlesItems");
+    this.$store.dispatch("setBundlesItemsAction");
   },
 
   computed: {

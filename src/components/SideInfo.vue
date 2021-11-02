@@ -1,5 +1,5 @@
 <template>
-  <div class="information-container">
+  <div v-if="!loading" class="information-container">
     <div class="header-info">
       <h1>{{ Text.name }}</h1>
       <div class="line"></div>
@@ -16,6 +16,28 @@
 export default {
   name: "SideInfo",
   props: ["Text"],
+  data() {
+    return {
+      loading: true,
+    };
+  },
+  mounted() {
+    if (this.Text == undefined) {
+      return (this.loading = true);
+    } else if (this.Text !== undefined) {
+      return (this.loading = false);
+    }
+  },
+
+  watch: {
+    Text: function() {
+      if (this.Text == undefined) {
+        return (this.loading = true);
+      } else if (this.Text !== undefined) {
+        return (this.loading = false);
+      }
+    },
+  },
 };
 </script>
 

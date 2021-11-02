@@ -78,7 +78,7 @@ export default {
     return {};
   },
   beforeCreate() {
-    this.$store.dispatch("setBundlesItems");
+    this.$store.dispatch("setBundlesItemsAction");
     this.$store.dispatch("setTextContentItems");
   },
 
