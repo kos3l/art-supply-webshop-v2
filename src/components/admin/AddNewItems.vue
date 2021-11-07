@@ -63,7 +63,7 @@
               </div>
               <div class="radio-collections d-flex align-center">
                 <form class="d-flex flex-column ">
-                  <div>
+                  <div class="pl-5 mb-3">
                     <input
                       type="radio"
                       id="paintingCollection"
@@ -71,26 +71,29 @@
                       value="painting"
                       v-model="picked"
                       checked
+                      class="mr-5"
                     />
                     <label for="paintingCollection">Painting collection</label>
                   </div>
-                  <div>
+                  <div class="pl-5 mb-3">
                     <input
                       type="radio"
                       id="drawingCollection"
                       name="collection"
                       value="drawing"
                       v-model="picked"
+                      class="mr-5"
                     />
                     <label for="drawingCollection">Drawing collection</label>
                   </div>
-                  <div>
+                  <div class="pl-5 mb-3">
                     <input
                       type="radio"
                       id="bundlesCollection"
                       name="collection"
                       value="bundles"
                       v-model="picked"
+                      class="mr-5"
                     />
                     <label for="bundlesCollection">Bundles collection</label>
                   </div>
@@ -124,10 +127,10 @@
         </v-col>
         <v-col>
           <div class="add-container">
-            <div class="add-banner dark d-flex justify-center align-center">
+            <div class="add-banner dark d-flex justify-center align-center ">
               <h3>PREVIEW</h3>
             </div>
-            <div class="preview-container d-flex">
+            <div class="preview-container d-flex pa-5">
               <div class="admin-item-info">
                 <h3><span id="name-span"> name:</span> {{ name }}</h3>
                 <span id="name-span">brand:</span> {{ brand }} /<span
@@ -215,6 +218,9 @@ export default {
           console.error("Error adding document: ", error);
         });
     },
+  },
+  mounted() {
+    this.picked = "painting";
   },
   updated() {
     if (this.picked == "painting") {
