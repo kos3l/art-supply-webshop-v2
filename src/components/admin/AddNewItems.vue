@@ -61,10 +61,60 @@
                   class="pl-5"
                 />
               </div>
+              <div class="radio-collections d-flex align-center">
+                <form class="d-flex flex-column ">
+                  <div>
+                    <input
+                      type="radio"
+                      id="paintingCollection"
+                      name="collection"
+                      value="painting"
+                      v-model="picked"
+                      checked
+                    />
+                    <label for="paintingCollection">Painting collection</label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      id="drawingCollection"
+                      name="collection"
+                      value="drawing"
+                      v-model="picked"
+                    />
+                    <label for="drawingCollection">Drawing collection</label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      id="bundlesCollection"
+                      name="collection"
+                      value="bundles"
+                      v-model="picked"
+                    />
+                    <label for="bundlesCollection">Bundles collection</label>
+                  </div>
+                </form>
+              </div>
             </div>
             <div class="d-flex">
-              <div class="addBtn d-flex justify-center align-center">
-                <button><h4>ADD ITEM</h4></button>
+              <div
+                class="addBtn d-flex justify-center align-center"
+                v-if="showPainting"
+              >
+                <button @click="addItemPainting"><h4>ADD ITEM</h4></button>
+              </div>
+              <div
+                class="addBtn d-flex justify-center align-center"
+                v-if="showDrawing"
+              >
+                <button @click="addItemDrawing"><h4>ADD ITEM</h4></button>
+              </div>
+              <div
+                class="addBtn d-flex justify-center align-center"
+                v-if="showBundles"
+              >
+                <button @click="addItemBundles"><h4>ADD ITEM</h4></button>
               </div>
               <div class="cancelBtn d-flex justify-center align-center">
                 <button><h4>CANCEL</h4></button>
@@ -105,6 +155,9 @@
 </template>
 
 <script>
+import { dbPaintingItemsList } from "/firebase";
+import { dbDrawingItemsList } from "/firebase";
+import { dbBundlesItemsList } from "/firebase";
 export default {
   name: "AddNewItems",
   data() {
@@ -115,7 +168,71 @@ export default {
       description: "",
       category: "",
       type: "",
+      picked: "",
+      showPainting: false,
+      showDrawing: false,
+      showBundles: false,
     };
+  },
+  methods: {
+    addItemPainting() {
+      dbPaintingItemsList
+        .add({
+          name: this.name,
+          brand: this.brand,
+          price: this.price,
+          category: this.category,
+          type: this.type,
+          description: this.description,
+        })
+        .catch((error) => {
+          console.error("Error adding document: ", error);
+        });
+    },
+    addItemDrawing() {
+      dbDrawingItemsList
+        .add({
+          name: this.name,
+          brand: this.brand,
+          price: this.price,
+          category: this.category,
+          description: this.description,
+        })
+        .catch((error) => {
+          console.error("Error adding document: ", error);
+        });
+    },
+    addItemBundles() {
+      dbBundlesItemsList
+        .add({
+          name: this.name,
+          brand: this.brand,
+          price: this.price,
+          category: this.category,
+          description: this.description,
+        })
+        .catch((error) => {
+          console.error("Error adding document: ", error);
+        });
+    },
+  },
+  updated() {
+    if (this.picked == "painting") {
+      console.log("painting");
+      this.showPainting = true;
+      this.showDrawing = false;
+      this.showBundles = false;
+    } else if (this.picked == "drawing") {
+      console.log("drawing");
+      this.showDrawing = true;
+      this.showBundles = false;
+      this.showPainting = false;
+    } else if (this.picked == "bundles") {
+      console.log("bundles");
+      this.showBundles = true;
+      this.showPainting = false;
+      this.showDrawing = false;
+    }
   },
 };
 </script>

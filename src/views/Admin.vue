@@ -157,7 +157,7 @@
                     >
                       DELETE:
                     </p>
-                    <v-btn icon>
+                    <v-btn icon @click="deletePaintingItem()">
                       <v-icon color="highlight">
                         mdi-delete
                       </v-icon>
@@ -194,6 +194,7 @@
 </template>
 
 <script>
+import { dbPaintingItemsList } from "/firebase";
 export default {
   name: "Admin",
   data() {
@@ -218,6 +219,19 @@ export default {
     },
     drawingItems() {
       return this.$store.getters.getDrawingItems;
+    },
+  },
+  methods: {
+    deletePaintingItem() {
+      dbPaintingItemsList
+        .doc(this.id)
+        .delete()
+        .then(() => {
+          console.log("Document successfully deleted!");
+        })
+        .catch((error) => {
+          console.error("Error removing document: ", error);
+        });
     },
   },
 };
