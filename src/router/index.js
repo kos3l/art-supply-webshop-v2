@@ -11,6 +11,8 @@ import BasketPage from "../views/BasketPage.vue";
 import Paints from "../categories/Paints.vue";
 import Pencils from "../categories/Pencils.vue";
 import BundleCategory from "../categories/BundleCategory.vue";
+import Admin from "../views/Admin.vue";
+import AddNewItems from "../components/admin/AddNewItems.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -18,6 +20,18 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+    props: true,
+  },
+  {
+    path: "/admin",
+    name: "Admin",
+    component: Admin,
+    props: true,
+  },
+  {
+    path: "/addNew",
+    name: "addNew",
+    component: AddNewItems,
     props: true,
   },
   {

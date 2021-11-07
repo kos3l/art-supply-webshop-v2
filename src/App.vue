@@ -137,7 +137,11 @@
             <p>CONTACT:</p>
           </v-col>
           <v-col><p>GENERAL INFORMATION</p></v-col>
-          <v-col><p>ADMIN SECTION</p></v-col>
+          <v-col>
+            <router-link :to="{ name: 'Admin' }">
+              <p>ADMIN SECTION</p>
+            </router-link>
+          </v-col>
           <v-col><p>SOCIAL MEDIA</p></v-col>
         </v-row>
       </v-container>

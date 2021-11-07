@@ -3,7 +3,7 @@
     <v-container fluid light class="pa-16" style="margin-top: 3.6rem;">
       <v-row class="background-box">
         <v-col class="pa-16">
-          <img :src="placeholder" class="product-image" />
+          <img :src="getItem.image" class="product-image" />
         </v-col>
         <v-col class="pa-16 pl-0 info-column">
           <div
@@ -11,7 +11,7 @@
             class="detailsContainter d-flex flex-column justify-space-around"
           >
             <div>
-              <h3 class="text-uppercase">{{ this.getItem.name }}</h3>
+              <h2 class="text-uppercase">{{ this.getItem.name }}</h2>
               <div class="line mb-lg-6"></div>
               <div class=" d-flex justify-space-between mb-lg-3 ">
                 <p class="font-weight-bold">BRAND:</p>
@@ -51,7 +51,6 @@ export default {
   data() {
     return {
       post: "",
-      placeholder: require("../../assets/lefrancOilPaint.jpeg"),
     };
   },
 
@@ -83,13 +82,13 @@ export default {
   background-color: map-get($colorz, secondary);
 }
 .info-column p,
-.info-column h3 {
+.info-column h2 {
   color: map-get($colorz, primary);
 }
 .describ {
   letter-spacing: 0;
 }
-.info-column h3 {
+.info-column h2 {
   margin-bottom: 0.5rem;
 }
 .detailsContainter {
