@@ -266,6 +266,7 @@ export default {
 }
 .admin-item-info {
   width: 60%;
+  height: auto;
 }
 .admin-item-img {
   width: 40%;
@@ -275,6 +276,7 @@ export default {
   letter-spacing: 0;
   padding-right: 2rem;
   margin-top: 1rem;
+  height: auto;
 }
 .welcome-msg {
   text-shadow: 0px 1px 8px #7f7f88;
