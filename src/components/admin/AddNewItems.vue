@@ -13,27 +13,61 @@
               <h3>ADD NEW ITEM</h3>
             </div>
             <div class="fields-container">
-              <div class="name">
-                <input type="text" placeholder="Name" v-model="name" />
+              <div class="input-container d-flex align-center ">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  v-model="name"
+                  class="pl-5"
+                />
               </div>
-              <div class="brand">
-                <input type="text" placeholder="Brand" v-model="brand" />
+              <div class="input-container d-flex align-center">
+                <input
+                  type="text"
+                  placeholder="Brand"
+                  v-model="brand"
+                  class="pl-5"
+                />
               </div>
-              <div class="prices">
-                <input type="text" placeholder="Price" v-model="price" />
+              <div class="input-container d-flex align-center">
+                <input
+                  type="text"
+                  placeholder="Price"
+                  v-model="price"
+                  class="pl-5"
+                />
               </div>
-              <div class="category">
-                <input type="text" placeholder="Category" v-model="category" />
+              <div class="input-container d-flex align-center">
+                <input
+                  type="text"
+                  placeholder="Category"
+                  v-model="category"
+                  class="pl-5"
+                />
               </div>
-              <div class="type">
-                <input type="text" placeholder="Type" v-model="type" />
+              <div class="input-container d-flex align-center">
+                <input
+                  type="text"
+                  placeholder="Type"
+                  v-model="type"
+                  class="pl-5"
+                />
               </div>
-              <div class="description">
+              <div class="input-container d-flex align-center">
                 <input
                   type="text"
                   placeholder="Description"
                   v-model="description"
+                  class="pl-5"
                 />
+              </div>
+            </div>
+            <div class="d-flex">
+              <div class="addBtn d-flex justify-center align-center">
+                <button><h4>ADD ITEM</h4></button>
+              </div>
+              <div class="cancelBtn d-flex justify-center align-center">
+                <button><h4>CANCEL</h4></button>
               </div>
             </div>
           </div>
@@ -105,5 +139,40 @@ export default {
 #name-span {
   font-weight: normal;
   font-style: italic;
+}
+.addBtn {
+  width: 50%;
+  height: 4rem;
+  border: 2px solid map-get($colorz, secondary);
+  border-left: 0;
+  border-bottom: 0;
+  transition: 0.5s ease-in-out;
+}
+.addBtn:hover {
+  background-color: map-get($colorz, highlight);
+  transition: 0.5s ease-in-out;
+}
+.addBtn h4 {
+  text-shadow: 0px 3px 20px map-get($colorz, highlight);
+}
+.cancelBtn {
+  width: 50%;
+  height: 4rem;
+  border-top: 2px solid map-get($colorz, secondary);
+  transition: 0.5s ease-in-out;
+}
+.cancelBtn:hover {
+  background-color: map-get($colorz, secondary);
+  color: map-get($colorz, primary);
+}
+.cancelBtn h4 {
+  text-shadow: 0px 3px 20px map-get($colorz, secondary);
+}
+.input-container {
+  height: 4rem;
+}
+.input-container input {
+  width: 80%;
+  border-bottom: 2px solid map-get($colorz, secondary);
 }
 </style>
