@@ -12,7 +12,7 @@
             <div class="add-banner dark d-flex justify-center align-center">
               <h3>ADD NEW ITEM</h3>
             </div>
-            <div class="fields-container">
+            <div class="fields-container pt-5">
               <div class="input-container d-flex align-center ">
                 <input
                   type="text"
@@ -63,7 +63,7 @@
                 </textarea>
               </div>
 
-              <div class="radio-collections d-flex align-center">
+              <div class="radio-collections d-flex align-center pt-5 pb-5">
                 <form class="d-flex flex-column ">
                   <div class="pl-5 mb-3 paintSelect">
                     <label
