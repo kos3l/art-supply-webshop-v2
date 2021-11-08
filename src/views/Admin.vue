@@ -46,7 +46,7 @@
                     >
                       DELETE:
                     </p>
-                    <v-btn icon>
+                    <v-btn icon @click="deletePaintingItem(paintingItem.id)">
                       <v-icon color="highlight">
                         mdi-delete
                       </v-icon>
@@ -102,7 +102,7 @@
                     >
                       DELETE:
                     </p>
-                    <v-btn icon>
+                    <v-btn icon @click="deleteDrawingItem(drawingItem.id)">
                       <v-icon color="highlight">
                         mdi-delete
                       </v-icon>
@@ -157,7 +157,7 @@
                     >
                       DELETE:
                     </p>
-                    <v-btn icon @click="deletePaintingItem()">
+                    <v-btn icon @click="deleteBundlesItem(bundlesItem.id)">
                       <v-icon color="highlight">
                         mdi-delete
                       </v-icon>
@@ -172,17 +172,17 @@
           </v-col>
         </v-col>
         <v-col xl="4" class="pl-10">
-          <h1 class="mt-5 welcome-msg">
+          <h1 class="mt-5 welcome-msg text-center">
             Welcome at your Admin page
           </h1>
-          <h3 class="font-weight-regular">
+          <h3 class="font-weight-regular text-center">
             Here you can preview your products and add / edit / delete them!
             Remember when you create a new object to select in which main
             category you would like it to be, like painting, drawing or bundles.
           </h3>
           <div class="d-flex justify-center">
             <router-link :to="{ name: 'addNew' }">
-              <button class="add mr-xl-8 mt-14 ">
+              <button class="add mr-xl-8 mt-5 ">
                 <p>ADD NEW</p>
               </button>
             </router-link>
@@ -195,6 +195,8 @@
 
 <script>
 import { dbPaintingItemsList } from "/firebase";
+import { dbDrawingItemsList } from "/firebase";
+import { dbBundlesItemsList } from "/firebase";
 export default {
   name: "Admin",
   data() {
@@ -222,9 +224,31 @@ export default {
     },
   },
   methods: {
-    deletePaintingItem() {
+    deletePaintingItem(id) {
       dbPaintingItemsList
-        .doc(this.id)
+        .doc(id)
+        .delete()
+        .then(() => {
+          console.log("Document successfully deleted!");
+        })
+        .catch((error) => {
+          console.error("Error removing document: ", error);
+        });
+    },
+    deleteDrawingItem(id) {
+      dbDrawingItemsList
+        .doc(id)
+        .delete()
+        .then(() => {
+          console.log("Document successfully deleted!");
+        })
+        .catch((error) => {
+          console.error("Error removing document: ", error);
+        });
+    },
+    deleteBundlesItem(id) {
+      dbBundlesItemsList
+        .doc(id)
         .delete()
         .then(() => {
           console.log("Document successfully deleted!");
