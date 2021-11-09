@@ -14,10 +14,14 @@
           <v-col
             class="height-fix pa-0 pt-4 pr-4 d-flex justify-end align-center"
           >
-            <v-icon dense color="primary">
-              mdi-magnify
-            </v-icon>
-
+            <router-link
+              :to="{ name: 'Login' }"
+              style="transition: opacity 0.3s ease-out; cursor:auto"
+            >
+              <v-icon dense color="primary">
+                mdi-account-circle-outline
+              </v-icon>
+            </router-link>
             <router-link
               :to="{ name: 'BasketPage' }"
               style="transition: opacity 0.3s ease-out; cursor:auto"
@@ -138,7 +142,7 @@
           </v-col>
           <v-col><p>GENERAL INFORMATION</p></v-col>
           <v-col>
-            <router-link :to="{ name: 'Login' }">
+            <router-link :to="{ name: 'Admin' }">
               <p>ADMIN SECTION</p>
             </router-link>
           </v-col>

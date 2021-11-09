@@ -14,6 +14,9 @@ import BundleCategory from "../categories/BundleCategory.vue";
 import Admin from "../views/Admin.vue";
 import AddNewItems from "../components/admin/AddNewItems.vue";
 import Login from "../components/admin/Login.vue";
+import firebase from "@firebase/app";
+import "@firebase/firestore";
+import "@firebase/auth";
 Vue.use(VueRouter);
 
 const routes = [
@@ -28,12 +31,18 @@ const routes = [
     name: "Admin",
     component: Admin,
     props: true,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/addNew",
     name: "addNew",
     component: AddNewItems,
     props: true,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/login",
@@ -112,5 +121,11 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+router.beforeEach((to, from, next) => {
+  const currentUser = firebase.auth().currentUser;
+  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
 
+  if (requiresAuth && !currentUser) next("Login");
+  else next();
+});
 export default router;
