@@ -46,12 +46,42 @@
 </template>
 
 <script>
+import firebase from "@firebase/app";
+import "@firebase/firestore";
+import "@firebase/auth";
 export default {
   data() {
     return {
       email: "",
       password: "",
     };
+  },
+  methods: {
+    signIn() {
+      console.log("Test user data", this.email, this.password);
+
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          this.$router.push("/admin");
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    },
+    signOut() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          alert("Logged Out");
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    },
   },
 };
 </script>
