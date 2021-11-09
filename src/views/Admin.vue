@@ -197,14 +197,14 @@
         <template>
           <v-row justify="center">
             <v-dialog v-model="dialog" persistent max-width="600">
-              <v-card>
+              <v-card class="card-container">
                 <div class="add-container">
                   <div
                     class="add-banner dark d-flex justify-center align-center"
                   >
                     <h3>EDIT ITEM</h3>
                   </div>
-                  <div class="fields-container pt-5">
+                  <div class="fields-container pt-10">
                     <div class="input-container d-flex align-center ">
                       <input
                         type="text"
@@ -245,7 +245,9 @@
                         class="pl-5"
                       />
                     </div>
-                    <div class="input-container d-flex align-center">
+                    <div
+                      class="input-container d-flex align-center mb-16 pt-10"
+                    >
                       <textarea
                         type="text"
                         placeholder="Description"
@@ -253,28 +255,43 @@
                         class="pl-5"
                       >
                       </textarea>
-                      <div class="d-flex">
-                        <div class="addBtn d-flex justify-center align-center">
-                          <button
-                            @click="updateItem()"
-                            @click.stop="dialog = false"
-                          >
-                            <h4>PUBLISH ITEM</h4>
-                          </button>
-                        </div>
-                        <div
-                          class="cancelBtn d-flex justify-center align-center"
+                    </div>
+                    <div class="d-flex">
+                      <div class="addBtn d-flex justify-center align-center">
+                        <button
+                          @click="
+                            updateItem();
+                            snackbar = true;
+                          "
+                          @click.stop="dialog = false"
                         >
-                          <button @click.stop="dialog = false">
-                            <h4>CLOSE</h4>
-                          </button>
-                        </div>
+                          <h4>PUBLISH CHANGES</h4>
+                        </button>
+                      </div>
+                      <div class="cancelBtn d-flex justify-center align-center">
+                        <button @click.stop="dialog = false">
+                          <h4>CLOSE</h4>
+                        </button>
                       </div>
                     </div>
                   </div>
                 </div>
               </v-card>
             </v-dialog>
+            <v-snackbar v-model="snackbar">
+              {{ text }}
+
+              <template v-slot:action="{ attrs }">
+                <v-btn
+                  color="pink"
+                  text
+                  v-bind="attrs"
+                  @click="snackbar = false"
+                >
+                  Close
+                </v-btn>
+              </template>
+            </v-snackbar>
           </v-row>
         </template>
       </v-row>
@@ -296,6 +313,8 @@ export default {
       dialog: false,
       paintingItem: [],
       activatedEditItem: null,
+      snackbar: false,
+      text: `Your changes have been published!`,
     };
   },
   beforeCreate() {
@@ -431,5 +450,8 @@ export default {
   padding: 0;
   font-weight: 900;
   font-size: 1.2rem;
+}
+.card-container {
+  height: auto;
 }
 </style>
