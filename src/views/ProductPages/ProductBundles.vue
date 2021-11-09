@@ -10,6 +10,7 @@
             <p>{{ this.getItem.name }}</p>
             <p>{{ this.getItem.brand }}</p>
             <p>{{ this.getItem.price }}</p>
+            <p>{{ this.getItem.description }}</p>
           </div>
         </v-col>
       </v-row>

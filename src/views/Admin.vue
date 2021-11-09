@@ -95,7 +95,11 @@
                     <p class="pr-3 font-weight-medium" style="font-size:1.1rem">
                       EDIT:
                     </p>
-                    <v-btn icon>
+                    <v-btn
+                      icon
+                      @click.stop="dialogDrawing = true"
+                      @click="editItemDrawing(drawingItem)"
+                    >
                       <v-icon color="highlight">
                         mdi-pencil
                       </v-icon>
@@ -119,6 +123,7 @@
               </div>
             </div>
           </v-col>
+          <!-- bundles item list -->
           <v-col class="editContainer">
             <div
               class="name-banner dark d-flex justify-space-between align-center px-5"
@@ -150,7 +155,11 @@
                     <p class="pr-3 font-weight-medium" style="font-size:1.1rem">
                       EDIT:
                     </p>
-                    <v-btn icon>
+                    <v-btn
+                      icon
+                      @click.stop="dialogBundles = true"
+                      @click="editItemBundles(bundlesItem)"
+                    >
                       <v-icon color="highlight">
                         mdi-pencil
                       </v-icon>
@@ -194,6 +203,7 @@
         </v-col>
       </v-row>
       <v-row>
+        <!-- paintingItems edit card -->
         <template>
           <v-row justify="center">
             <v-dialog v-model="dialog" persistent max-width="600">
@@ -295,6 +305,213 @@
           </v-row>
         </template>
       </v-row>
+      <!-- drawingItems edit card -->
+      <v-row>
+        <template>
+          <v-row justify="center">
+            <v-dialog v-model="dialogDrawing" persistent max-width="600">
+              <v-card class="card-container">
+                <div class="add-container">
+                  <div
+                    class="add-banner dark d-flex justify-center align-center"
+                  >
+                    <h3>EDIT ITEM</h3>
+                  </div>
+                  <div class="fields-container pt-10">
+                    <div class="input-container d-flex align-center ">
+                      <input
+                        type="text"
+                        placeholder="Name"
+                        v-model="drawingItem.name"
+                        class="pl-5"
+                      />
+                    </div>
+                    <div class="input-container d-flex align-center">
+                      <input
+                        type="text"
+                        placeholder="Brand"
+                        v-model="drawingItem.brand"
+                        class="pl-5"
+                      />
+                    </div>
+                    <div class="input-container d-flex align-center">
+                      <input
+                        type="number"
+                        placeholder="Price"
+                        v-model.number="drawingItem.price"
+                        class="pl-5"
+                      />
+                    </div>
+                    <div class="input-container d-flex align-center">
+                      <input
+                        type="text"
+                        placeholder="Category"
+                        v-model="drawingItem.category"
+                        class="pl-5"
+                      />
+                    </div>
+                    <div class="input-container d-flex align-center">
+                      <input
+                        type="text"
+                        placeholder="Type"
+                        v-model="drawingItem.type"
+                        class="pl-5"
+                      />
+                    </div>
+                    <div
+                      class="input-container d-flex align-center mb-16 pt-10"
+                    >
+                      <textarea
+                        type="text"
+                        placeholder="Description"
+                        v-model="drawingItem.description"
+                        class="pl-5"
+                      >
+                      </textarea>
+                    </div>
+                    <div class="d-flex">
+                      <div class="addBtn d-flex justify-center align-center">
+                        <button
+                          @click="
+                            updateItemDrawing();
+                            snackbarDraiwing = true;
+                          "
+                          @click.stop="dialogDrawing = false"
+                        >
+                          <h4>PUBLISH CHANGES</h4>
+                        </button>
+                      </div>
+                      <div class="cancelBtn d-flex justify-center align-center">
+                        <button @click.stop="dialogDrawing = false">
+                          <h4>CLOSE</h4>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </v-card>
+            </v-dialog>
+            <v-snackbar v-model="snackbarDrawing">
+              {{ text }}
+
+              <template v-slot:action="{ attrs }">
+                <v-btn
+                  color="pink"
+                  text
+                  v-bind="attrs"
+                  @click="snackbarDrawing = false"
+                >
+                  Close
+                </v-btn>
+              </template>
+            </v-snackbar>
+          </v-row>
+        </template>
+      </v-row>
+
+      <!-- bundlesItems edit card -->
+      <v-row>
+        <template>
+          <v-row justify="center">
+            <v-dialog v-model="dialogBundles" persistent max-width="600">
+              <v-card class="card-container">
+                <div class="add-container">
+                  <div
+                    class="add-banner dark d-flex justify-center align-center"
+                  >
+                    <h3>EDIT ITEM</h3>
+                  </div>
+                  <div class="fields-container pt-10">
+                    <div class="input-container d-flex align-center ">
+                      <input
+                        type="text"
+                        placeholder="Name"
+                        v-model="bundlesItem.name"
+                        class="pl-5"
+                      />
+                    </div>
+                    <div class="input-container d-flex align-center">
+                      <input
+                        type="text"
+                        placeholder="Brand"
+                        v-model="bundlesItem.brand"
+                        class="pl-5"
+                      />
+                    </div>
+                    <div class="input-container d-flex align-center">
+                      <input
+                        type="number"
+                        placeholder="Price"
+                        v-model.number="bundlesItem.price"
+                        class="pl-5"
+                      />
+                    </div>
+                    <div class="input-container d-flex align-center">
+                      <input
+                        type="text"
+                        placeholder="Category"
+                        v-model="bundlesItem.category"
+                        class="pl-5"
+                      />
+                    </div>
+                    <div class="input-container d-flex align-center">
+                      <input
+                        type="text"
+                        placeholder="Type"
+                        v-model="bundlesItem.type"
+                        class="pl-5"
+                      />
+                    </div>
+                    <div
+                      class="input-container d-flex align-center mb-16 pt-10"
+                    >
+                      <textarea
+                        type="text"
+                        placeholder="Description"
+                        v-model="bundlesItem.description"
+                        class="pl-5"
+                      >
+                      </textarea>
+                    </div>
+                    <div class="d-flex">
+                      <div class="addBtn d-flex justify-center align-center">
+                        <button
+                          @click="
+                            updateItemBundles();
+                            snackbarBundles = true;
+                          "
+                          @click.stop="dialogBundles = false"
+                        >
+                          <h4>PUBLISH CHANGES</h4>
+                        </button>
+                      </div>
+                      <div class="cancelBtn d-flex justify-center align-center">
+                        <button @click.stop="dialogBundles = false">
+                          <h4>CLOSE</h4>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </v-card>
+            </v-dialog>
+            <v-snackbar v-model="snackbarBundles">
+              {{ text }}
+
+              <template v-slot:action="{ attrs }">
+                <v-btn
+                  color="pink"
+                  text
+                  v-bind="attrs"
+                  @click="snackbarBundles = false"
+                >
+                  Close
+                </v-btn>
+              </template>
+            </v-snackbar>
+          </v-row>
+        </template>
+      </v-row>
     </v-container>
   </div>
 </template>
@@ -311,11 +528,17 @@ export default {
       isHiddenBundles: false,
       isHiddenDrawing: false,
       dialog: false,
+      dialogDrawing: false,
+      dialogBundles: false,
       paintingItem: [],
       drawingItem: [],
       bundlesItem: [],
       activatedEditItem: null,
+      activatedEditItemDrawing: null,
+      activatedEditItemBundles: null,
       snackbar: false,
+      snackbarDrawing: false,
+      snackbarBundles: false,
       text: `Your changes have been published!`,
     };
   },
@@ -376,12 +599,13 @@ export default {
     },
     editItemDrawing(drawingItem) {
       this.drawingItem = drawingItem;
-      this.activatedEditItem = drawingItem.id;
+      this.activatedEditItemDrawing = drawingItem.id;
     },
     editItemBundles(bundlesItem) {
       this.bundlesItem = bundlesItem;
-      this.activatedEditItem = bundlesItem.id;
+      this.activatedEditItemBundles = bundlesItem.id;
     },
+
     updateItem() {
       dbPaintingItemsList
         .doc(this.activatedEditItem)
@@ -395,7 +619,7 @@ export default {
     },
     updateItemDrawing() {
       dbDrawingItemsList
-        .doc(this.activatedEditItem)
+        .doc(this.activatedEditItemDrawing)
         .update(this.drawingItem)
         .then(() => {
           console.log("document updated");
@@ -406,7 +630,7 @@ export default {
     },
     updateItemBundles() {
       dbBundlesItemsList
-        .doc(this.activatedEditItem)
+        .doc(this.activatedEditItemBundles)
         .update(this.bundlesItem)
         .then(() => {
           console.log("document updated");
