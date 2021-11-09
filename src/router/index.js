@@ -13,6 +13,7 @@ import Pencils from "../categories/Pencils.vue";
 import BundleCategory from "../categories/BundleCategory.vue";
 import Admin from "../views/Admin.vue";
 import AddNewItems from "../components/admin/AddNewItems.vue";
+import Login from "../components/admin/Login.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -33,6 +34,16 @@ const routes = [
     name: "addNew",
     component: AddNewItems,
     props: true,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+    props: true,
+  },
+  {
+    path: "*",
+    redirect: "/",
   },
   {
     path: "/painting",

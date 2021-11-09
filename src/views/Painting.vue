@@ -166,7 +166,6 @@ export default {
     return {
       isHidden: true,
       isHiddenType: true,
-      windowImg: require("../assets/bowbow.jpg"),
     };
   },
   beforeCreate() {
@@ -232,8 +231,9 @@ export default {
 .window-img {
   height: 10rem;
   width: 100%;
-  background-image: url("../assets/bowbow.jpg");
+  background-image: url("../assets/pexels-steve-johnson-1517076.jpg");
   background-size: cover;
+  background-position: 50% 20%;
   border: 2px solid map-get($colorz, secondary);
 }
 .itemColumn {

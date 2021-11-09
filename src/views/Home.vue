@@ -3,19 +3,13 @@
     <v-container fluid class="wrap">
       <v-row class="top-row">
         <v-col class="pa-0 d-flex justify-center align-end">
-          <div class="arrow left">
-            <img :src="arrow" alt="" />
-          </div>
+          <div class="arrow left"></div>
         </v-col>
         <v-col class="d-flex justify-center align-end pa-0">
-          <div class="category-box">
-            <img :src="brush" alt="" />
-          </div>
+          <div class="category-box"></div>
         </v-col>
         <v-col class="pa-0 d-flex justify-center align-end">
-          <div class="arrow right">
-            <img :src="arrow" alt="" />
-          </div>
+          <div class="arrow right"></div>
         </v-col>
       </v-row>
       <v-row class="low-row">
@@ -109,8 +103,6 @@ export default {
     return {
       callToAction: "CHOOSE YOUR PRODUCTS OF INTEREST",
       middleTitle: "BEST QUALITY PRODUCTS SHIPPED WORLDWIDE",
-      brush: require("../assets/ferdek.jpg"),
-      arrow: require("../assets/arrow.png"),
     };
   },
   computed: {
@@ -145,7 +137,7 @@ export default {
 </script>
 <style lang="scss">
 #home {
-  background-image: url("../assets/bg.jpg");
+  background-image: url("../assets/pexels-irina-iriser-1005711.jpg");
   background-size: cover;
   background-position: 50% 40%;
   margin-top: 3.6rem;
@@ -223,7 +215,7 @@ export default {
   height: 20vh;
 }
 .poster {
-  background-image: url("../assets/bg.jpg");
+  background-image: url("../assets/pexels-nick-collins-1293120.jpg");
   background-size: cover;
 }
 .header {

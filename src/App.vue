@@ -138,7 +138,7 @@
           </v-col>
           <v-col><p>GENERAL INFORMATION</p></v-col>
           <v-col>
-            <router-link :to="{ name: 'Admin' }">
+            <router-link :to="{ name: 'Login' }">
               <p>ADMIN SECTION</p>
             </router-link>
           </v-col>
