@@ -118,24 +118,27 @@
               <div
                 class="addBtn d-flex justify-center align-center"
                 v-if="showPainting"
+                @click="snackbar = true"
               >
                 <button @click="addItemPainting"><h4>ADD ITEM</h4></button>
               </div>
               <div
                 class="addBtn d-flex justify-center align-center"
                 v-if="showDrawing"
+                @click="snackbar = true"
               >
                 <button @click="addItemDrawing"><h4>ADD ITEM</h4></button>
               </div>
               <div
                 class="addBtn d-flex justify-center align-center"
                 v-if="showBundles"
+                @click="snackbar = true"
               >
                 <button @click="addItemBundles"><h4>ADD ITEM</h4></button>
               </div>
               <div class="cancelBtn d-flex justify-center align-center">
                 <button @click="emptyFields">
-                  <h4>CANCEL</h4>
+                  <h4>RESET ALL FIELDS</h4>
                 </button>
               </div>
             </div>
@@ -170,6 +173,15 @@
             </div>
           </div>
         </v-col>
+        <v-snackbar v-model="snackbar">
+          {{ text }}
+
+          <template v-slot:action="{ attrs }">
+            <v-btn color="pink" text v-bind="attrs" @click="snackbar = false">
+              Close
+            </v-btn>
+          </template>
+        </v-snackbar>
       </v-row>
     </v-container>
   </div>
@@ -194,6 +206,8 @@ export default {
       showDrawing: false,
       showBundles: false,
       status: "empty",
+      snackbar: false,
+      text: `Your item has been published!`,
     };
   },
   methods: {
@@ -224,6 +238,9 @@ export default {
           category: this.category,
           description: this.description,
         })
+        .then(() => {
+          this.status = "Published! ";
+        })
         .catch((error) => {
           console.error("Error adding document: ", error);
         });
@@ -237,6 +254,9 @@ export default {
           type: this.type,
           category: this.category,
           description: this.description,
+        })
+        .then(() => {
+          this.status = "Published! ";
         })
         .catch((error) => {
           console.error("Error adding document: ", error);
