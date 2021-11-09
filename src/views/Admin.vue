@@ -8,6 +8,7 @@
       </v-row>
       <v-row class="pa-10 pt-5 pl-7">
         <v-col xl="8">
+          <!-- painting item list -->
           <v-col class="editContainer">
             <div
               class="name-banner dark d-flex justify-space-between align-center px-5"
@@ -63,7 +64,7 @@
               </div>
             </div>
           </v-col>
-
+          <!-- drawing item list -->
           <v-col class="editContainer">
             <div
               class="name-banner dark d-flex justify-space-between align-center px-5"
@@ -269,10 +270,7 @@
                     <div class="d-flex">
                       <div class="addBtn d-flex justify-center align-center">
                         <button
-                          @click="
-                            updateItem();
-                            snackbar = true;
-                          "
+                          @click="updateItem()"
                           @click.stop="dialog = false"
                         >
                           <h4>PUBLISH CHANGES</h4>
@@ -372,10 +370,7 @@
                     <div class="d-flex">
                       <div class="addBtn d-flex justify-center align-center">
                         <button
-                          @click="
-                            updateItemDrawing();
-                            snackbarDraiwing = true;
-                          "
+                          @click="updateItemDrawing()"
                           @click.stop="dialogDrawing = false"
                         >
                           <h4>PUBLISH CHANGES</h4>
@@ -476,10 +471,7 @@
                     <div class="d-flex">
                       <div class="addBtn d-flex justify-center align-center">
                         <button
-                          @click="
-                            updateItemBundles();
-                            snackbarBundles = true;
-                          "
+                          @click="updateItemBundles()"
                           @click.stop="dialogBundles = false"
                         >
                           <h4>PUBLISH CHANGES</h4>
@@ -612,6 +604,7 @@ export default {
         .update(this.paintingItem)
         .then(() => {
           console.log("document updated");
+          this.snackbar = true;
         })
         .catch((error) => {
           console.error("Error updating document", error);
@@ -623,6 +616,7 @@ export default {
         .update(this.drawingItem)
         .then(() => {
           console.log("document updated");
+          this.snackbarDrawing = true;
         })
         .catch((error) => {
           console.error("Error updating document", error);
@@ -634,6 +628,7 @@ export default {
         .update(this.bundlesItem)
         .then(() => {
           console.log("document updated");
+          this.snackbarBundles = true;
         })
         .catch((error) => {
           console.error("Error updating document", error);
