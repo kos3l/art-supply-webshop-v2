@@ -134,10 +134,8 @@
                 <button @click="addItemBundles"><h4>ADD ITEM</h4></button>
               </div>
               <div class="cancelBtn d-flex justify-center align-center">
-                <button>
-                  <router-link :to="{ name: 'Admin' }"
-                    ><h4>CANCEL</h4></router-link
-                  >
+                <button @click="emptyFields">
+                  <h4>CANCEL</h4>
                 </button>
               </div>
             </div>
@@ -150,15 +148,15 @@
             </div>
             <div class="preview-container d-flex pa-5">
               <div class="admin-item-info">
-                <h3><span id="name-span"> name:</span> {{ name }}</h3>
+                <h3 class="pb-5">Status: {{ status }}</h3>
+                <span id="name-span"> name:</span> {{ name }}
                 <span id="name-span">brand:</span> {{ brand }} /<span
                   id="name-span"
                 >
                   price:</span
                 >
-                {{ price }} DKK /
-                <span id="name-span"> category: {{ category }} </span> /
-                <span id="name-span"> type: {{ type }} </span>
+                {{ price }} DKK / <span id="name-span"> category: </span>
+                {{ category }}/ <span id="name-span"> type: </span>{{ type }}
                 <br />
 
                 <span id="desc"> description:</span>
@@ -195,6 +193,7 @@ export default {
       showPainting: false,
       showDrawing: false,
       showBundles: false,
+      status: "empty",
     };
   },
   methods: {
@@ -208,6 +207,9 @@ export default {
           type: this.type,
           description: this.description,
         })
+        .then(() => {
+          this.status = "Published! ";
+        })
         .catch((error) => {
           console.error("Error adding document: ", error);
         });
@@ -218,6 +220,7 @@ export default {
           name: this.name,
           brand: this.brand,
           price: this.price,
+          type: this.type,
           category: this.category,
           description: this.description,
         })
@@ -231,12 +234,21 @@ export default {
           name: this.name,
           brand: this.brand,
           price: this.price,
+          type: this.type,
           category: this.category,
           description: this.description,
         })
         .catch((error) => {
           console.error("Error adding document: ", error);
         });
+    },
+    emptyFields() {
+      (this.name = ""),
+        (this.brand = ""),
+        (this.price = ""),
+        (this.category = ""),
+        (this.description = ""),
+        (this.type = "");
     },
   },
   mounted() {
@@ -260,6 +272,26 @@ export default {
       this.showDrawing = false;
     }
   },
+  watch: {
+    name: function() {
+      if (this.name !== "") this.status = "In progress..";
+    },
+    brand: function() {
+      if (this.brand !== "") this.status = "In progress..";
+    },
+    price: function() {
+      if (this.price !== "") this.status = "In progress..";
+    },
+    category: function() {
+      if (this.category !== "") this.status = "In progress..";
+    },
+    type: function() {
+      if (this.type !== "") this.status = "In progress..";
+    },
+    description: function() {
+      if (this.description !== "") this.status = "In progress..";
+    },
+  },
 };
 </script>
 
@@ -280,10 +312,13 @@ export default {
   height: 4rem;
 }
 #name-span {
-  font-weight: normal;
+  font-weight: bold;
   font-style: italic;
 }
-
+#desc {
+  font-weight: bold;
+  font-style: italic;
+}
 .addBtn {
   width: 50%;
   height: 4rem;
@@ -334,6 +369,10 @@ export default {
   border-bottom: 2px solid map-get($colorz, secondary);
 }
 .input-container input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+.input-container textarea:focus-visible {
   outline: none;
   box-shadow: none;
 }
