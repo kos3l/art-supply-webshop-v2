@@ -312,6 +312,8 @@ export default {
       isHiddenDrawing: false,
       dialog: false,
       paintingItem: [],
+      drawingItem: [],
+      bundlesItem: [],
       activatedEditItem: null,
       snackbar: false,
       text: `Your changes have been published!`,
@@ -372,10 +374,40 @@ export default {
       this.paintingItem = paintingItem;
       this.activatedEditItem = paintingItem.id;
     },
+    editItemDrawing(drawingItem) {
+      this.drawingItem = drawingItem;
+      this.activatedEditItem = drawingItem.id;
+    },
+    editItemBundles(bundlesItem) {
+      this.bundlesItem = bundlesItem;
+      this.activatedEditItem = bundlesItem.id;
+    },
     updateItem() {
       dbPaintingItemsList
         .doc(this.activatedEditItem)
         .update(this.paintingItem)
+        .then(() => {
+          console.log("document updated");
+        })
+        .catch((error) => {
+          console.error("Error updating document", error);
+        });
+    },
+    updateItemDrawing() {
+      dbDrawingItemsList
+        .doc(this.activatedEditItem)
+        .update(this.drawingItem)
+        .then(() => {
+          console.log("document updated");
+        })
+        .catch((error) => {
+          console.error("Error updating document", error);
+        });
+    },
+    updateItemBundles() {
+      dbBundlesItemsList
+        .doc(this.activatedEditItem)
+        .update(this.bundlesItem)
         .then(() => {
           console.log("document updated");
         })
