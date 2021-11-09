@@ -1,7 +1,7 @@
 <template>
   <router-link
     v-if="!loading"
-    :to="{ name: 'Product', params: { id: chosenItemB.id } }"
+    :to="{ name: 'ProductBundles', params: { id: chosenItemB.id } }"
   >
     <div class="outer-random d-flex flex-column ">
       <div class="picture-container">

@@ -172,6 +172,11 @@
               </div>
             </div>
           </div>
+          <v-file-input
+            label="Add image"
+            color="highlight"
+            @change="uploadImage"
+          ></v-file-input>
         </v-col>
         <v-snackbar v-model="snackbar">
           {{ text }}
@@ -211,6 +216,10 @@ export default {
     };
   },
   methods: {
+    uploadImage(e) {
+      let file = e;
+      console.log(file);
+    },
     addItemPainting() {
       dbPaintingItemsList
         .add({

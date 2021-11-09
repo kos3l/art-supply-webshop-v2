@@ -187,6 +187,9 @@ export default {
   font-style: italic;
   font-size: 0.9rem;
 }
+.v-icon {
+  cursor: pointer;
+}
 
 .height-fix {
   height: 100%;
