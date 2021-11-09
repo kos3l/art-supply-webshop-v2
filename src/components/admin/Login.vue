@@ -38,6 +38,48 @@
               </div>
             </div>
           </div>
+          <v-snackbar v-model="snackbarLogIn">
+            {{ text }}
+
+            <template v-slot:action="{ attrs }">
+              <v-btn
+                color="pink"
+                text
+                v-bind="attrs"
+                @click="snackbarLogIn = false"
+              >
+                Close
+              </v-btn>
+            </template>
+          </v-snackbar>
+          <v-snackbar v-model="snackbarError">
+            {{ textError }}
+
+            <template v-slot:action="{ attrs }">
+              <v-btn
+                color="pink"
+                text
+                v-bind="attrs"
+                @click="snackbarError = false"
+              >
+                Close
+              </v-btn>
+            </template>
+          </v-snackbar>
+          <v-snackbar v-model="snackbarOut">
+            {{ textOut }}
+
+            <template v-slot:action="{ attrs }">
+              <v-btn
+                color="pink"
+                text
+                v-bind="attrs"
+                @click="snackbarOut = false"
+              >
+                Close
+              </v-btn>
+            </template>
+          </v-snackbar>
         </v-col>
         <v-col></v-col>
       </v-row>
@@ -54,6 +96,12 @@ export default {
     return {
       email: "",
       password: "",
+      snackbarLogIn: false,
+      snackbarError: false,
+      snackbarOut: false,
+      text: "Successfully logged in!",
+      textError: "",
+      textOut: "Logged out!",
     };
   },
   methods: {
@@ -64,10 +112,14 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
-          this.$router.push("/admin");
+          this.snackbarLogIn = true;
+          setTimeout(() => {
+            this.$router.push("/admin");
+          }, 1000);
         })
         .catch((error) => {
-          alert(error.message);
+          this.textError = error.message;
+          this.snackbarError = true;
         });
     },
     signOut() {
@@ -75,8 +127,10 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          alert("Logged Out");
-          this.$router.push("/");
+          this.snackbarOut = true;
+          setTimeout(() => {
+            this.$router.push("/");
+          }, 1000);
         })
         .catch((error) => {
           alert(error.message);
