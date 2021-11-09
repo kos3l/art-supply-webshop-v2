@@ -35,7 +35,11 @@
                     <p class="pr-3 font-weight-medium" style="font-size:1.1rem">
                       EDIT:
                     </p>
-                    <v-btn icon>
+                    <v-btn
+                      icon
+                      @click.stop="dialog = true"
+                      @click="editItem(paintingItem)"
+                    >
                       <v-icon color="highlight">
                         mdi-pencil
                       </v-icon>
@@ -189,6 +193,91 @@
           </div>
         </v-col>
       </v-row>
+      <v-row>
+        <template>
+          <v-row justify="center">
+            <v-dialog v-model="dialog" persistent max-width="600">
+              <v-card>
+                <div class="add-container">
+                  <div
+                    class="add-banner dark d-flex justify-center align-center"
+                  >
+                    <h3>EDIT ITEM</h3>
+                  </div>
+                  <div class="fields-container pt-5">
+                    <div class="input-container d-flex align-center ">
+                      <input
+                        type="text"
+                        placeholder="Name"
+                        v-model="paintingItem.name"
+                        class="pl-5"
+                      />
+                    </div>
+                    <div class="input-container d-flex align-center">
+                      <input
+                        type="text"
+                        placeholder="Brand"
+                        v-model="paintingItem.brand"
+                        class="pl-5"
+                      />
+                    </div>
+                    <div class="input-container d-flex align-center">
+                      <input
+                        type="number"
+                        placeholder="Price"
+                        v-model.number="paintingItem.price"
+                        class="pl-5"
+                      />
+                    </div>
+                    <div class="input-container d-flex align-center">
+                      <input
+                        type="text"
+                        placeholder="Category"
+                        v-model="paintingItem.category"
+                        class="pl-5"
+                      />
+                    </div>
+                    <div class="input-container d-flex align-center">
+                      <input
+                        type="text"
+                        placeholder="Type"
+                        v-model="paintingItem.type"
+                        class="pl-5"
+                      />
+                    </div>
+                    <div class="input-container d-flex align-center">
+                      <textarea
+                        type="text"
+                        placeholder="Description"
+                        v-model="paintingItem.description"
+                        class="pl-5"
+                      >
+                      </textarea>
+                      <div class="d-flex">
+                        <div class="addBtn d-flex justify-center align-center">
+                          <button
+                            @click="updateItem()"
+                            @click.stop="dialog = false"
+                          >
+                            <h4>PUBLISH ITEM</h4>
+                          </button>
+                        </div>
+                        <div
+                          class="cancelBtn d-flex justify-center align-center"
+                        >
+                          <button @click.stop="dialog = false">
+                            <h4>CLOSE</h4>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </v-card>
+            </v-dialog>
+          </v-row>
+        </template>
+      </v-row>
     </v-container>
   </div>
 </template>
@@ -204,6 +293,9 @@ export default {
       isHidden: false,
       isHiddenBundles: false,
       isHiddenDrawing: false,
+      dialog: false,
+      paintingItem: [],
+      activatedEditItem: null,
     };
   },
   beforeCreate() {
@@ -255,6 +347,21 @@ export default {
         })
         .catch((error) => {
           console.error("Error removing document: ", error);
+        });
+    },
+    editItem(paintingItem) {
+      this.paintingItem = paintingItem;
+      this.activatedEditItem = paintingItem.id;
+    },
+    updateItem() {
+      dbPaintingItemsList
+        .doc(this.activatedEditItem)
+        .update(this.paintingItem)
+        .then(() => {
+          console.log("document updated");
+        })
+        .catch((error) => {
+          console.error("Error updating document", error);
         });
     },
   },
