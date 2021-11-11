@@ -210,7 +210,7 @@
           <v-row justify="center">
             <v-dialog v-model="dialog" persistent max-width="600">
               <v-card class="card-container">
-                <div class="add-container">
+                <div class="add-container mb-0">
                   <div
                     class="add-banner dark d-flex justify-center align-center"
                   >
@@ -258,7 +258,7 @@
                       />
                     </div>
                     <div
-                      class="input-container d-flex align-center mb-16 pt-10"
+                      class="input-container d-flex align-center mb-10 pt-10 "
                     >
                       <textarea
                         type="text"
@@ -267,6 +267,16 @@
                         class="pl-5"
                       >
                       </textarea>
+                    </div>
+                    <div
+                      class="input-container d-flex align-center mb-10 "
+                      style="width:80%"
+                    >
+                      <v-file-input
+                        label="Add image"
+                        color="highlight"
+                        @change="uploadImage"
+                      ></v-file-input>
                     </div>
                     <div class="d-flex">
                       <div class="addBtn d-flex justify-center align-center">
@@ -310,7 +320,7 @@
           <v-row justify="center">
             <v-dialog v-model="dialogDrawing" persistent max-width="600">
               <v-card class="card-container">
-                <div class="add-container">
+                <div class="add-container mb-0">
                   <div
                     class="add-banner dark d-flex justify-center align-center"
                   >
@@ -368,6 +378,16 @@
                       >
                       </textarea>
                     </div>
+                    <div
+                      class="input-container d-flex align-center mb-10 "
+                      style="width:80%"
+                    >
+                      <v-file-input
+                        label="Add image"
+                        color="highlight"
+                        @change="uploadImage"
+                      ></v-file-input>
+                    </div>
                     <div class="d-flex">
                       <div class="addBtn d-flex justify-center align-center">
                         <button
@@ -411,7 +431,7 @@
           <v-row justify="center">
             <v-dialog v-model="dialogBundles" persistent max-width="600">
               <v-card class="card-container">
-                <div class="add-container">
+                <div class="add-container mb-0">
                   <div
                     class="add-banner dark d-flex justify-center align-center"
                   >
@@ -469,6 +489,16 @@
                       >
                       </textarea>
                     </div>
+                    <div
+                      class="input-container d-flex align-center mb-10 "
+                      style="width:80%"
+                    >
+                      <v-file-input
+                        label="Add image"
+                        color="highlight"
+                        @change="uploadImage"
+                      ></v-file-input>
+                    </div>
                     <div class="d-flex">
                       <div class="addBtn d-flex justify-center align-center">
                         <button
@@ -510,9 +540,12 @@
 </template>
 
 <script>
-import { dbPaintingItemsList } from "/firebase";
-import { dbDrawingItemsList } from "/firebase";
-import { dbBundlesItemsList } from "/firebase";
+import {
+  dbPaintingItemsList,
+  fb,
+  dbDrawingItemsList,
+  dbBundlesItemsList,
+} from "/firebase";
 export default {
   name: "Admin",
   data() {
@@ -635,6 +668,39 @@ export default {
           console.error("Error updating document", error);
         });
     },
+    uploadImage(e) {
+      let file = e;
+      console.log(file);
+      var storageRef = fb.storage().ref("painting/" + file.name);
+
+      let uploadTask = storageRef.put(file);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          var progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case fb.storage.TaskState.PAUSED:
+              console.log("Upload is paused");
+              break;
+            case fb.storage.TaskState.RUNNING:
+              console.log("Upload is running");
+              break;
+          }
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+            this.image = downloadURL;
+            this.btnDisable = false;
+            console.log("File available at", downloadURL);
+          });
+        }
+      );
+    },
   },
 };
 </script>
@@ -704,6 +770,9 @@ export default {
   font-size: 1.2rem;
 }
 .card-container {
-  height: auto;
+  height: 100%;
+}
+.fields-container {
+  height: 100%;
 }
 </style>

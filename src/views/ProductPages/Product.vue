@@ -3,7 +3,7 @@
     <v-container fluid light class="pa-16" style="margin-top: 3.6rem;">
       <v-row class="background-box">
         <v-col class="pa-16">
-          <img :src="getItem.image" class="product-image" />
+          <img v-if="getItem" :src="getItem.image" class="product-image" />
         </v-col>
         <v-col class="pa-16 pl-0 info-column">
           <div

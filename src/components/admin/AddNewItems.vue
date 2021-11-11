@@ -118,16 +118,12 @@
               <div
                 class="addBtn d-flex justify-center align-center"
                 v-if="showPainting"
+                @click="
+                  addItemPainting();
+                  snackbar = true;
+                "
               >
-                <v-btn
-                  plain
-                  text
-                  :disabled="btnDisable"
-                  @click="
-                    addItemPainting;
-                    snackbar = true;
-                  "
-                >
+                <v-btn plain text>
                   <h4>ADD ITEM</h4>
                 </v-btn>
               </div>
@@ -135,17 +131,16 @@
                 class="addBtn d-flex justify-center align-center"
                 v-if="showDrawing"
               >
-                <v-btn
+                <button
                   plain
                   text
-                  :disabled="btnDisable"
                   @click="
                     addItemDrawing;
                     snackbar = true;
                   "
                 >
                   <h4>ADD ITEM</h4>
-                </v-btn>
+                </button>
               </div>
 
               <div
@@ -223,10 +218,10 @@
 <script>
 import {
   dbPaintingItemsList,
-  fb,
   dbDrawingItemsList,
   dbBundlesItemsList,
 } from "/firebase";
+import firebase from "@firebase/app";
 
 export default {
   name: "AddNewItems",
@@ -246,30 +241,23 @@ export default {
       status: "empty",
       snackbar: false,
       text: `Your item has been published!`,
-      btnDisable: "true",
+      btnDisable: true,
     };
   },
   methods: {
     uploadImage(e) {
       let file = e;
       console.log(file);
-      var storageRef = fb.storage().ref("painting/" + file.name);
 
-      let uploadTask = storageRef.put(file);
+      var storageRef = firebase.storage().ref();
+
+      let uploadTask = storageRef.child("painting/" + file.name).put(file);
       uploadTask.on(
         "state_changed",
         (snapshot) => {
           var progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
-          switch (snapshot.state) {
-            case fb.storage.TaskState.PAUSED:
-              console.log("Upload is paused");
-              break;
-            case fb.storage.TaskState.RUNNING:
-              console.log("Upload is running");
-              break;
-          }
         },
         (error) => {
           console.log(error);
@@ -284,22 +272,24 @@ export default {
       );
     },
     addItemPainting() {
-      dbPaintingItemsList
-        .add({
-          name: this.name,
-          brand: this.brand,
-          price: this.price,
-          category: this.category,
-          type: this.type,
-          description: this.description,
-          image: this.image,
-        })
-        .then(() => {
-          this.status = "Published! ";
-        })
-        .catch((error) => {
-          console.error("Error adding document: ", error);
-        });
+      if (this.image != null) {
+        dbPaintingItemsList
+          .add({
+            name: this.name,
+            brand: this.brand,
+            price: this.price,
+            category: this.category,
+            type: this.type,
+            description: this.description,
+            image: this.image,
+          })
+          .then(() => {
+            this.status = "Published! ";
+          })
+          .catch((error) => {
+            console.error("Error adding document: ", error);
+          });
+      } else console.log("oof");
     },
     addItemDrawing() {
       dbDrawingItemsList
@@ -308,6 +298,7 @@ export default {
           brand: this.brand,
           price: this.price,
           type: this.type,
+          image: this.image,
           category: this.category,
           description: this.description,
         })
@@ -325,6 +316,7 @@ export default {
           brand: this.brand,
           price: this.price,
           type: this.type,
+          image: this.image,
           category: this.category,
           description: this.description,
         })
@@ -364,6 +356,7 @@ export default {
       this.showPainting = false;
       this.showDrawing = false;
     }
+    console.log(this.image);
   },
   watch: {
     name: function() {
