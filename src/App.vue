@@ -16,9 +16,19 @@
           >
             <router-link
               :to="{ name: 'Login' }"
+              v-if="!currentUser"
               style="transition: opacity 0.3s ease-out; cursor:auto"
             >
               <v-icon dense color="primary">
+                mdi-account-circle-outline
+              </v-icon>
+            </router-link>
+            <router-link
+              v-if="currentUser"
+              :to="{ name: 'Login' }"
+              style="transition: opacity 0.3s ease-out; cursor:auto"
+            >
+              <v-icon dense color="highlight">
                 mdi-account-circle-outline
               </v-icon>
             </router-link>
@@ -143,7 +153,9 @@
           <v-col><p>GENERAL INFORMATION</p></v-col>
           <v-col>
             <router-link :to="{ name: 'Admin' }">
-              <p>ADMIN SECTION</p>
+              <p>
+                ADMIN SECTION
+              </p>
             </router-link>
           </v-col>
           <v-col><p>SOCIAL MEDIA</p></v-col>
@@ -155,7 +167,16 @@
 
 <script>
 import "@firebase/firestore";
+import { fb } from "/firebase";
+import store from "../src/store/index.js";
 
+fb.auth().onAuthStateChanged((user) => {
+  if (user) {
+    store.dispatch("setUser", user);
+  } else {
+    store.dispatch("setUser", null);
+  }
+});
 export default {
   name: "App",
   components: {},
@@ -165,9 +186,15 @@ export default {
       currentPage: window.location.pathname,
     };
   },
+  computed: {
+    currentUser() {
+      return this.$store.getters.getUser;
+    },
+  },
   updated() {
     this.currentPage = this.$router.currentRoute.path;
     console.info(this.currentPage);
+    console.log(this.currentUser);
   },
 };
 </script>

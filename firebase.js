@@ -20,7 +20,7 @@ var firebaseConfig = {
   appId: "1:851706972677:web:049f097274bd898624aa6c",
   measurementId: "G-GLN0R8D33F",
 };
-firebase.initializeApp(firebaseConfig);
+export const fb = firebase.initializeApp(firebaseConfig);
 
 export const db = firebase.firestore();
 export const dbPaintingItemsList = db.collection("painting");

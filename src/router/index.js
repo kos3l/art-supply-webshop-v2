@@ -25,6 +25,10 @@ const routes = [
     name: "Home",
     component: Home,
     props: true,
+    meta: {
+      title: "Home",
+      requiresAuth: false,
+    },
   },
   {
     path: "/admin",
@@ -32,6 +36,7 @@ const routes = [
     component: Admin,
     props: true,
     meta: {
+      title: "Admin",
       requiresAuth: true,
     },
   },
@@ -41,6 +46,7 @@ const routes = [
     component: AddNewItems,
     props: true,
     meta: {
+      title: "addNew",
       requiresAuth: true,
     },
   },
@@ -49,6 +55,10 @@ const routes = [
     name: "Login",
     component: Login,
     props: true,
+    meta: {
+      title: "Login",
+      requiresAuth: false,
+    },
   },
   {
     path: "*",
@@ -59,60 +69,101 @@ const routes = [
     name: "Painting",
     component: Painting,
     props: true,
+    meta: {
+      title: "Painting",
+      requiresAuth: false,
+    },
   },
   {
     path: "/drawing",
     name: "Drawing",
     component: Drawing,
     props: true,
+    meta: {
+      title: "Drawing",
+      requiresAuth: false,
+    },
   },
   {
     path: "/bundles",
     name: "Bundles",
     component: Bundles,
     props: true,
+    meta: {
+      title: "Bundles",
+      requiresAuth: false,
+    },
   },
   {
     path: "/product/:id",
     name: "Product",
     component: Product,
     props: true,
+    meta: {
+      title: "Product",
+      requiresAuth: false,
+    },
   },
   {
     path: "/productDrawing/:id",
     name: "ProductDrawing",
     component: ProductDrawing,
     props: true,
+
+    meta: {
+      title: "ProductDrawing",
+      requiresAuth: false,
+    },
   },
   {
     path: "/productBundles/:id",
     name: "ProductBundles",
     component: ProductBundles,
     props: true,
+    meta: {
+      title: "ProductBundles",
+      requiresAuth: false,
+    },
   },
   {
     path: "/basketpage",
     name: "BasketPage",
     component: BasketPage,
     props: true,
+    meta: {
+      title: "BasketPage",
+      requiresAuth: false,
+    },
   },
   {
     path: "/paints/:ctgr",
     name: "Paints",
     component: Paints,
     props: true,
+    meta: {
+      title: "Paints",
+      requiresAuth: false,
+    },
   },
   {
     path: "/pencils/:ctgr",
     name: "Pencils",
     component: Pencils,
     props: true,
+    meta: {
+      title: "Pencils",
+      requiresAuth: false,
+    },
   },
   {
     path: "/bundleCategory/:ctgr",
     name: "BundleCategory",
     component: BundleCategory,
     props: true,
+    meta: {
+      title: "BundlesCategory",
+      requiresAuth: false,
+    },
   },
 ];
 
@@ -121,11 +172,21 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
-router.beforeEach((to, from, next) => {
-  const currentUser = firebase.auth().currentUser;
-  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
+firebase.getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      unsubscribe();
+      resolve(user);
+    }, reject);
+  });
+};
 
-  if (requiresAuth && !currentUser) next("Login");
-  else next();
+router.beforeEach(async (to, from, next) => {
+  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
+  if (requiresAuth && !(await firebase.getCurrentUser())) {
+    next("login");
+  } else {
+    next();
+  }
 });
 export default router;

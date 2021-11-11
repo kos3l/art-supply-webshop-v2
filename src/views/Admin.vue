@@ -189,6 +189,7 @@
           <h1 class="mt-5 welcome-msg text-center">
             Welcome at your Admin page
           </h1>
+
           <h3 class="font-weight-regular text-center">
             Here you can preview your products and add / edit / delete them!
             Remember when you create a new object to select in which main

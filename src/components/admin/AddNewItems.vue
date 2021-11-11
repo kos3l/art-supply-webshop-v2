@@ -118,23 +118,51 @@
               <div
                 class="addBtn d-flex justify-center align-center"
                 v-if="showPainting"
-                @click="snackbar = true"
               >
-                <button @click="addItemPainting"><h4>ADD ITEM</h4></button>
+                <v-btn
+                  plain
+                  text
+                  :disabled="btnDisable"
+                  @click="
+                    addItemPainting;
+                    snackbar = true;
+                  "
+                >
+                  <h4>ADD ITEM</h4>
+                </v-btn>
               </div>
               <div
                 class="addBtn d-flex justify-center align-center"
                 v-if="showDrawing"
-                @click="snackbar = true"
               >
-                <button @click="addItemDrawing"><h4>ADD ITEM</h4></button>
+                <v-btn
+                  plain
+                  text
+                  :disabled="btnDisable"
+                  @click="
+                    addItemDrawing;
+                    snackbar = true;
+                  "
+                >
+                  <h4>ADD ITEM</h4>
+                </v-btn>
               </div>
+
               <div
                 class="addBtn d-flex justify-center align-center"
                 v-if="showBundles"
-                @click="snackbar = true"
               >
-                <button @click="addItemBundles"><h4>ADD ITEM</h4></button>
+                <v-btn
+                  plain
+                  text
+                  :disabled="btnDisable"
+                  @click="
+                    addItemBundles;
+                    snackbar = true;
+                  "
+                >
+                  <h4>ADD ITEM</h4>
+                </v-btn>
               </div>
               <div class="cancelBtn d-flex justify-center align-center">
                 <button @click="emptyFields">
@@ -193,9 +221,13 @@
 </template>
 
 <script>
-import { dbPaintingItemsList } from "/firebase";
-import { dbDrawingItemsList } from "/firebase";
-import { dbBundlesItemsList } from "/firebase";
+import {
+  dbPaintingItemsList,
+  fb,
+  dbDrawingItemsList,
+  dbBundlesItemsList,
+} from "/firebase";
+
 export default {
   name: "AddNewItems",
   data() {
@@ -206,6 +238,7 @@ export default {
       description: "",
       category: "",
       type: "",
+      image: null,
       picked: "",
       showPainting: false,
       showDrawing: false,
@@ -213,12 +246,42 @@ export default {
       status: "empty",
       snackbar: false,
       text: `Your item has been published!`,
+      btnDisable: "true",
     };
   },
   methods: {
     uploadImage(e) {
       let file = e;
       console.log(file);
+      var storageRef = fb.storage().ref("painting/" + file.name);
+
+      let uploadTask = storageRef.put(file);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          var progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case fb.storage.TaskState.PAUSED:
+              console.log("Upload is paused");
+              break;
+            case fb.storage.TaskState.RUNNING:
+              console.log("Upload is running");
+              break;
+          }
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+            this.image = downloadURL;
+            this.btnDisable = false;
+            console.log("File available at", downloadURL);
+          });
+        }
+      );
     },
     addItemPainting() {
       dbPaintingItemsList
@@ -229,6 +292,7 @@ export default {
           category: this.category,
           type: this.type,
           description: this.description,
+          image: this.image,
         })
         .then(() => {
           this.status = "Published! ";
@@ -360,8 +424,12 @@ export default {
   background-color: map-get($colorz, highlight);
   transition: 0.5s ease-in-out;
 }
+.v-btn {
+  height: 100%;
+}
 .addBtn h4 {
   text-shadow: 0px 3px 20px map-get($colorz, highlight);
+  color: map-get($colorz, secondary);
 }
 .cancelBtn {
   width: 50%;

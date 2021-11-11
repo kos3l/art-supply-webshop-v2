@@ -2,15 +2,19 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 import "@firebase/firestore";
-import { dbPaintingItemsList } from "/firebase";
-import { dbDrawingItemsList } from "/firebase";
-import { dbBundlesItemsList } from "/firebase";
-import { dbTextContentList } from "/firebase";
+import {
+  dbPaintingItemsList,
+  dbDrawingItemsList,
+  dbBundlesItemsList,
+  dbTextContentList,
+} from "/firebase";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    currentUser: null,
+
     paintingItems: [],
     drawingItems: [],
     bundlesItems: [],
@@ -99,6 +103,13 @@ export default new Vuex.Store({
         Math.random() * state.bundlesItems.length
       );
     },
+    SET_USER: (state, user) => {
+      if (user) {
+        state.currentUser = user;
+      } else {
+        state.currentUser = null;
+      }
+    },
   },
   actions: {
     setPaintingItemsAction: (context) => {
@@ -121,6 +132,9 @@ export default new Vuex.Store({
     },
     setRandomBundles: (context) => {
       context.commit("randomizeNumberBundles");
+    },
+    setUser: (context, user) => {
+      context.commit("SET_USER", user);
     },
   },
   getters: {
@@ -148,6 +162,7 @@ export default new Vuex.Store({
     getRandomItemsBundles: (state) => {
       return state.bundlesItems[state.randomNumberBundles];
     },
+    getUser: (state) => state.currentUser,
   },
   modules: {},
 });
