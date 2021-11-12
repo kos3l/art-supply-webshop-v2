@@ -77,7 +77,6 @@ export default {
     return {
       isHidden: true,
       geFilterfish: [],
-      windowImg: require("../assets/bowbow.jpg"),
     };
   },
   beforeCreate() {

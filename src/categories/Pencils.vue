@@ -76,7 +76,6 @@ export default {
   data() {
     return {
       isHidden: true,
-      windowImg: require("../assets/bowbow.jpg"),
     };
   },
   beforeCreate() {
