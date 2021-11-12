@@ -184,7 +184,7 @@
                 </p>
               </div>
               <div class="admin-item-img">
-                img
+                <img :src="this.image" :alt="placeholderImg" />
               </div>
             </div>
           </div>

@@ -59,7 +59,7 @@
                   </div>
                 </div>
                 <div class="admin-item-img">
-                  img
+                  <img :src="paintingItem.image" alt="" />
                 </div>
               </div>
             </div>
@@ -119,7 +119,7 @@
                   </div>
                 </div>
                 <div class="admin-item-img">
-                  img
+                  <img :src="drawingItem.image" alt="" />
                 </div>
               </div>
             </div>
@@ -179,7 +179,7 @@
                   </div>
                 </div>
                 <div class="admin-item-img">
-                  img
+                  <img :src="bundlesItem.image" alt="" />
                 </div>
               </div>
             </div>
@@ -778,7 +778,9 @@ export default {
 }
 .admin-item-img {
   width: 40%;
-  background-color: red;
+
+  border: 2px solid map-get($colorz, secondary);
+  outline: 0;
 }
 .admin-item-info p {
   letter-spacing: 0;
@@ -814,5 +816,9 @@ export default {
 }
 .fields-container {
   height: 100%;
+}
+.admin-item-img img {
+  width: 100%;
+  min-height: 100%;
 }
 </style>
