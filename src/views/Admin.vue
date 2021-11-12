@@ -385,7 +385,7 @@
                       <v-file-input
                         label="Add image"
                         color="highlight"
-                        @change="uploadImage"
+                        @change="uploadImageDrawing"
                       ></v-file-input>
                     </div>
                     <div class="d-flex">
@@ -496,7 +496,7 @@
                       <v-file-input
                         label="Add image"
                         color="highlight"
-                        @change="uploadImage"
+                        @change="uploadImageBundles"
                       ></v-file-input>
                     </div>
                     <div class="d-flex">
@@ -565,6 +565,7 @@ export default {
       snackbar: false,
       snackbarDrawing: false,
       snackbarBundles: false,
+      localImage: null,
       text: `Your changes have been published!`,
     };
   },
@@ -680,22 +681,61 @@ export default {
           var progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
-          switch (snapshot.state) {
-            case fb.storage.TaskState.PAUSED:
-              console.log("Upload is paused");
-              break;
-            case fb.storage.TaskState.RUNNING:
-              console.log("Upload is running");
-              break;
-          }
         },
         (error) => {
           console.log(error);
         },
         () => {
           uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-            this.image = downloadURL;
-            this.btnDisable = false;
+            this.paintingItem.image = downloadURL;
+            console.log("File available at", downloadURL);
+          });
+        }
+      );
+    },
+    uploadImageDrawing(e) {
+      let file = e;
+      console.log(file);
+      var storageRef = fb.storage().ref("painting/" + file.name);
+
+      let uploadTask = storageRef.put(file);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          var progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+            this.drawingItem.image = downloadURL;
+            console.log("File available at", downloadURL);
+          });
+        }
+      );
+    },
+    uploadImageBundles(e) {
+      let file = e;
+      console.log(file);
+      var storageRef = fb.storage().ref("painting/" + file.name);
+
+      let uploadTask = storageRef.put(file);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          var progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+            this.bundlesItem.image = downloadURL;
             console.log("File available at", downloadURL);
           });
         }

@@ -123,39 +123,32 @@
                   snackbar = true;
                 "
               >
-                <v-btn plain text>
+                <v-btn plain text :disabled="btnDisable">
                   <h4>ADD ITEM</h4>
                 </v-btn>
               </div>
               <div
                 class="addBtn d-flex justify-center align-center"
                 v-if="showDrawing"
+                @click="
+                  addItemDrawing();
+                  snackbar = true;
+                "
               >
-                <button
-                  plain
-                  text
-                  @click="
-                    addItemDrawing;
-                    snackbar = true;
-                  "
-                >
+                <v-btn plain text :disabled="btnDisable">
                   <h4>ADD ITEM</h4>
-                </button>
+                </v-btn>
               </div>
 
               <div
                 class="addBtn d-flex justify-center align-center"
                 v-if="showBundles"
+                @click="
+                  addItemBundles();
+                  snackbar = true;
+                "
               >
-                <v-btn
-                  plain
-                  text
-                  :disabled="btnDisable"
-                  @click="
-                    addItemBundles;
-                    snackbar = true;
-                  "
-                >
+                <v-btn plain text :disabled="btnDisable">
                   <h4>ADD ITEM</h4>
                 </v-btn>
               </div>
