@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import createPersistedState from "vuex-persistedstate";
+//import createPersistedState from "vuex-persistedstate";
 
 import "@firebase/firestore";
 import {
@@ -25,6 +25,8 @@ export default new Vuex.Store({
     randomNumberDrawing: null,
     randomNumberBundles: null,
     cart: [],
+    cartD: [],
+    cartB: [],
   },
   mutations: {
     setPaintingItems: (state) => {
@@ -116,21 +118,57 @@ export default new Vuex.Store({
       // update products
       state.paintingItems = product;
     },
+    setProductsDrawing(state, productD) {
+      // update products
+      state.drawingItems = productD;
+    },
+    setProductsBundles(state, productB) {
+      // update products
+      state.bundlesItems = productB;
+    },
 
     pushProductToCart(state, productId) {
       state.cart.push({
         id: productId,
         quantity: 1,
       });
-      localStorage.setItem("cart", productId);
+      console.log(productId);
+      //local
+      // Storage.setItem("cartProducts", productId);
+    },
+    pushProductToCartD(state, productIdD) {
+      state.cartD.push({
+        id: productIdD,
+        quantity: 1,
+      });
+      //localStorage.setItem("cartProducts", productIdDrawing);
+    },
+    pushProductToCartB(state, productIdB) {
+      state.cartB.push({
+        id: productIdB,
+        quantity: 1,
+      });
+      //localStorage.setItem("cartProducts", productIdBundles);
     },
 
     incrementItemQuantity(state, cartItem) {
       cartItem.quantity++;
     },
 
+    incrementItemQuantityD(state, cartItemD) {
+      cartItemD.quantity++;
+    },
+    incrementItemQuantityB(state, cartItemB) {
+      cartItemB.quantity++;
+    },
     decrementProductInventory(state, product) {
       product.inventory--;
+    },
+    decrementProductInventoryD(state, productD) {
+      productD.inventory--;
+    },
+    decrementProductInventoryB(state, productB) {
+      productB.inventory--;
     },
   },
   actions: {
@@ -159,20 +197,46 @@ export default new Vuex.Store({
       context.commit("SET_USER", user);
     },
 
-    addProductToCart(context, product, state) {
+    addProductToCart(context, product) {
       if (product.inventory > 0) {
         const cartItem = context.state.cart.find(
           (item) => item.id === product.id
         );
         if (!cartItem) {
           context.commit("pushProductToCart", product.id);
-          localStorage.setItem("cartItem", state.cart);
-          state.cart = cartItem;
         } else {
           context.commit("incrementItemQuantity", cartItem);
         }
         context.commit("decrementProductInventory", product);
         console.log(product);
+      }
+    },
+    addProductToCartD(context, productD) {
+      if (productD.inventory > 0) {
+        const cartItemD = context.state.cartD.find(
+          (itemD) => itemD.id === productD.id
+        );
+        if (!cartItemD) {
+          context.commit("pushProductToCartD", productD.id);
+        } else {
+          context.commit("incrementItemQuantityD", cartItemD);
+        }
+        context.commit("decrementProductInventoryD", productD);
+        console.log(productD);
+      }
+    },
+    addProductToCartB(context, productB) {
+      if (productB.inventory > 0) {
+        const cartItemB = context.state.cartB.find(
+          (itemB) => itemB.id === productB.id
+        );
+        if (!cartItemB) {
+          context.commit("pushProductToCartB", productB.id);
+        } else {
+          context.commit("incrementItemQuantityB", cartItemB);
+        }
+        context.commit("decrementProductInventoryB", productB);
+        console.log(productB);
       }
     },
   },
@@ -206,12 +270,6 @@ export default new Vuex.Store({
       return state.bundlesItems[state.randomNumberBundles];
     },
     getUser: (state) => state.currentUser,
-    pushProductToCart(state, productId) {
-      state.cart.push({
-        id: productId,
-        quantity: 1,
-      });
-    },
 
     cartProducts(state) {
       return state.cart.map((cartItem) => {
@@ -226,15 +284,41 @@ export default new Vuex.Store({
         };
       });
     },
-
+    cartProductsD(state) {
+      return state.cartD.map((cartItemD) => {
+        const productD = state.drawingItems.find(
+          (drawingItems) => drawingItems.id === cartItemD.id
+        );
+        return {
+          name: productD.name,
+          brand: productD.brand,
+          price: productD.price,
+          quantity: cartItemD.quantity,
+        };
+      });
+    },
+    cartProductsB(state) {
+      return state.cartB.map((cartItemB) => {
+        const productB = state.bundlesItems.find(
+          (bundlesItems) => bundlesItems.id === cartItemB.id
+        );
+        return {
+          name: productB.name,
+          brand: productB.brand,
+          price: productB.price,
+          quantity: cartItemB.quantity,
+        };
+      });
+    },
+    /* 
     cartTotal(state, getters) {
-      return getters.cartProducts.reduce(
+      return getters.cart.reduce(
         (total, product) => total + product.price * product.quantity,
         0
       );
-    },
+    },*/
   },
-  plugins: [createPersistedState()],
+  //plugins: [createPersistedState()],
 
   modules: {},
 });

@@ -27,7 +27,7 @@
               </div>
             </div>
             <div class="add-to-cart d-flex align-end justify-end">
-              <button class="addCartButton">
+              <button class="addCartButton" @click="addProductToCartB(getItem)">
                 <p>ADD TO CART</p>
               </button>
             </div>
@@ -59,7 +59,11 @@ export default {
       },
     },
   },
-
+  methods: {
+    addProductToCartB(productB) {
+      this.$store.dispatch("addProductToCartB", productB);
+    },
+  },
   serverPrefetch() {
     // return the Promise from the action
     // so that the component waits before rendering
