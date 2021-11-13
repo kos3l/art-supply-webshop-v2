@@ -49,18 +49,13 @@ export default {
   },
 
   data() {
-    return {
-      post: "",
-    };
+    return {};
   },
 
   computed: {
     getItem: {
       get() {
         return this.$store.getters.productIdBundles(this.id);
-      },
-      set(post) {
-        return post;
       },
     },
   },

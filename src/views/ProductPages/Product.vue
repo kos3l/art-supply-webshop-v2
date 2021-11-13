@@ -20,6 +20,7 @@
               <div class=" d-flex justify-space-between mb-3">
                 <p class="font-weight-bold">PRICE:</p>
                 <p>{{ this.getItem.price }} DKK</p>
+                <p>{{ this.getItem.inventory }}</p>
               </div>
               <div class=" d-flex flex-column mb-3">
                 <p class="font-weight-bold mb-1">DESCRIPTION:</p>
@@ -27,7 +28,7 @@
               </div>
             </div>
             <div class="add-to-cart d-flex align-end justify-end">
-              <button class="addCartButton">
+              <button class="addCartButton" @click="addProductToCart(getItem)">
                 <p>ADD TO CART</p>
               </button>
             </div>
@@ -49,9 +50,7 @@ export default {
   },
 
   data() {
-    return {
-      post: "",
-    };
+    return {};
   },
 
   computed: {
@@ -59,9 +58,11 @@ export default {
       get() {
         return this.$store.getters.productId(this.id);
       },
-      set(post) {
-        return post;
-      },
+    },
+  },
+  methods: {
+    addProductToCart(product) {
+      this.$store.dispatch("addProductToCart", product);
     },
   },
 
@@ -74,6 +75,7 @@ export default {
     if (!this.getItem) {
       this.$store.dispatch("setPaintingItemsAction");
     }
+    console.log(this.getBasketItems);
   },
 };
 </script>

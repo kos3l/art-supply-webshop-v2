@@ -23,6 +23,7 @@ export default new Vuex.Store({
     randomNumber: null,
     randomNumberDrawing: null,
     randomNumberBundles: null,
+    cart: [],
   },
   mutations: {
     setPaintingItems: (state) => {
@@ -110,6 +111,25 @@ export default new Vuex.Store({
         state.currentUser = null;
       }
     },
+    setProducts(state, paintingItems) {
+      // update products
+      state.paintingItems = paintingItems;
+    },
+
+    pushProductToCart(state, productId) {
+      state.cart.push({
+        id: productId,
+        quantity: 1,
+      });
+    },
+
+    incrementItemQuantity(state, cartItem) {
+      cartItem.quantity++;
+    },
+
+    decrementProductInventory(state, product) {
+      product.inventory--;
+    },
   },
   actions: {
     setPaintingItemsAction: (context) => {
@@ -136,9 +156,26 @@ export default new Vuex.Store({
     setUser: (context, user) => {
       context.commit("SET_USER", user);
     },
+    addProductToCart(context, product) {
+      if (product.inventory > 0) {
+        const cartItem = context.state.cart.find(
+          (item) => item.id === product.id
+        );
+        if (!cartItem) {
+          context.commit("pushProductToCart", product.id);
+        } else {
+          context.commit("incrementItemQuantity", cartItem);
+        }
+        context.commit("decrementProductInventory", product);
+      }
+    },
   },
   getters: {
-    getBasketItems: (state) => state.basketItems,
+    availableProducts(state) {
+      return state.paintingItems.filter(
+        (paintingItems) => paintingItems.inventory > 0
+      );
+    },
     getPaintingItems: (state) => state.paintingItems,
     getDrawingItems: (state) => state.drawingItems,
     getBundlesItems: (state) => state.bundlesItems,
@@ -163,6 +200,38 @@ export default new Vuex.Store({
       return state.bundlesItems[state.randomNumberBundles];
     },
     getUser: (state) => state.currentUser,
+    pushProductToCart(state, productId) {
+      state.cart.push({
+        id: productId,
+        quantity: 1,
+      });
+    },
+    incrementItemQuantity(state, cartItem) {
+      cartItem.quantity++;
+    },
+    decrementProductInventory(state, product) {
+      product.inventory--;
+    },
+    cartProducts(state) {
+      return state.cart.map((cartItem) => {
+        const product = state.paintingItems.find(
+          (paintingItems) => paintingItems.id === cartItem.id
+        );
+        return {
+          name: product.name,
+          brand: product.brand,
+          price: product.price,
+          quantity: cartItem.quantity,
+        };
+      });
+    },
+
+    cartTotal(state, getters) {
+      return getters.cartProducts.reduce(
+        (total, product) => total + product.price * product.quantity,
+        0
+      );
+    },
   },
   modules: {},
 });

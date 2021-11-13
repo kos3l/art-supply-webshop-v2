@@ -9,9 +9,15 @@
           <h1>YOUR BASKET</h1>
         </v-col>
         <v-col lg="12">
-          <div class="basketItem d-flex justify-space-between align-center">
+          <div
+            v-for="product in products"
+            :key="product.id"
+            class="basketItem d-flex justify-space-between align-center"
+          >
             <div class="d-flex align-center">
-              <h4 class="ma-0 pl-5 900">Name brand</h4>
+              <h4 class="ma-0 pl-5 900">
+                {{ products.name }} {{ products.brand }}
+              </h4>
             </div>
             <div class="d-flex align-center">
               <v-icon class="pr-5"> mdi-plus </v-icon>
@@ -38,7 +44,7 @@
         </v-col>
         <v-col class="d-flex flex-column align-end justify-start">
           <div class="pb-10">
-            <h1>TOTAL AMOUNT: XXX</h1>
+            <h1>TOTAL AMOUNT: {{ total }}</h1>
           </div>
           <div>
             <ButtonRefresh />
@@ -57,9 +63,11 @@ export default {
     return {};
   },
   computed: {
-    basket() {
-      // return this.$store.state.basketItems;
-      return this.$store.getters.getBasketItems;
+    products() {
+      return this.$store.getters.cartProducts;
+    },
+    total() {
+      return this.$store.getters.cartTotal;
     },
   },
 };
