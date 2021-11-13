@@ -16,7 +16,7 @@
           >
             <div class="d-flex align-center">
               <h4 class="ma-0 pl-5 900">
-                {{ products.name }} {{ products.brand }}
+                {{ product.name }} {{ product.brand }}
               </h4>
             </div>
             <div class="d-flex align-center">

@@ -29,7 +29,8 @@
                 <div class="admin-item-info">
                   <h3>{{ paintingItem.name }}</h3>
                   {{ paintingItem.brand }} / {{ paintingItem.price }} DKK /
-                  {{ paintingItem.category }} / {{ paintingItem.type }}
+                  {{ paintingItem.category }} / {{ paintingItem.type }} /
+                  {{ paintingItem.inventory }}
                   <br />
                   <p>{{ paintingItem.description }}</p>
                   <div class="d-flex align-center options">
@@ -89,7 +90,7 @@
                 <div class="admin-item-info">
                   <h3>{{ drawingItem.name }}</h3>
                   {{ drawingItem.brand }} / {{ drawingItem.price }} DKK /
-                  {{ drawingItem.category }}
+                  {{ drawingItem.category }} / {{ drawingItem.inventory }}
                   <br />
                   <p>{{ drawingItem.description }}</p>
                   <div class="d-flex align-center options">
@@ -149,7 +150,7 @@
                 <div class="admin-item-info">
                   <h3>{{ bundlesItem.name }}</h3>
                   {{ bundlesItem.brand }} / {{ bundlesItem.price }} DKK /
-                  {{ bundlesItem.category }}
+                  {{ bundlesItem.category }} / {{ bundlesItem.inventory }}
                   <br />
                   <p>{{ bundlesItem.description }}</p>
                   <div class="d-flex align-center options">
@@ -254,6 +255,14 @@
                         type="text"
                         placeholder="Type"
                         v-model="paintingItem.type"
+                        class="pl-5"
+                      />
+                    </div>
+                    <div class="input-container d-flex align-center">
+                      <input
+                        type="text"
+                        placeholder="Inventory"
+                        v-model="paintingItem.inventory"
                         class="pl-5"
                       />
                     </div>
@@ -367,6 +376,14 @@
                         class="pl-5"
                       />
                     </div>
+                    <div class="input-container d-flex align-center">
+                      <input
+                        type="text"
+                        placeholder="Inventory"
+                        v-model="drawingItem.inventory"
+                        class="pl-5"
+                      />
+                    </div>
                     <div
                       class="input-container d-flex align-center mb-16 pt-10"
                     >
@@ -475,6 +492,14 @@
                         type="text"
                         placeholder="Type"
                         v-model="bundlesItem.type"
+                        class="pl-5"
+                      />
+                    </div>
+                    <div class="input-container d-flex align-center">
+                      <input
+                        type="text"
+                        placeholder="inventory"
+                        v-model="bundlesItem.inventory"
                         class="pl-5"
                       />
                     </div>

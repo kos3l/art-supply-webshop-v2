@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import createPersistedState from "vuex-persistedstate";
 
 import "@firebase/firestore";
 import {
@@ -111,9 +112,9 @@ export default new Vuex.Store({
         state.currentUser = null;
       }
     },
-    setProducts(state, paintingItems) {
+    setProducts(state, product) {
       // update products
-      state.paintingItems = paintingItems;
+      state.paintingItems = product;
     },
 
     pushProductToCart(state, productId) {
@@ -121,6 +122,7 @@ export default new Vuex.Store({
         id: productId,
         quantity: 1,
       });
+      localStorage.setItem("cart", productId);
     },
 
     incrementItemQuantity(state, cartItem) {
@@ -156,17 +158,21 @@ export default new Vuex.Store({
     setUser: (context, user) => {
       context.commit("SET_USER", user);
     },
-    addProductToCart(context, product) {
+
+    addProductToCart(context, product, state) {
       if (product.inventory > 0) {
         const cartItem = context.state.cart.find(
           (item) => item.id === product.id
         );
         if (!cartItem) {
           context.commit("pushProductToCart", product.id);
+          localStorage.setItem("cartItem", state.cart);
+          state.cart = cartItem;
         } else {
           context.commit("incrementItemQuantity", cartItem);
         }
         context.commit("decrementProductInventory", product);
+        console.log(product);
       }
     },
   },
@@ -206,12 +212,7 @@ export default new Vuex.Store({
         quantity: 1,
       });
     },
-    incrementItemQuantity(state, cartItem) {
-      cartItem.quantity++;
-    },
-    decrementProductInventory(state, product) {
-      product.inventory--;
-    },
+
     cartProducts(state) {
       return state.cart.map((cartItem) => {
         const product = state.paintingItems.find(
@@ -233,5 +234,7 @@ export default new Vuex.Store({
       );
     },
   },
+  plugins: [createPersistedState()],
+
   modules: {},
 });

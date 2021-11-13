@@ -54,6 +54,14 @@
                 />
               </div>
               <div class="input-container d-flex align-center">
+                <input
+                  type="text"
+                  placeholder="Inventory"
+                  v-model="inventory"
+                  class="pl-5"
+                />
+              </div>
+              <div class="input-container d-flex align-center">
                 <textarea
                   type="text"
                   placeholder="Description"
@@ -175,7 +183,8 @@
                   price:</span
                 >
                 {{ price }} DKK / <span id="name-span"> category: </span>
-                {{ category }}/ <span id="name-span"> type: </span>{{ type }}
+                {{ category }}/ <span id="name-span"> type: </span>{{ type }} /
+                <span id="name-span"> inventory: </span>{{ inventory }}
                 <br />
 
                 <span id="desc"> description:</span>
@@ -184,7 +193,7 @@
                 </p>
               </div>
               <div class="admin-item-img">
-                <img :src="this.image" :alt="placeholderImg" />
+                <img :src="this.image" />
               </div>
             </div>
           </div>
@@ -222,10 +231,11 @@ export default {
     return {
       name: "",
       brand: "",
-      price: "",
+      price: null,
       description: "",
       category: "",
       type: "",
+      inventory: null,
       image: null,
       picked: "",
       showPainting: false,
@@ -275,6 +285,7 @@ export default {
             type: this.type,
             description: this.description,
             image: this.image,
+            inventory: this.inventory,
           })
           .then(() => {
             this.status = "Published! ";
@@ -294,6 +305,7 @@ export default {
           image: this.image,
           category: this.category,
           description: this.description,
+          inventory: this.inventory,
         })
         .then(() => {
           this.status = "Published! ";
@@ -312,6 +324,7 @@ export default {
           image: this.image,
           category: this.category,
           description: this.description,
+          inventory: this.inventory,
         })
         .then(() => {
           this.status = "Published! ";
@@ -323,10 +336,11 @@ export default {
     emptyFields() {
       (this.name = ""),
         (this.brand = ""),
-        (this.price = ""),
+        (this.price = null),
         (this.category = ""),
         (this.description = ""),
         (this.type = "");
+      this.inventory = null;
     },
   },
   mounted() {
