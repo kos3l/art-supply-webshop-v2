@@ -26,7 +26,10 @@
                 </h4>
               </div>
               <div class="d-flex align-center">
-                <v-icon class="pr-5"> mdi-minus </v-icon>
+                <v-btn @click="decrement(product)"
+                  ><v-icon class="pr-5"> mdi-minus </v-icon></v-btn
+                >
+
                 <p class="ma-0 pr-5">
                   {{ product.quantity }} x {{ product.price }}
                 </p>
@@ -84,6 +87,9 @@ export default {
   methods: {
     increment(product) {
       this.$store.dispatch("increment", product);
+    },
+    decrement(product) {
+      this.$store.dispatch("decrement", product);
     },
   },
   mounted() {

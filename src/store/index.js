@@ -131,8 +131,7 @@ export default new Vuex.Store({
         quantity: 1,
       });
       console.log(productId);
-      //local
-      // Storage.setItem("cartProducts", productId);
+      localStorage.setItem("cart", productId);
     },
 
     incrementItemQuantity(state, cartItem) {
@@ -140,6 +139,13 @@ export default new Vuex.Store({
     },
     incrementItemQuantitys(state, cartItems) {
       cartItems.quantity++;
+    },
+    decrementItemQuantitys(state, cartItems) {
+      if (cartItems.quantity > 0) {
+        cartItems.quantity--;
+      } else {
+        state.cart.splice(0, 1);
+      }
     },
 
     decrementProductInventory(state, product) {
@@ -192,6 +198,14 @@ export default new Vuex.Store({
       );
       console.log(cartItems);
       context.commit("incrementItemQuantitys", cartItems);
+    },
+    decrement(context, product) {
+      const cartItems = context.state.cart.find(
+        (item) => item.id === product.id
+      );
+      console.log(cartItems);
+
+      context.commit("decrementItemQuantitys", cartItems);
     },
   },
   getters: {
