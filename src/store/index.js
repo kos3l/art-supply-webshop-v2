@@ -138,6 +138,9 @@ export default new Vuex.Store({
     incrementItemQuantity(state, cartItem) {
       cartItem.quantity++;
     },
+    incrementItemQuantitys(state, cartItems) {
+      cartItems.quantity++;
+    },
 
     decrementProductInventory(state, product) {
       product.inventory--;
@@ -183,6 +186,13 @@ export default new Vuex.Store({
         console.log(product);
       }
     },
+    increment(context, product) {
+      const cartItems = context.state.cart.find(
+        (item) => item.id === product.id
+      );
+      console.log(cartItems);
+      context.commit("incrementItemQuantitys", cartItems);
+    },
   },
   getters: {
     availableProducts(state) {
@@ -214,6 +224,7 @@ export default new Vuex.Store({
       return state.bundlesItems[state.randomNumberBundles];
     },
     getUser: (state) => state.currentUser,
+    getCart: (state) => state.cart,
 
     cartProducts(state) {
       return state.cart.map((cartItem) => {
@@ -231,19 +242,19 @@ export default new Vuex.Store({
         return {
           name: product.name,
           brand: product.brand,
+          id: product.id,
           price: product.price,
           quantity: cartItem.quantity,
         };
       });
     },
 
-    /* 
     cartTotal(state, getters) {
-      return getters.cart.reduce(
+      return getters.cartProducts.reduce(
         (total, product) => total + product.price * product.quantity,
         0
       );
-    },*/
+    },
   },
   //plugins: [createPersistedState()],
 

@@ -13,51 +13,23 @@
             <div
               v-for="product in products"
               :key="product.id"
-              class="basketItem d-flex justify-space-between align-center"
+              class="basketItem d-flex justify-space-between align-center mb-5"
             >
               <div class="d-flex align-center">
                 <h4 class="ma-0 pl-5 900">
                   {{ product.name }} {{ product.brand }}
+                  <v-btn @click="increment(product)"
+                    ><v-icon class="pr-5">
+                      mdi-plus
+                    </v-icon></v-btn
+                  >
                 </h4>
               </div>
               <div class="d-flex align-center">
-                <v-icon class="pr-5"> mdi-plus </v-icon>
                 <v-icon class="pr-5"> mdi-minus </v-icon>
-                <p class="ma-0 pr-5">ammount x price</p>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div
-              v-for="item in productsD"
-              :key="item.id"
-              class="basketItem d-flex justify-space-between align-center"
-            >
-              <div class="d-flex align-center">
-                <h4 class="ma-0 pl-5 900">{{ item.name }} {{ item.brand }}</h4>
-              </div>
-              <div class="d-flex align-center">
-                <v-icon class="pr-5"> mdi-plus </v-icon>
-                <v-icon class="pr-5"> mdi-minus </v-icon>
-                <p class="ma-0 pr-5">ammount x price</p>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div
-              v-for="items in productsB"
-              :key="items.id"
-              class="basketItem d-flex justify-space-between align-center"
-            >
-              <div class="d-flex align-center">
-                <h4 class="ma-0 pl-5 900">
-                  {{ items.name }} {{ items.brand }}
-                </h4>
-              </div>
-              <div class="d-flex align-center">
-                <v-icon class="pr-5"> mdi-plus </v-icon>
-                <v-icon class="pr-5"> mdi-minus </v-icon>
-                <p class="ma-0 pr-5">ammount x price</p>
+                <p class="ma-0 pr-5">
+                  {{ product.quantity }} x {{ product.price }}
+                </p>
               </div>
             </div>
           </div>
@@ -80,7 +52,7 @@
         </v-col>
         <v-col class="d-flex flex-column align-end justify-start">
           <div class="pb-10">
-            <h1>TOTAL AMOUNT:</h1>
+            <h1>TOTAL AMOUNT: {{ total }} DKK</h1>
           </div>
           <div>
             <ButtonRefresh />
@@ -102,16 +74,20 @@ export default {
     products() {
       return this.$store.getters.cartProducts;
     },
-    productsD() {
-      return this.$store.getters.cartProductsD;
+    total() {
+      return this.$store.getters.cartTotal;
     },
-    productsB() {
-      return this.$store.getters.cartProductsB;
+    cart() {
+      return this.$store.getters.getCart;
     },
-
-    //total() {
-    //return this.$store.getters.cartTotal;
-    //},
+  },
+  methods: {
+    increment(product) {
+      this.$store.dispatch("increment", product);
+    },
+  },
+  mounted() {
+    console.log(this.cart);
   },
 };
 </script>
