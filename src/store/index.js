@@ -16,7 +16,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     currentUser: null,
-
+    counter: 0,
     paintingItems: [],
     drawingItems: [],
     bundlesItems: [],
@@ -172,8 +172,10 @@ export default new Vuex.Store({
     },
     addCheckoutItem: (state, cart) => {
       dbOrderItems.add({
-        orderNumber: 2,
-        status: "not started",
+        archive: false,
+        storeOrder: false,
+        orderNumber: state.counter++,
+        status: "incomplete",
         orderLines: state.cart,
       });
       console.log(cart);

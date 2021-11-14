@@ -84,11 +84,23 @@
                               {{ subitem.price }}
                             </p>
                           </td>
-                          <td>
+                          <td
+                            id="status_box"
+                            :class="order.status"
+                            @click="switchStage(order.id)"
+                          >
                             <p>{{ order.status }}</p>
                           </td>
-                          <td><v-icon> mdi-minus</v-icon></td>
-                          <td><v-icon> mdi-delete</v-icon></td>
+                          <td>
+                            <v-btn text @click="addToArchive(order)"
+                              ><v-icon> mdi-minus</v-icon></v-btn
+                            >
+                          </td>
+                          <td>
+                            <v-btn text @click="deleteOrderItems(order.id)"
+                              ><v-icon> mdi-delete</v-icon></v-btn
+                            >
+                          </td>
                         </tr>
                       </tbody>
                     </template>
@@ -142,6 +154,8 @@
 </template>
 
 <script>
+import { dbOrderItems } from "/firebase";
+
 export default {
   data() {
     return {
@@ -154,6 +168,37 @@ export default {
   computed: {
     getOrderItems() {
       return this.$store.getters.getOrderItems;
+    },
+  },
+  methods: {
+    switchStage(id) {
+      let selectedOrderItem = this.getOrderItems.filter(
+        (item) => item.id === id
+      )[0];
+      if (selectedOrderItem.status === "inprogress") {
+        dbOrderItems
+          .doc(id)
+          .update({ status: "complete" })
+          .then(() => {});
+      } else if (selectedOrderItem.status === "incomplete") {
+        dbOrderItems
+          .doc(id)
+          .update({ status: "inprogress" })
+          .then(() => {});
+      } else if (selectedOrderItem.status === "complete") {
+        dbOrderItems
+          .doc(id)
+          .update({ status: "incomplete" })
+          .then(() => {});
+      }
+    },
+    deleteOrderItems(id) {
+      dbOrderItems
+        .doc(id)
+        .delete()
+        .then(() => {
+          console.log("deleted");
+        });
     },
   },
 };
