@@ -22,7 +22,6 @@
             <div v-if="isHidden">
               <div class="dropDown-container pa-5 d-flex">
                 <div class="admin-item-info"></div>
-                <div class="admin-item-img"></div>
               </div>
             </div>
           </v-col>
@@ -48,19 +47,21 @@
                     <template>
                       <thead style="width:100%">
                         <tr>
-                          <th class="text-left px-2">Order nr.</th>
-                          <th class="text-left px-2">QTY</th>
-                          <th class="text-left px-2">Item</th>
-                          <th class="text-left px-2">Price</th>
-                          <th class="text-left px-2">Status</th>
-                          <th class="text-left px-2">Archive Item</th>
-                          <th class="text-left px-2">Remove</th>
+                          <th class="text-left px-2 pl-5">
+                            Order nr.
+                          </th>
+                          <th class="text-left px-2 ">QTY</th>
+                          <th class="text-left px-2 pl-5">Item</th>
+                          <th class="text-left px-2 ">Price</th>
+                          <th class="text-left px-2 pl-5">Status</th>
+                          <th class="text-left px-2 ">Archive Item</th>
+                          <th class="text-left px-2 pl-5">Remove</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr v-if="order.storeOrder == false">
-                          <td>{{ order.orderNumber }}</td>
-                          <td>
+                          <td class="pl-8">{{ order.orderNumber }}</td>
+                          <td class="pt-5">
                             <p
                               v-for="subitem in order.orderLines"
                               :key="subitem.id"
@@ -68,7 +69,7 @@
                               {{ subitem.quantity }}
                             </p>
                           </td>
-                          <td>
+                          <td class="pt-5">
                             <p
                               v-for="subitem in order.orderLines"
                               :key="subitem.id"
@@ -76,7 +77,7 @@
                               {{ subitem.name }}
                             </p>
                           </td>
-                          <td>
+                          <td class="pt-5">
                             <p
                               v-for="subitem in order.orderLines"
                               :key="subitem.id"
@@ -85,6 +86,7 @@
                             </p>
                           </td>
                           <td
+                            class="pt-5"
                             id="status_box"
                             :class="order.status"
                             @click="switchStage(order.id)"
@@ -93,11 +95,14 @@
                           </td>
                           <td>
                             <v-btn text @click="archiveItems(order.id)"
-                              ><v-icon> mdi-minus</v-icon></v-btn
+                              ><v-icon> mdi-archive</v-icon></v-btn
                             >
                           </td>
                           <td>
-                            <v-btn text @click="deleteOrderItems(order.id)"
+                            <v-btn
+                              color="highlight"
+                              text
+                              @click="deleteOrderItems(order.id)"
                               ><v-icon> mdi-delete</v-icon></v-btn
                             >
                           </td>
@@ -148,7 +153,7 @@
                 <div class="admin-item-info">
                   <div>
                     <p id="totalOrders">
-                      total orders: <span>{{ getOrderItems.length }}</span>
+                      Total orders: <span>{{ getOrderItems.length }}</span>
                     </p>
                   </div>
                   <div
