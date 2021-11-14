@@ -27,7 +27,7 @@
               </div>
             </div>
             <div class="add-to-cart d-flex align-end justify-end">
-              <button class="addCartButton" @click="addProductToCartD(getItem)">
+              <button class="addCartButton" @click="addProductToCart(getItem)">
                 <p>ADD TO CART</p>
               </button>
             </div>
@@ -60,8 +60,8 @@ export default {
     },
   },
   methods: {
-    addProductToCartD(productD) {
-      this.$store.dispatch("addProductToCartD", productD);
+    addProductToCart(product) {
+      this.$store.dispatch("addProductToCart", product);
     },
   },
 

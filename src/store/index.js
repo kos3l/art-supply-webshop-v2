@@ -25,8 +25,6 @@ export default new Vuex.Store({
     randomNumberDrawing: null,
     randomNumberBundles: null,
     cart: [],
-    cartD: [],
-    cartB: [],
   },
   mutations: {
     setPaintingItems: (state) => {
@@ -136,39 +134,13 @@ export default new Vuex.Store({
       //local
       // Storage.setItem("cartProducts", productId);
     },
-    pushProductToCartD(state, productIdD) {
-      state.cartD.push({
-        id: productIdD,
-        quantity: 1,
-      });
-      //localStorage.setItem("cartProducts", productIdDrawing);
-    },
-    pushProductToCartB(state, productIdB) {
-      state.cartB.push({
-        id: productIdB,
-        quantity: 1,
-      });
-      //localStorage.setItem("cartProducts", productIdBundles);
-    },
 
     incrementItemQuantity(state, cartItem) {
       cartItem.quantity++;
     },
 
-    incrementItemQuantityD(state, cartItemD) {
-      cartItemD.quantity++;
-    },
-    incrementItemQuantityB(state, cartItemB) {
-      cartItemB.quantity++;
-    },
     decrementProductInventory(state, product) {
       product.inventory--;
-    },
-    decrementProductInventoryD(state, productD) {
-      productD.inventory--;
-    },
-    decrementProductInventoryB(state, productB) {
-      productB.inventory--;
     },
   },
   actions: {
@@ -211,34 +183,6 @@ export default new Vuex.Store({
         console.log(product);
       }
     },
-    addProductToCartD(context, productD) {
-      if (productD.inventory > 0) {
-        const cartItemD = context.state.cartD.find(
-          (itemD) => itemD.id === productD.id
-        );
-        if (!cartItemD) {
-          context.commit("pushProductToCartD", productD.id);
-        } else {
-          context.commit("incrementItemQuantityD", cartItemD);
-        }
-        context.commit("decrementProductInventoryD", productD);
-        console.log(productD);
-      }
-    },
-    addProductToCartB(context, productB) {
-      if (productB.inventory > 0) {
-        const cartItemB = context.state.cartB.find(
-          (itemB) => itemB.id === productB.id
-        );
-        if (!cartItemB) {
-          context.commit("pushProductToCartB", productB.id);
-        } else {
-          context.commit("incrementItemQuantityB", cartItemB);
-        }
-        context.commit("decrementProductInventoryB", productB);
-        console.log(productB);
-      }
-    },
   },
   getters: {
     availableProducts(state) {
@@ -273,9 +217,17 @@ export default new Vuex.Store({
 
     cartProducts(state) {
       return state.cart.map((cartItem) => {
-        const product = state.paintingItems.find(
-          (paintingItems) => paintingItems.id === cartItem.id
-        );
+        const product =
+          state.paintingItems.find(
+            (paintingItems) => paintingItems.id === cartItem.id
+          ) ||
+          state.drawingItems.find(
+            (drawingItems) => drawingItems.id === cartItem.id
+          ) ||
+          state.bundlesItems.find(
+            (bundlesItems) => bundlesItems.id === cartItem.id
+          );
+
         return {
           name: product.name,
           brand: product.brand,
@@ -284,32 +236,7 @@ export default new Vuex.Store({
         };
       });
     },
-    cartProductsD(state) {
-      return state.cartD.map((cartItemD) => {
-        const productD = state.drawingItems.find(
-          (drawingItems) => drawingItems.id === cartItemD.id
-        );
-        return {
-          name: productD.name,
-          brand: productD.brand,
-          price: productD.price,
-          quantity: cartItemD.quantity,
-        };
-      });
-    },
-    cartProductsB(state) {
-      return state.cartB.map((cartItemB) => {
-        const productB = state.bundlesItems.find(
-          (bundlesItems) => bundlesItems.id === cartItemB.id
-        );
-        return {
-          name: productB.name,
-          brand: productB.brand,
-          price: productB.price,
-          quantity: cartItemB.quantity,
-        };
-      });
-    },
+
     /* 
     cartTotal(state, getters) {
       return getters.cart.reduce(
