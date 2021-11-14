@@ -12,6 +12,7 @@ import Paints from "../categories/Paints.vue";
 import Pencils from "../categories/Pencils.vue";
 import BundleCategory from "../categories/BundleCategory.vue";
 import Admin from "../views/Admin.vue";
+import Orders from "../views/Orders.vue";
 import AddNewItems from "../components/admin/AddNewItems.vue";
 import Login from "../components/admin/Login.vue";
 import firebase from "@firebase/app";
@@ -37,6 +38,16 @@ const routes = [
     props: true,
     meta: {
       title: "Admin",
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/orders",
+    name: "Orders",
+    component: Orders,
+    props: true,
+    meta: {
+      title: "Orders",
       requiresAuth: true,
     },
   },

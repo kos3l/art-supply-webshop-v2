@@ -7,6 +7,7 @@ import {
   dbPaintingItemsList,
   dbDrawingItemsList,
   dbBundlesItemsList,
+  dbOrderItems,
   dbTextContentList,
 } from "/firebase";
 
@@ -25,6 +26,7 @@ export default new Vuex.Store({
     randomNumberDrawing: null,
     randomNumberBundles: null,
     cart: [],
+    orderItems: [],
   },
   mutations: {
     setPaintingItems: (state) => {
@@ -55,6 +57,21 @@ export default new Vuex.Store({
           });
         });
         state.drawingItems = drawingItems;
+      });
+    },
+    setOrderItems: (state) => {
+      let orderItems = [];
+
+      dbOrderItems.onSnapshot((snapshotItems) => {
+        orderItems = [];
+        snapshotItems.forEach((doc) => {
+          var orderItemData = doc.data();
+          orderItems.push({
+            ...orderItemData,
+            id: doc.id,
+          });
+        });
+        state.orderItems = orderItems;
       });
     },
     setBundlesItems: (state) => {
@@ -125,13 +142,15 @@ export default new Vuex.Store({
       state.bundlesItems = productB;
     },
 
-    pushProductToCart(state, productId) {
+    pushProductToCart(state, product) {
       state.cart.push({
-        id: productId,
+        id: product.id,
         quantity: 1,
+        name: product.name,
+        price: product.price,
       });
-      console.log(productId);
-      localStorage.setItem("cart", productId);
+
+      localStorage.setItem("cart", product);
     },
 
     incrementItemQuantity(state, cartItem) {
@@ -151,8 +170,22 @@ export default new Vuex.Store({
     decrementProductInventory(state, product) {
       product.inventory--;
     },
+    addCheckoutItem: (state, cart) => {
+      dbOrderItems.add({
+        orderNumber: 2,
+        status: "not started",
+        orderLines: state.cart,
+      });
+      console.log(cart);
+    },
   },
   actions: {
+    setCheckoutItem: (context) => {
+      context.commit("addCheckoutItem");
+    },
+    setOrderItems: (context) => {
+      context.commit("setOrderItems");
+    },
     setPaintingItemsAction: (context) => {
       context.commit("setPaintingItems");
     },
@@ -184,12 +217,11 @@ export default new Vuex.Store({
           (item) => item.id === product.id
         );
         if (!cartItem) {
-          context.commit("pushProductToCart", product.id);
+          context.commit("pushProductToCart", product);
         } else {
           context.commit("incrementItemQuantity", cartItem);
         }
         context.commit("decrementProductInventory", product);
-        console.log(product);
       }
     },
     increment(context, product) {
@@ -269,6 +301,7 @@ export default new Vuex.Store({
         0
       );
     },
+    getOrderItems: (state) => state.orderItems,
   },
   plugins: [createPersistedState()],
 

@@ -187,19 +187,24 @@
           </v-col>
         </v-col>
         <v-col xl="4" class="pl-10">
-          <h1 class="mt-5 welcome-msg text-center">
+          <h1 class="mt-5 welcome-msg text-start">
             Welcome at your Admin page
           </h1>
 
-          <h3 class="font-weight-regular text-center">
+          <h3 class="font-weight-regular text-start">
             Here you can preview your products and add / edit / delete them!
             Remember when you create a new object to select in which main
             category you would like it to be, like painting, drawing or bundles.
           </h3>
-          <div class="d-flex justify-center">
+          <div class="mt-5 d-flex justify-space-between ">
             <router-link :to="{ name: 'addNew' }">
               <button class="add mr-xl-8 mt-5 ">
                 <p>ADD NEW</p>
+              </button>
+            </router-link>
+            <router-link :to="{ name: 'Orders' }">
+              <button class="add mr-xl-8 mt-5 ">
+                <p>MANAGE ORDERS</p>
               </button>
             </router-link>
           </div>

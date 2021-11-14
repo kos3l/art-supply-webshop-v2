@@ -27,3 +27,4 @@ export const dbPaintingItemsList = db.collection("painting");
 export const dbDrawingItemsList = db.collection("drawing");
 export const dbBundlesItemsList = db.collection("bundles");
 export const dbTextContentList = db.collection("textContent");
+export const dbOrderItems = db.collection("orderItems");

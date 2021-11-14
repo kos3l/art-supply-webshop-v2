@@ -11,6 +11,10 @@
         <v-col lg="12">
           <div>
             <div
+              v-if="products == ''"
+              class="basketItem temporary d-flex justify-space-between align-center mb-5"
+            ></div>
+            <div
               v-for="product in products"
               :key="product.id"
               class="basketItem d-flex justify-space-between align-center mb-5"
@@ -18,14 +22,14 @@
               <div class="d-flex align-center">
                 <h4 class="ma-0 pl-5 900">
                   {{ product.name }} {{ product.brand }}
-                  <v-btn @click="increment(product)"
-                    ><v-icon class="pr-5">
-                      mdi-plus
-                    </v-icon></v-btn
-                  >
                 </h4>
               </div>
               <div class="d-flex align-center">
+                <v-btn @click="increment(product)"
+                  ><v-icon class="pr-5">
+                    mdi-plus
+                  </v-icon></v-btn
+                >
                 <v-btn @click="decrement(product)"
                   ><v-icon class="pr-5"> mdi-minus </v-icon></v-btn
                 >
@@ -58,7 +62,7 @@
             <h1>TOTAL AMOUNT: {{ total }} DKK</h1>
           </div>
           <div>
-            <button class="refresh">
+            <button class="refresh" @click="addCheckoutItem()">
               <p>ORDER</p>
             </button>
           </div>
@@ -90,6 +94,9 @@ export default {
     },
     decrement(product) {
       this.$store.dispatch("decrement", product);
+    },
+    addCheckoutItem() {
+      this.$store.dispatch("setCheckoutItem");
     },
   },
   mounted() {
@@ -149,5 +156,8 @@ export default {
   padding: 0;
   font-weight: 900;
   font-size: 1.2rem;
+}
+.temporary {
+  background-color: #b0b0b6;
 }
 </style>
