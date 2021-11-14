@@ -58,7 +58,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
+                        <tr v-if="order.storeOrder == false">
                           <td>{{ order.orderNumber }}</td>
                           <td>
                             <p
@@ -92,7 +92,7 @@
                             <p>{{ order.status }}</p>
                           </td>
                           <td>
-                            <v-btn text @click="addToArchive(order)"
+                            <v-btn text @click="archiveItems(order.id)"
                               ><v-icon> mdi-minus</v-icon></v-btn
                             >
                           </td>
@@ -124,8 +124,11 @@
             </div>
             <div v-if="isHidden">
               <div class="dropDown-container pa-5 d-flex">
-                <div class="admin-item-info"></div>
-                <div class="admin-item-img"></div>
+                <div class="admin-item-info">
+                  <p>
+                    Total Revenue: <span>{{ revenueTotal }}</span>
+                  </p>
+                </div>
               </div>
             </div>
           </v-col>
@@ -142,8 +145,27 @@
             </div>
             <div v-if="isHidden">
               <div class="dropDown-container pa-5 d-flex">
-                <div class="admin-item-info"></div>
-                <div class="admin-item-img"></div>
+                <div class="admin-item-info">
+                  <div>
+                    <p id="totalOrders">
+                      total orders: <span>{{ getOrderItems.length }}</span>
+                    </p>
+                  </div>
+                  <div
+                    id="revenueList"
+                    v-for="item in getOrderItems"
+                    :key="item.name"
+                  >
+                    <div v-if="item.archive == true">
+                      <p>
+                        Order number: {{ item.orderNumber }}
+                        <v-btn text @click="deleteOrderItems(item.id)">
+                          <v-icon>mdi-delete</v-icon>
+                        </v-btn>
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </v-col>
@@ -169,6 +191,17 @@ export default {
     getOrderItems() {
       return this.$store.getters.getOrderItems;
     },
+    revenueTotal() {
+      var revenueIncome = 0;
+      this.getOrderItems.forEach((element) => {
+        if (element.archive == true) {
+          element.orderLines.forEach((subElement) => {
+            revenueIncome += subElement.price * subElement.quantity;
+          });
+        }
+      });
+      return revenueIncome;
+    },
   },
   methods: {
     switchStage(id) {
@@ -191,6 +224,12 @@ export default {
           .update({ status: "incomplete" })
           .then(() => {});
       }
+    },
+    archiveItems(id) {
+      dbOrderItems
+        .doc(id)
+        .update({ archive: true, storeOrder: true })
+        .then(() => {});
     },
     deleteOrderItems(id) {
       dbOrderItems
