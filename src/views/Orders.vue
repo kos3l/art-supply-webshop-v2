@@ -21,7 +21,17 @@
             </div>
             <div v-if="isHidden">
               <div class="dropDown-container pa-5 d-flex">
-                <div class="admin-item-info"></div>
+                <div class="admin-item-info">
+                  <h3 id="admin-header">Welcome to your orders overview!</h3>
+                  <p class="mt-1">
+                    To manage orders you simply have to set wether if the order
+                    is incomplete, in progress or completed by clicking the
+                    highlighted text below status. Next is simply to archive
+                    them after completeing, this way you can keep a history and
+                    see your earned revenue! You are also able to delete an
+                    order by clicking on an icon under remove in orders tab
+                  </p>
+                </div>
               </div>
             </div>
           </v-col>
@@ -31,12 +41,16 @@
             >
               <h2>ORDERS</h2>
               <v-btn icon>
-                <v-icon large color="primary" v-on:click="isHidden = !isHidden">
+                <v-icon
+                  large
+                  color="primary"
+                  v-on:click="isHiddenOrders = !isHiddenOrders"
+                >
                   mdi-chevron-down
                 </v-icon>
               </v-btn>
             </div>
-            <div v-if="isHidden">
+            <div v-if="isHiddenOrders">
               <div
                 class="dropDown-container pa-5 "
                 v-for="order in getOrderItems"
@@ -94,7 +108,7 @@
                             <p>{{ order.status }}</p>
                           </td>
                           <td>
-                            <v-btn text @click="archiveItems(order.id)"
+                            <v-btn text icon @click="archiveItems(order.id)"
                               ><v-icon> mdi-archive</v-icon></v-btn
                             >
                           </td>
@@ -102,6 +116,7 @@
                             <v-btn
                               color="highlight"
                               text
+                              icon
                               @click="deleteOrderItems(order.id)"
                               ><v-icon> mdi-delete</v-icon></v-btn
                             >
@@ -122,17 +137,22 @@
             >
               <h2>REVENUE</h2>
               <v-btn icon>
-                <v-icon large color="primary" v-on:click="isHidden = !isHidden">
+                <v-icon
+                  large
+                  color="primary"
+                  v-on:click="isHiddenRev = !isHiddenRev"
+                >
                   mdi-chevron-down
                 </v-icon>
               </v-btn>
             </div>
-            <div v-if="isHidden">
+            <div v-if="isHiddenRev">
               <div class="dropDown-container pa-5 d-flex">
                 <div class="admin-item-info">
-                  <p>
-                    Total Revenue: <span>{{ revenueTotal }}</span>
-                  </p>
+                  <h3>
+                    Total Revenue:
+                    <span class="highlight-bg">{{ revenueTotal }} DKK</span>
+                  </h3>
                 </div>
               </div>
             </div>
@@ -143,18 +163,25 @@
             >
               <h2>ARCHIVED ORDERS</h2>
               <v-btn icon>
-                <v-icon large color="primary" v-on:click="isHidden = !isHidden">
+                <v-icon
+                  large
+                  color="primary"
+                  v-on:click="isHiddenArchive = !isHiddenArchive"
+                >
                   mdi-chevron-down
                 </v-icon>
               </v-btn>
             </div>
-            <div v-if="isHidden">
+            <div v-if="isHiddenArchive">
               <div class="dropDown-container pa-5 d-flex">
-                <div class="admin-item-info">
+                <div
+                  class="admin-item-info d-flex flex-column justify-space-between"
+                >
                   <div>
-                    <p id="totalOrders">
+                    <h3 class="font-weight-bold mb-2">
                       Total orders: <span>{{ getOrderItems.length }}</span>
-                    </p>
+                    </h3>
+                    <div class="line-dark"></div>
                   </div>
                   <div
                     id="revenueList"
@@ -162,9 +189,14 @@
                     :key="item.name"
                   >
                     <div v-if="item.archive == true">
-                      <p>
+                      <p class="font-weight-medium mb-0">
                         Order number: {{ item.orderNumber }}
-                        <v-btn text @click="deleteOrderItems(item.id)">
+                        <v-btn
+                          text
+                          icon
+                          color="highlight"
+                          @click="deleteOrderItems(item.id)"
+                        >
                           <v-icon>mdi-delete</v-icon>
                         </v-btn>
                       </p>
@@ -187,6 +219,9 @@ export default {
   data() {
     return {
       isHidden: true,
+      isHiddenOrders: true,
+      isHiddenRev: true,
+      isHiddenArchive: true,
     };
   },
   beforeCreate() {
@@ -252,5 +287,17 @@ export default {
 .admin-item-info {
   width: 100%;
   height: auto;
+}
+#admin-header {
+  text-shadow: 0px 0px 10px map-get($colorz, secondary);
+}
+.admin-item-info p {
+  letter-spacing: 0;
+}
+#status_box {
+  text-shadow: 0px 0px 10px map-get($colorz, highlight);
+}
+.highlight-bg {
+  color: map-get($colorz, highlight);
 }
 </style>
