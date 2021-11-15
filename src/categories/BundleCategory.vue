@@ -1,6 +1,6 @@
 <template>
   <div class="product-page">
-    <v-container fluid light class="pa-0" style="margin-top: 3.6rem;">
+    <v-container fluid light class="pa-0">
       <v-row>
         <v-col class="pa-10">
           <div class="window-img"></div>
@@ -13,7 +13,7 @@
           md="4"
           lg="4"
           xl="4"
-          class="pl-10 pt-7"
+          class="pl-lg-10 pt-lg-7 px-10"
         >
           <SideInfo :Text="getTexts[5]" />
           /
@@ -24,7 +24,7 @@
           md="4"
           lg="4"
           xl="4"
-          class="pl-10 pt-7"
+          class="pl-lg-10 pt-lg-7 px-10"
         >
           <SideInfo :Text="getTexts[2]" />
           /
@@ -34,7 +34,7 @@
           md="8"
           lg="8"
           xl="8"
-          class="pr-10 itemColumn d-flex flex-wrap justify-start align-start"
+          class="pr-lg-10  itemColumn d-flex flex-wrap justify-lg-start justify-center align-start"
           v-if="ctgr === 'forDrawers'"
         >
           <ProductCardBundles
@@ -48,7 +48,7 @@
           md="8"
           lg="8"
           xl="8"
-          class="pr-10 itemColumn d-flex flex-wrap justify-start align-start"
+          class="pr-lg-10  itemColumn d-flex flex-wrap justify-lg-start justify-center align-start"
           v-if="ctgr === 'forPainters'"
         >
           <ProductCardBundles
