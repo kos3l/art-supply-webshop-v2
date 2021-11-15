@@ -6,7 +6,7 @@
           <div class="line-dark"></div>
         </v-col>
       </v-row>
-      <v-row class="pa-10 pt-5 pl-7">
+      <v-row class="pa-lg-10 pa-5 pt-5 pl-lg-7">
         <v-col xl="8" lg="8">
           <v-col class="editContainer">
             <div
@@ -130,7 +130,7 @@
             </div>
           </v-col>
         </v-col>
-        <v-col xl="4" lg="4" class="pl-10">
+        <v-col xl="4" lg="4" class="pl-lg-10">
           <v-col class="editContainer">
             <div
               class="name-banner dark d-flex justify-space-between align-center px-5"

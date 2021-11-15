@@ -7,7 +7,7 @@
         </v-col>
       </v-row>
       <v-row class="pa-lg-10 pa-5 pt-5 pl-lg-7">
-        <v-col>
+        <v-col lg="6" cols="12">
           <div class="add-container">
             <div class="add-banner dark d-flex justify-center align-center">
               <h3>ADD NEW ITEM</h3>
@@ -168,7 +168,7 @@
             </div>
           </div>
         </v-col>
-        <v-col>
+        <v-col lg="6" cols="12">
           <div class="add-container">
             <div class="add-banner dark d-flex justify-center align-center ">
               <h3>PREVIEW</h3>
