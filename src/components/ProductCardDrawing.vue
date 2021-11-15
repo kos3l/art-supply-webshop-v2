@@ -97,7 +97,7 @@ export default {
       map-get($colorz, secondary),
       map-get($colorz, primary)
     );
-    margin: 1rem 0 1rem 2rem;
+    margin: 0;
     height: 370px;
     width: 280px;
   }

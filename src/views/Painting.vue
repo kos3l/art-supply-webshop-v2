@@ -7,7 +7,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col sm="12" md="4" lg="3" xl="2" class="pl-10 pt-7">
+        <v-col sm="12" md="4" lg="3" xl="2" class="pl-lg-10 pt-lg-7 px-10">
           <div class="filter-wrap">
             <div class="filter-container">
               <h3>BRAND</h3>
@@ -137,7 +137,7 @@
           md="8"
           lg="9"
           xl="10"
-          class="pr-10 itemColumn d-flex flex-wrap justify-start align-start"
+          class="pr-lg-10 item-column d-flex flex-wrap justify-center justify-lg-start align-start"
         >
           <ProductCardPainting
             v-for="paintingItem in paintingAll"
@@ -305,5 +305,11 @@ export default {
 .filters-checkbox input[type="checkbox"]:checked ~ span.p {
   background-color: map-get($colorz, secondary);
   color: map-get($colorz, primary);
+}
+
+@media screen and (max-width: 600px) {
+  .product-page {
+    margin-top: 0rem;
+  }
 }
 </style>

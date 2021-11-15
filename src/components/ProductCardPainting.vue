@@ -1,5 +1,5 @@
 <template>
-  <div class="outer d-flex flex-column ">
+  <div class="outer d-flex flex-column mb-10">
     <div class="picture-container">
       <v-btn
         @click="addProductToCart(paintingItem)"
@@ -113,7 +113,7 @@ export default {
       map-get($colorz, secondary),
       map-get($colorz, primary)
     );
-    margin: 1rem 0 1rem 2rem;
+    margin-bottom: 0;
     height: 370px;
     width: 280px;
   }
