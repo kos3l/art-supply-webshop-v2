@@ -153,9 +153,9 @@
           </v-col>
         </v-row>
       </v-container>
-
-      <router-view />
-
+      <transition name="fade" mode="out-in">
+        <router-view />
+      </transition>
       <v-container fluid class="dark footer pa-0">
         <v-row class="ma-0 pa-0 row-size">
           <v-col class="line-container pa-10">
@@ -357,6 +357,17 @@ a:hover + .hover-col,
 }
 .footer-2 {
   background-color: map-get($colorz, secondary);
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
 }
 .mobile-menu {
   position: fixed;

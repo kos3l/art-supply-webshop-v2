@@ -118,7 +118,7 @@ export default {
     map-get($colorz, primary),
     map-get($colorz, secondary)
   );
-  transition: 0.3s ease-in-out;
+  transition: 0.5s;
   height: 4rem;
   border-radius: 30px;
   box-shadow: 2px 2px 8px map-get($colorz, highlight);
@@ -130,7 +130,9 @@ export default {
   font-size: 1.2rem;
 }
 .addCartButton:hover {
-  transition: 0.3s ease-in-out;
   box-shadow: 0px 0px 20px map-get($colorz, highlight);
+}
+.addCartButton:active {
+  transform: translateY(-5px);
 }
 </style>
