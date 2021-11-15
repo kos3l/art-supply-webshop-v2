@@ -1,26 +1,46 @@
 <template>
-  <router-link :to="{ name: 'ProductDrawing', params: { id: drawingItem.id } }">
-    <div class="outer d-flex flex-column ">
-      <div class="picture-container">
+  <div class="outer d-flex flex-column ">
+    <div class="picture-container">
+      <v-btn
+        @click="addProductToCart(drawingItem)"
+        class="addItem"
+        icon
+        color="highlight"
+      >
+        <v-icon>
+          mdi-plus
+        </v-icon>
+      </v-btn>
+      <router-link
+        :to="{ name: 'ProductDrawing', params: { id: drawingItem.id } }"
+      >
         <img :src="drawingItem.image" alt="" />
+      </router-link>
+    </div>
+    <div class="bottom-bar dark d-flex pa-3">
+      <div class="details d-flex flex-column justify-center align-start">
+        <p>{{ drawingItem.name }}</p>
+        <p style="margin-top:0.5rem;">{{ drawingItem.brand }}</p>
       </div>
-      <div class="bottom-bar dark d-flex pa-3">
-        <div class="details d-flex flex-column justify-center align-start">
-          <p>{{ drawingItem.name }}</p>
-          <p style="margin-top:0.5rem;">{{ drawingItem.brand }}</p>
-        </div>
-        <div class="price d-flex flex-column justify-center align-end">
-          <p>{{ drawingItem.price }} DKK</p>
-        </div>
+      <div class="price d-flex flex-column justify-center align-end">
+        <p>{{ drawingItem.price }} DKK</p>
       </div>
     </div>
-  </router-link>
+  </div>
 </template>
 
 <script>
 export default {
   name: "ProductCardDrawing",
   props: ["drawingItem"],
+  data() {
+    return {};
+  },
+  methods: {
+    addProductToCart(product) {
+      this.$store.dispatch("addProductToCart", product);
+    },
+  },
 };
 </script>
 
@@ -49,7 +69,7 @@ export default {
 }
 .bottom-bar {
   width: 100%;
-  height: 25%;
+  min-height: 25%;
   font-size: 0.9rem;
 }
 .details {
