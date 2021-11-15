@@ -96,8 +96,8 @@ export default {
   height: auto;
 }
 @media screen and (max-width: 321px) {
-.row-h {
-  height: 100vh;
-}
+  .row-h {
+    height: 120vh;
+  }
 }
 </style>
