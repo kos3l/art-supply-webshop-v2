@@ -6,7 +6,9 @@
           <div class="arrow left"></div>
         </v-col>
         <v-col class="d-flex justify-center align-end pa-0">
-          <div class="category-box"></div>
+          <div class="category-box pa-0">
+            <img :src="main" alt="" />
+          </div>
         </v-col>
         <v-col class="pa-0 d-flex justify-center align-end">
           <div class="arrow right"></div>
@@ -101,8 +103,9 @@ export default {
   },
   data() {
     return {
-      callToAction: "CHOOSE YOUR PRODUCTS OF INTEREST",
+      callToAction: "EVERY MASTERPIECE STARTS HERE",
       middleTitle: "BEST QUALITY PRODUCTS SHIPPED WORLDWIDE",
+      main: require("../assets/canvas.jpeg"),
     };
   },
   computed: {
