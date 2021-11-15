@@ -1,15 +1,15 @@
 <template>
   <div class="product-page">
-    <v-container fluid light class="pa-0" style="margin-top: 3.6rem;">
-      <v-row class="pa-10">
-        <v-col lg="12">
+    <v-container fluid light class="pa-0 mt-lg-10">
+      <v-row class="pa-lg-10 pa-5">
+        <v-col lg="12" cols="12">
           <div class="line-dark"></div>
         </v-col>
-        <v-col lg="12">
+        <v-col lg="12" cols="12">
           <h1 id="bask">YOUR BASKET</h1>
         </v-col>
-        <v-col lg="12">
-          <div>
+        <v-col lg="12" cols="12">
+          <div class="font-upd">
             <div
               v-if="products == ''"
               class="basketItem temporary d-flex justify-space-between align-center mb-5"
@@ -20,17 +20,17 @@
               class="basketItem d-flex justify-space-between align-center mb-5"
             >
               <div class="d-flex align-center">
-                <h4 class="ma-0 pl-5 900">
+                <h4 class="ma-0 pl-lg-5 pl-0 900">
                   {{ product.name }} / {{ product.brand }}
                 </h4>
               </div>
               <div class="d-flex align-center">
-                <v-btn class="mr-5" icon @click="increment(product)"
+                <v-btn class="mr-lg-5 mr-1" icon @click="increment(product)"
                   ><v-icon color="highlight">
                     mdi-plus
                   </v-icon></v-btn
                 >
-                <p class="ma-0 pr-5">
+                <p class="ma-0 pr-lg-5">
                   {{ product.quantity }} x {{ product.price }} DKK
                 </p>
                 <v-btn icon @click="decrement(product)"
@@ -41,8 +41,8 @@
           </div>
         </v-col>
       </v-row>
-      <v-row class="pa-10">
-        <v-col class="pt-5">
+      <v-row class="pa-lg-10 pa-5">
+        <v-col class="pt-5" cols="12">
           <div class="basket-drop-button">
             <h4>CHOOSE SHIPPING</h4>
             <v-icon color="secondary" v-on:click="isHidden = !isHidden">
@@ -57,9 +57,13 @@
             </v-icon>
           </div>
         </v-col>
-        <v-col class="d-flex flex-column align-end justify-start">
-          <div class="pb-10">
-            <h1>TOTAL AMOUNT: {{ total }} DKK</h1>
+        <v-col
+          class="d-flex flex-column align-lg-end align-center justify-lg-start  mb-5"
+        >
+          <div class="pb-lg-10 pb-5 ">
+            <h1 class="text-center text-lg-left">
+              TOTAL AMOUNT: {{ total }} DKK
+            </h1>
           </div>
           <div>
             <button class="refresh" @click="addCheckoutItem()">
@@ -162,5 +166,11 @@ export default {
 }
 #bask {
   text-shadow: 0px 0px 20px map-get($colorz, secondary);
+}
+
+@media screen and (max-width: 600px) {
+  .font-upd {
+    font-size: 0.8rem;
+  }
 }
 </style>
