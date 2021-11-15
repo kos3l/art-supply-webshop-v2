@@ -215,7 +215,7 @@ export default {
       phone: 20943812,
       email: "artSupply@gmail.com",
       next: "/nav",
-      prev: "", // previous view is stored here
+      prev: "",
     };
   },
   computed: {
