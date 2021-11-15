@@ -1,6 +1,22 @@
 <template>
   <v-app id="app">
     <v-main>
+      <v-container class="hidden-md-and-up pa-0"
+        ><router-link :to="next">
+          <v-btn
+            class="mobile-menu"
+            v-on:click="menuChange()"
+            fab
+            large
+            color="highlight"
+            elevation="6"
+            style="position:fixed;"
+          >
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </router-link></v-container
+      >
+
       <v-container fluid class="secondary d-none d-md-block nav pa-0">
         <v-row class="height-fix" style="width:100%">
           <v-col></v-col>
@@ -198,6 +214,8 @@ export default {
       currentPage: window.location.pathname,
       phone: 20943812,
       email: "artSupply@gmail.com",
+      next: "/nav",
+      prev: "", // previous view is stored here
     };
   },
   computed: {
@@ -209,6 +227,16 @@ export default {
     this.currentPage = this.$router.currentRoute.path;
     console.info(this.currentPage);
     console.log(this.currentUser);
+  },
+  methods: {
+    menuChange() {
+      if (this.$router.history.current.path == "/nav") {
+        this.next = this.prev;
+      } else {
+        (this.next = "/nav"), (this.prev = this.$router.history.current.path);
+      }
+      console.log(this.prev);
+    },
   },
 };
 </script>
@@ -329,5 +357,30 @@ a:hover + .hover-col,
 }
 .footer-2 {
   background-color: map-get($colorz, secondary);
+}
+.mobile-menu {
+  position: fixed;
+  bottom: 160px;
+  left: 320px;
+  z-index: 999;
+  display: flex;
+}
+@media screen and (max-width: 376px) {
+  .mobile-menu {
+    position: fixed;
+    bottom: 170px;
+    left: 290px;
+    z-index: 999;
+    display: flex;
+  }
+}
+@media screen and (max-width: 321px) {
+  .mobile-menu {
+    position: fixed;
+    bottom: 110px;
+    left: 230px;
+    z-index: 999;
+    display: flex;
+  }
 }
 </style>

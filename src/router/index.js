@@ -12,6 +12,7 @@ import Paints from "../categories/Paints.vue";
 import Pencils from "../categories/Pencils.vue";
 import BundleCategory from "../categories/BundleCategory.vue";
 import Admin from "../views/Admin.vue";
+import Nav from "../views/Nav.vue";
 import Orders from "../views/Orders.vue";
 import AddNewItems from "../components/admin/AddNewItems.vue";
 import Login from "../components/admin/Login.vue";
@@ -175,6 +176,11 @@ const routes = [
       title: "BundlesCategory",
       requiresAuth: false,
     },
+  },
+  {
+    path: "/nav",
+    name: "Nav",
+    component: Nav,
   },
 ];
 
