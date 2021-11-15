@@ -153,10 +153,16 @@
             <p class="mb-1">{{ phone }}</p>
           </v-col>
           <v-col>
-            <router-link :to="{ name: 'Admin' }" class="d-flex justify-center">
+            <router-link
+              :to="{ name: 'Admin' }"
+              class="d-flex justify-center flex-column align-center"
+            >
               <p>
                 ADMIN SECTION
               </p>
+              <v-icon large dense color="highlight">
+                mdi-account-circle-outline
+              </v-icon>
             </router-link>
           </v-col>
           <v-col class="d-flex justify-center align-center flex-column"

@@ -49,9 +49,11 @@
             xl="7"
             class=" d-flex justify-space-between align-center px-xl-16 px-lg-16"
           >
-            <h1 class="ml-xl-15 ml-lg-5">OUR WIDE SELECTION OF TOOLS</h1>
+            <h1 id="randomHead" class="ml-xl-15 ml-lg-5">
+              OUR WIDE SELECTION OF TOOLS
+            </h1>
 
-            <button class="refresh mr-xl-8" @click="updateData">
+            <button class="refresh-home mr-xl-8" @click="updateData">
               <p>MORE</p>
             </button>
           </div>
@@ -221,7 +223,9 @@ export default {
 .left {
   transform: rotate(180deg);
 }
-
+#randomHead {
+  text-shadow: 0px 0px 20px map-get($colorz, secondary);
+}
 .middle-title {
   height: 20vh;
 }
@@ -236,7 +240,26 @@ export default {
 .btn-info {
   height: 40vh;
 }
-
+.refresh-home {
+  @include container_mixin(
+    2px,
+    map-get($colorz, secondary),
+    0,
+    0,
+    map-get($colorz, secondary),
+    map-get($colorz, primary)
+  );
+  width: 200px;
+  height: 60px;
+  border-radius: 30px;
+  box-shadow: 2px 2px 8px map-get($colorz, highlight);
+}
+.refresh-home p {
+  margin: 0;
+  padding: 0;
+  font-weight: 900;
+  font-size: 1.2rem;
+}
 @media screen and (max-width: 600px) {
 }
 </style>
