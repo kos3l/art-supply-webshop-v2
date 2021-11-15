@@ -1,23 +1,30 @@
 <template>
-  <router-link
-    v-if="!loading"
-    :to="{ name: 'Product', params: { id: chosenItem.id } }"
-  >
-    <div class="outer-random d-flex flex-column ">
-      <div class="picture-container">
+  <div v-if="!loading" class="outer-random d-flex flex-column ">
+    <div class="picture-container">
+      <v-btn
+        @click="addProductToCart(chosenItem)"
+        class="addItem"
+        icon
+        color="highlight"
+      >
+        <v-icon>
+          mdi-plus
+        </v-icon>
+      </v-btn>
+      <router-link :to="{ name: 'Product', params: { id: chosenItem.id } }">
         <img :src="chosenItem.image" alt="" />
+      </router-link>
+    </div>
+    <div class="bottom-bar dark d-flex pa-3">
+      <div class="details d-flex flex-column justify-center align-start">
+        <p>{{ chosenItem.name }}</p>
+        <p style="margin-top:0.5rem;">{{ chosenItem.brand }}</p>
       </div>
-      <div class="bottom-bar dark d-flex pa-3">
-        <div class="details d-flex flex-column justify-center align-start">
-          <p>{{ chosenItem.name }}</p>
-          <p style="margin-top:0.5rem;">{{ chosenItem.brand }}</p>
-        </div>
-        <div class="price d-flex flex-column justify-center align-end">
-          <p>{{ chosenItem.price }} DKK</p>
-        </div>
+      <div class="price d-flex flex-column justify-center align-end">
+        <p>{{ chosenItem.price }} DKK</p>
       </div>
     </div>
-  </router-link>
+  </div>
 </template>
 
 <script>
@@ -29,6 +36,11 @@ export default {
       loading: true,
       //set to true if
     };
+  },
+  methods: {
+    addProductToCart(product) {
+      this.$store.dispatch("addProductToCart", product);
+    },
   },
 
   watch: {
