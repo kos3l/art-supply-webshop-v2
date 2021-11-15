@@ -273,8 +273,13 @@ export default {
   );
   width: 200px;
   height: 60px;
+  transition: 0.3s ease-in-out;
   border-radius: 30px;
-  box-shadow: 2px 2px 8px map-get($colorz, highlight);
+  box-shadow: 2px 2px 10px map-get($colorz, highlight);
+}
+.refresh-home:hover {
+  transition: 0.3s ease-in-out;
+  box-shadow: 0px 0px 20px map-get($colorz, highlight);
 }
 .refresh-home p {
   margin: 0;

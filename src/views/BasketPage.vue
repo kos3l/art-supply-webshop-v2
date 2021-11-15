@@ -66,7 +66,7 @@
             </h1>
           </div>
           <div>
-            <button class="refresh" @click="addCheckoutItem()">
+            <button class="refresh-order" @click="addCheckoutItem()">
               <p>ORDER</p>
             </button>
           </div>
@@ -141,7 +141,7 @@ export default {
 .basket-drop-button .v-icon {
   width: 10%;
 }
-.refresh {
+.refresh-order {
   @include container_mixin(
     2px,
     map-get($colorz, secondary),
@@ -150,12 +150,17 @@ export default {
     map-get($colorz, secondary),
     map-get($colorz, primary)
   );
-  width: 150px;
-  height: 50px;
+  width: 250px;
+  height: 60px;
   border-radius: 30px;
+  transition: 0.3s ease-in-out;
   box-shadow: 2px 2px 8px map-get($colorz, highlight);
 }
-.refresh p {
+.refresh-order:hover {
+  transition: 0.3s ease-in-out;
+  box-shadow: 0px 0px 20px map-get($colorz, highlight);
+}
+.refresh-order p {
   margin: 0;
   padding: 0;
   font-weight: 900;

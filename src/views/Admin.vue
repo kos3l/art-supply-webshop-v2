@@ -834,12 +834,18 @@ export default {
   height: 60px;
   border-radius: 30px;
   box-shadow: 2px 2px 8px map-get($colorz, highlight);
+  transition: 0.3s ease-in-out;
 }
 .add p {
   margin: 0;
   padding: 0;
   font-weight: 900;
   font-size: 1.2rem;
+}
+
+.add:hover {
+  transition: 0.3s ease-in-out;
+  box-shadow: 0px 0px 20px map-get($colorz, highlight);
 }
 .card-container {
   height: 100%;
