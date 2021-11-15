@@ -851,6 +851,7 @@ export default {
   width: 100%;
   min-height: 100%;
 }
+
 @media screen and (max-width: 600px) {
   .dropDown-container {
     flex-direction: column;
