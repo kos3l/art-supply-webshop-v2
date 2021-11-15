@@ -1,10 +1,10 @@
 <template>
-  <div class="product-page adminBG " style="margin-top: 3.6rem">
-    <v-container fluid class="pa-16 " style="margin-top: 3.2rem;">
+  <div class="product-page adminBG mt-lg-5">
+    <v-container fluid class="pa-lg-16 mt-lg-5">
       <v-row>
-        <v-col> </v-col>
-        <v-col>
-          <div class="login-container mt-10">
+        <v-col cols="0"> </v-col>
+        <v-col cols="12" lg="4">
+          <div class="login-container mt-lg-10 mt-16">
             <div class="log-banner dark pa-5">
               ADMINISTRATOR LOG IN
             </div>
@@ -81,7 +81,7 @@
             </template>
           </v-snackbar>
         </v-col>
-        <v-col></v-col>
+        <v-col cols="0"></v-col>
       </v-row>
     </v-container>
   </div>

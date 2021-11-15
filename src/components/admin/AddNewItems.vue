@@ -6,7 +6,7 @@
           <div class="line-dark"></div>
         </v-col>
       </v-row>
-      <v-row class="pa-10 pt-5 pl-7">
+      <v-row class="pa-lg-10 pa-5 pt-5 pl-lg-7">
         <v-col>
           <div class="add-container">
             <div class="add-banner dark d-flex justify-center align-center">
@@ -511,5 +511,14 @@ export default {
 }
 .preview-container {
   height: auto;
+}
+@media screen and (max-width: 600px) {
+  .preview-container {
+    flex-direction: column;
+  }
+  .admin-item-img {
+    width: 100%;
+    min-height: 100%;
+  }
 }
 </style>

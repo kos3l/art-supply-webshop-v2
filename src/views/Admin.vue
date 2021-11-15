@@ -6,7 +6,7 @@
           <div class="line-dark"></div>
         </v-col>
       </v-row>
-      <v-row class="pa-10 pt-5 pl-7">
+      <v-row class="pa-10 pt-5 pl-lg-7">
         <v-col xl="8">
           <!-- painting item list -->
           <v-col class="editContainer">
@@ -22,7 +22,7 @@
             </div>
             <div v-if="isHidden">
               <div
-                class="dropDown-container pa-5 d-flex"
+                class="dropDown-container pa-5 d-flex "
                 v-for="paintingItem in paintingItems"
                 :key="paintingItem.id"
               >
@@ -186,8 +186,8 @@
             </div>
           </v-col>
         </v-col>
-        <v-col xl="4" class="pl-10">
-          <h1 class="mt-5 welcome-msg text-start">
+        <v-col xl="4" class="pl-lg-10 ">
+          <h1 class="mt-lg-5 welcome-msg text-start">
             Welcome at your Admin page
           </h1>
 
@@ -196,7 +196,7 @@
             Remember when you create a new object to select in which main
             category you would like it to be, like painting, drawing or bundles.
           </h3>
-          <div class="mt-5 d-flex justify-space-between ">
+          <div class="mt-5 d-flex justify-space-between adminButtons ">
             <router-link :to="{ name: 'addNew' }">
               <button class="add mr-xl-8 mt-5 ">
                 <p>ADD NEW</p>
@@ -850,5 +850,37 @@ export default {
 .admin-item-img img {
   width: 100%;
   min-height: 100%;
+}
+@media screen and (max-width: 600px) {
+  .dropDown-container {
+    flex-direction: column;
+  }
+  .admin-item-img {
+    width: 100%;
+    min-height: 100%;
+  }
+  .adminButtons {
+    flex-direction: column;
+  }
+  .add {
+    @include container_mixin(
+      2px,
+      map-get($colorz, secondary),
+      0,
+      0,
+      map-get($colorz, secondary),
+      map-get($colorz, primary)
+    );
+    width: 250px;
+    height: 60px;
+    border-radius: 30px;
+    box-shadow: 2px 2px 8px map-get($colorz, highlight);
+  }
+  .add p {
+    margin: 0;
+    padding: 0;
+    font-weight: 900;
+    font-size: 1.2rem;
+  }
 }
 </style>
