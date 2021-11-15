@@ -1,5 +1,5 @@
 <template>
-  <div class="outer d-flex flex-column mb-10">
+  <div class="outer d-flex flex-column mb-10 mr-sm-5">
     <div class="picture-container">
       <v-btn
         @click="addProductToCart(paintingItem)"

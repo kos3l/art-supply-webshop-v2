@@ -365,7 +365,16 @@ a:hover + .hover-col,
   z-index: 999;
   display: flex;
 }
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 800px) {
+  .mobile-menu {
+    position: fixed;
+    bottom: 200px;
+    left: 650px;
+    z-index: 999;
+    display: flex;
+  }
+}
+@media screen and (max-width: 414px) {
   .mobile-menu {
     position: fixed;
     bottom: 170px;

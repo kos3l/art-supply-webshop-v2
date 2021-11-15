@@ -95,6 +95,16 @@ export default {
 .nav-col {
   height: auto;
 }
+@media screen and (max-width: 800px) {
+  .nav-bg {
+    font-size: 2.5rem;
+  }
+}
+@media screen and (max-width: 414px) {
+  .nav-bg {
+    font-size: 1.5rem;
+  }
+}
 @media screen and (max-width: 321px) {
   .row-h {
     height: 120vh;

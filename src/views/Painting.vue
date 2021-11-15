@@ -137,7 +137,7 @@
           md="8"
           lg="9"
           xl="10"
-          class="pr-lg-10 item-column d-flex flex-wrap justify-center justify-lg-start align-start"
+          class="pr-lg-10  item-column d-flex flex-wrap justify-center justify-lg-start align-start"
         >
           <ProductCardPainting
             v-for="paintingItem in paintingAll"
@@ -306,7 +306,11 @@ export default {
   background-color: map-get($colorz, secondary);
   color: map-get($colorz, primary);
 }
-
+@media screen and (max-width: 800px) {
+  .product-page {
+    margin-top: 0rem;
+  }
+}
 @media screen and (max-width: 600px) {
   .product-page {
     margin-top: 0rem;

@@ -5,14 +5,14 @@
         <v-col
           class="pa-0 d-flex justify-center align-end"
           cols="2"
-          sm="0"
+          sm="2"
           lg="4"
         >
         </v-col>
         <v-col
           class=" center-col d-flex justify-center  pa-0"
           cols="8"
-          sm="12"
+          sm="8"
           lg="4"
         >
           <div class="category-box pa-0">
@@ -22,7 +22,7 @@
         <v-col
           class="pa-0 d-flex justify-center align-end"
           cols="2"
-          sm="0"
+          sm="2"
           lg="4"
         >
         </v-col>
@@ -284,6 +284,18 @@ export default {
 }
 .center-col {
   align-items: end;
+}
+@media screen and (max-width: 800px) {
+  #home {
+    margin: 0;
+    background-position: 90% 90%;
+  }
+  .call-to-action {
+    text-align: center;
+  }
+  .middle-title h1 {
+    text-align: center;
+  }
 }
 @media screen and (max-width: 600px) {
   #home {
