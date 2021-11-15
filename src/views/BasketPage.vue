@@ -6,7 +6,7 @@
           <div class="line-dark"></div>
         </v-col>
         <v-col lg="12">
-          <h1>YOUR BASKET</h1>
+          <h1 id="bask">YOUR BASKET</h1>
         </v-col>
         <v-col lg="12">
           <div>
@@ -21,22 +21,21 @@
             >
               <div class="d-flex align-center">
                 <h4 class="ma-0 pl-5 900">
-                  {{ product.name }} {{ product.brand }}
+                  {{ product.name }} / {{ product.brand }}
                 </h4>
               </div>
               <div class="d-flex align-center">
-                <v-btn @click="increment(product)"
-                  ><v-icon class="pr-5">
+                <v-btn class="mr-5" icon @click="increment(product)"
+                  ><v-icon color="highlight">
                     mdi-plus
                   </v-icon></v-btn
                 >
-                <v-btn @click="decrement(product)"
-                  ><v-icon class="pr-5"> mdi-minus </v-icon></v-btn
-                >
-
                 <p class="ma-0 pr-5">
-                  {{ product.quantity }} x {{ product.price }}
+                  {{ product.quantity }} x {{ product.price }} DKK
                 </p>
+                <v-btn icon @click="decrement(product)"
+                  ><v-icon color="secondary"> mdi-minus </v-icon></v-btn
+                >
               </div>
             </div>
           </div>
@@ -46,13 +45,14 @@
         <v-col class="pt-5">
           <div class="basket-drop-button">
             <h4>CHOOSE SHIPPING</h4>
-            <v-icon v-on:click="isHidden = !isHidden">
+            <v-icon color="secondary" v-on:click="isHidden = !isHidden">
               mdi-chevron-down
             </v-icon>
           </div>
+
           <div class="basket-drop-button">
             <h4>CHOOSE PAYMENT METHOD</h4>
-            <v-icon v-on:click="isHidden = !isHidden">
+            <v-icon color="secondary" v-on:click="isHidden = !isHidden">
               mdi-chevron-down
             </v-icon>
           </div>
@@ -159,5 +159,8 @@ export default {
 }
 .temporary {
   background-color: #b0b0b6;
+}
+#bask {
+  text-shadow: 0px 0px 20px map-get($colorz, secondary);
 }
 </style>

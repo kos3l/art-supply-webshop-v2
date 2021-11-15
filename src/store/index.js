@@ -160,7 +160,7 @@ export default new Vuex.Store({
       cartItems.quantity++;
     },
     decrementItemQuantitys(state, cartItems) {
-      if (cartItems.quantity > 0) {
+      if (cartItems.quantity > 1) {
         cartItems.quantity--;
       } else {
         state.cart.splice(0, 1);
