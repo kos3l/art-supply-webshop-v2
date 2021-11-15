@@ -146,7 +146,7 @@
             <div class="line"></div>
           </v-col>
         </v-row>
-        <v-row class="ma-0 pr-7 pl-8">
+        <v-row class=" footer-2 ma-0 pr-7 pl-8">
           <v-col class="d-flex justify-center flex-column align-center">
             <p class="mb-1">CONTACT:</p>
             <p class="mb-1">{{ email }}</p>
@@ -157,7 +157,7 @@
               :to="{ name: 'Admin' }"
               class="d-flex justify-center flex-column align-center"
             >
-              <p>
+              <p class="text-center">
                 ADMIN SECTION
               </p>
               <v-icon large dense color="highlight">
@@ -326,5 +326,8 @@ a:hover + .hover-col,
 }
 .dropdown p {
   color: map-get($colorz, secondary);
+}
+.footer-2 {
+  background-color: map-get($colorz, secondary);
 }
 </style>

@@ -81,4 +81,20 @@ export default {
     width: 290px;
   }
 }
+@media screen and (max-width: 600px) {
+  .outer-random {
+    @include container_mixin(
+      2px,
+      map-get($colorz, secondary),
+      0,
+      0,
+      map-get($colorz, secondary),
+      map-get($colorz, primary)
+    );
+    margin: 0;
+
+    height: 45vh;
+    width: 20vw;
+  }
+}
 </style>

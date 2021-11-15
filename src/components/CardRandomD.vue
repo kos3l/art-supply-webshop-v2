@@ -81,4 +81,9 @@ export default {
     width: 290px;
   }
 }
+@media screen and (max-width: 600px) {
+  .outer-random {
+    margin: 0;
+  }
+}
 </style>

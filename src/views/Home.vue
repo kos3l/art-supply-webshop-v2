@@ -2,20 +2,33 @@
   <div id="home">
     <v-container fluid class="wrap">
       <v-row class="top-row">
-        <v-col class="pa-0 d-flex justify-center align-end">
-          <div class="arrow left"></div>
+        <v-col
+          class="pa-0 d-flex justify-center align-end"
+          cols="2"
+          sm="0"
+          lg="4"
+        >
         </v-col>
-        <v-col class="d-flex justify-center align-end pa-0">
+        <v-col
+          class=" center-col d-flex justify-center  pa-0"
+          cols="8"
+          sm="12"
+          lg="4"
+        >
           <div class="category-box pa-0">
             <img :src="main" alt="" />
           </div>
         </v-col>
-        <v-col class="pa-0 d-flex justify-center align-end">
-          <div class="arrow right"></div>
+        <v-col
+          class="pa-0 d-flex justify-center align-end"
+          cols="2"
+          sm="0"
+          lg="4"
+        >
         </v-col>
       </v-row>
       <v-row class="low-row">
-        <v-col class="d-flex justify-center align-start">
+        <v-col class="d-flex justify-center align-start ">
           <div class="call-to-action dark">
             <h1>{{ callToAction }}</h1>
           </div>
@@ -31,29 +44,38 @@
     </v-container>
     <v-container fluid class="light wrap-plain pa-0 ma-0 ">
       <v-row class="row-size ma-0 pt-xl-15 pt-lg-10 pt-md-10">
-        <v-col class=" d-flex justify-center align-center pl-0">
+        <v-col
+          class=" d-flex justify-center align-center pl-lg-0 pb-lg-0  pt-lg-0  pb-5 pt-10"
+        >
           <ProductCardRandom :chosenItem="randomItemsVuex" />
         </v-col>
 
-        <v-col class=" d-flex justify-center align-center">
+        <v-col
+          class=" d-flex justify-center align-center pl-lg-0 pb-lg-0  pt-lg-0  pb-5 pt-5"
+        >
           <CardRandomD :chosenItemD="randomItemsVuexDrawing" />
         </v-col>
-        <v-col class=" d-flex justify-center align-center ">
+        <v-col
+          class=" d-flex justify-center align-center pl-lg-0 pb-lg-0  pt-lg-0  pb-10 pt-5"
+        >
           <CardRandomB :chosenItemB="randomItemsVuexBundles" />
         </v-col>
       </v-row>
-      <v-row class="row-size mt-10 pb-16">
+      <v-row class="row-size mt-lg-10 pb-16">
         <v-col>
           <div
             lg="9"
             xl="7"
-            class=" d-flex justify-space-between align-center px-xl-16 px-lg-16"
+            class="mobileRandom d-flex justify-space-between align-center  px-xl-16 px-lg-16"
           >
-            <h1 id="randomHead" class="ml-xl-15 ml-lg-5">
+            <h1 id="randomHead" class="ml-xl-15 ml-lg-5 pl-5 pl-lg-0">
               OUR WIDE SELECTION OF TOOLS
             </h1>
 
-            <button class="refresh-home mr-xl-8" @click="updateData">
+            <button
+              class="refresh-home mr-xl-8 mt-5 mt-lg-0"
+              @click="updateData"
+            >
               <p>MORE</p>
             </button>
           </div>
@@ -61,16 +83,16 @@
       </v-row>
     </v-container>
     <v-container fluid class="light wrap-plain pa-0 ma-0 ">
-      <v-row class="row-last">
-        <v-col class="poster pa-16"> </v-col>
-        <v-col class="dark pa-16 pb-0">
+      <v-row class="row-last ">
+        <v-col class="poster pa-lg-16" cols="12"> </v-col>
+        <v-col class="dark pa-lg-16 pb-0">
           <v-col>
             <div class="header d-flex justify-center align-center">
               <h1>ABOUT US</h1>
             </div>
           </v-col>
           <v-col class="pb-0">
-            <div class="info-text">
+            <div class="info-text ">
               <p>
                 Art Supply Store was founded in 2019 in Poland, Wrocław.
                 Initially as a small store on plac solny square, with time it
@@ -260,6 +282,52 @@ export default {
   font-weight: 900;
   font-size: 1.2rem;
 }
+.center-col {
+  align-items: end;
+}
 @media screen and (max-width: 600px) {
+  #home {
+    margin: 0;
+
+    background-position: 90% 90%;
+  }
+  .top-row {
+    height: 55vh;
+  }
+  .center-col {
+    align-items: start;
+    margin-top: 4rem;
+  }
+  .category-box {
+    height: 40vh;
+  }
+  .call-to-action h1 {
+    font-size: 1.2rem;
+  }
+  .call-to-action {
+    margin: 0 1rem 0 1rem;
+    padding: 1rem;
+    text-align: center;
+  }
+  .middle-title h1 {
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 0 1rem 0 1rem;
+  }
+  .middle-title {
+    margin: 0 1rem 0 1rem;
+  }
+  .mobileRandom {
+    flex-direction: column;
+  }
+  .mobileRandom h1 {
+    text-align: center;
+  }
+  .poster {
+    height: 20vh;
+  }
+  .row-last {
+    height: auto;
+  }
 }
 </style>
