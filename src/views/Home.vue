@@ -49,7 +49,7 @@
             xl="7"
             class=" d-flex justify-space-between align-center px-xl-16 px-lg-16"
           >
-            <h1 class="ml-xl-15 ml-lg-5">DISCOVER DIFFERENT PRODUCTS</h1>
+            <h1 class="ml-xl-15 ml-lg-5">OUR WIDE SELECTION OF TOOLS</h1>
 
             <button class="refresh mr-xl-8" @click="updateData">
               <p>MORE</p>
@@ -61,28 +61,36 @@
     <v-container fluid class="light wrap-plain pa-0 ma-0 ">
       <v-row class="row-last">
         <v-col class="poster pa-16"> </v-col>
-        <v-col class="dark pa-16">
+        <v-col class="dark pa-16 pb-0">
           <v-col>
             <div class="header d-flex justify-center align-center">
-              <h1>INFORMATION SECTION</h1>
+              <h1>ABOUT US</h1>
             </div>
           </v-col>
-          <v-col>
+          <v-col class="pb-0">
             <div class="info-text">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad
+                Art Supply Store was founded in 2019 in Poland, Wrocław.
+                Initially as a small store on plac solny square, with time it
+                grew and became Wroclaw's artist's favourite. The idea was to
+                offer a unique mix of pencils and artist materials, at good
+                prices, with a large customer focus and fast deliveries. Always
+                with a high finish (because you customers are just like
+                ourselves, aestheticians).
               </p>
 
               <p>
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat. Duis aute irure dolor in
-                reprehenderit
+                Over the years, the ambition has been sharpened and has come to
+                include a wide range of of goods and products for creativity. We
+                think we have come a long way, but we are far from finished. A
+                number of years ago, we adopted the slogan "Tools for
+                Creativity". This is how we look at our role, to provide what
+                you need for your creating, no matter how you get an outlet for
+                your own creativity. We will always have great prices, fast
+                deliveries and excellent customer service.
               </p>
             </div>
           </v-col>
-          <v-col class="btn-info d-flex justify-center align-center"> </v-col>
         </v-col>
       </v-row>
     </v-container>

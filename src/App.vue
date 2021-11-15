@@ -147,18 +147,24 @@
           </v-col>
         </v-row>
         <v-row class="ma-0 pr-7 pl-8">
-          <v-col>
-            <p>CONTACT:</p>
+          <v-col class="d-flex justify-center flex-column align-center">
+            <p class="mb-1">CONTACT:</p>
+            <p class="mb-1">{{ email }}</p>
+            <p class="mb-1">{{ phone }}</p>
           </v-col>
-          <v-col><p>GENERAL INFORMATION</p></v-col>
           <v-col>
-            <router-link :to="{ name: 'Admin' }">
+            <router-link :to="{ name: 'Admin' }" class="d-flex justify-center">
               <p>
                 ADMIN SECTION
               </p>
             </router-link>
           </v-col>
-          <v-col><p>SOCIAL MEDIA</p></v-col>
+          <v-col class="d-flex justify-center align-center flex-column"
+            ><p class="mb-2">SOCIAL MEDIA</p>
+            <v-btn icon class="mb-2"
+              ><v-icon large color="highlight">mdi-facebook</v-icon></v-btn
+            ></v-col
+          >
         </v-row>
       </v-container>
     </v-main>
@@ -184,6 +190,8 @@ export default {
   data() {
     return {
       currentPage: window.location.pathname,
+      phone: 20943812,
+      email: "artSupply@gmail.com",
     };
   },
   computed: {
