@@ -1,18 +1,18 @@
 <template>
   <div>
-    <v-container fluid light class="pa-16" style="margin-top: 3.6rem;">
+    <v-container fluid light class="pa-lg-16 pa-0 mt-lg-10">
       <v-row class="background-box">
-        <v-col class="pa-16">
+        <v-col class="pa-lg-16 pa-0" cols="12" lg="6">
           <img v-if="getItem" :src="getItem.image" class="product-image" />
         </v-col>
-        <v-col class="pa-16 pl-0 info-column">
+        <v-col class="pa-lg-16 pa-10 pl-lg-0 info-column">
           <div
             v-if="getItem"
             class="detailsContainter d-flex flex-column justify-space-around"
           >
             <div>
               <h2 class="text-uppercase">{{ this.getItem.name }}</h2>
-              <div class="line mb-lg-6"></div>
+              <div class="line mb-6"></div>
               <div class=" d-flex justify-space-between mb-lg-3 ">
                 <p class="font-weight-bold">BRAND:</p>
                 <p>{{ this.getItem.brand }}</p>
@@ -20,14 +20,15 @@
               <div class=" d-flex justify-space-between mb-3">
                 <p class="font-weight-bold">PRICE:</p>
                 <p>{{ this.getItem.price }} DKK</p>
-                <p>{{ this.getItem.inventory }}</p>
               </div>
               <div class=" d-flex flex-column mb-3">
                 <p class="font-weight-bold mb-1">DESCRIPTION:</p>
                 <p class="describ">{{ this.getItem.description }}</p>
               </div>
             </div>
-            <div class="add-to-cart d-flex align-end justify-end">
+            <div
+              class="add-to-cart d-flex align-end justify-lg-end justify-center"
+            >
               <button class="addCartButton" @click="addProductToCart(getItem)">
                 <p>ADD TO CART</p>
               </button>

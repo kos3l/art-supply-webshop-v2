@@ -84,7 +84,7 @@
     </v-container>
     <v-container fluid class="light wrap-plain pa-0 ma-0 ">
       <v-row class="row-last ">
-        <v-col class="poster pa-lg-16" cols="12"> </v-col>
+        <v-col class="poster pa-lg-16" cols="12" lg="6"> </v-col>
         <v-col class="dark pa-lg-16 pb-0">
           <v-col>
             <div class="header d-flex justify-center align-center">
